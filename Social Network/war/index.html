@@ -1,27 +1,40 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
-
-<html>
+<!DOCTYPE html>
+<html lang="fr">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Hello App Engine</title>
-  </head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Social Network</title>
 
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
   <body>
-    <h1>Hello App Engine!</h1>
-	
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href="social_network">Social_Network</a></td>
-      </tr>
-    </table>
+	<div class="container">
+		<div class="row">
+		  <div class="col-md-3">
+			<div class="thumbnail">
+			  <img class="img-rounded" src="images/aigle.jpg" alt="Image">
+			  <div class="caption text-center">
+			    <h3>Maurice D.</h3	>
+			    <p>Une description, un slogan !</p>
+			    <ul class="list-group">
+				  <li class="list-group-item"><span class="badge">56</span>#Tags</li>
+				  <li class="list-group-item"><span class="badge">236</span>Contacts</li>
+				</ul>          
+			  </div>
+			</div>
+		  </div>
+		  <div class="col-md-6"><h1>Gitan 2</h1></div>
+		  <div class="col-md-3"><h1>Gitan 3</h1></div>
+		</div>
+	</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
