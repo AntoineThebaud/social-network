@@ -33,3 +33,43 @@ body {
 .shadow {
 	box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.7);
 }
+
+.size32 {
+	width:32px;
+	height:32px;	
+}
+
+.image_post {
+	border-radius: 5px;
+	margin-top: -6px;
+}
+
+.padding_top {
+	padding-top: 10px;
+}
+
+.vertical-resize {
+	resize: vertical;
+}
+
+.height-105 {
+	height: 105px;
+}
+
+#test {
+	height: 105px;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-right {
+	float: right;
+}
+
+.avatar_post {
+	width:60px;
+	height:60px;
+	margin-left: 17px;
+}
