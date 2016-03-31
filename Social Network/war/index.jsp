@@ -1,3 +1,8 @@
+<%
+	if (session.isNew()){
+		response.sendRedirect("/inscription.jsp");
+	}
+%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -18,56 +23,30 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-					aria-expanded="false">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="#">Brand</a>
+				<a class="navbar-brand" href="#">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">Link</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Dropdown <span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul>
-					</li>
+					<li><a href="#">A propos</a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
-					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Link</a></li>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Rechercher">
+						</div>
+						<button type="submit" class="btn btn-primary">Envoyer</button>
+					</form>
+					<li><a href="#"><img src="images/minions.jpg" alt="Moi" class="image_post size32">&nbsp;&nbsp;Mon profil</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
+						aria-expanded="false">Options <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Paramètres</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
+							<li><a href="#">Se deconnecter</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -106,20 +85,12 @@
 				</div>
 				<div class="thumbnail border shadow">
 					<div class="tendance">
-						<h3>Tendances</h3>
+						<h3 align="center">Tendances</h3>
 						 <div class="list-group">
 							<a href="#" class="list-group-item active">#First item</a>
 							<a href="#" class="list-group-item" style="color:#337AB7">#Second item</a>
 							<a href="#" class="list-group-item" style="color:#337AB7">#Third item</a>
 						</div>
-					</div>
-				</div>
-				<div class="thumbnail border shadow">
-					<div class="tendance">
-						<h3 align="center">Tendances</h3>
-						<p><a href="#" class="">#First item</a> </p>
-						<p><a href="#" class="">#Second item</a> </p>
-						<p><a href="#" class="">#Third item</a> </p>
 					</div>
 				</div>
 				<!-- Fin thumbnail profil -->
@@ -194,35 +165,7 @@
 				</div>
 				<!-- Fin zone de text -->
 				<!-- Debut zone d'affichage du flux -->
-				<!-- Model 1 -->
-				<div class="thumbnail border shadow padding_top">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-						</div>
-						<div class="col-md-9">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-md-3">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-						</div>
-						<div class="col-md-9">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-						</div>
-					</div>
-				</div>
-				<!-- Fin Model 1 -->
+				
 				<!-- Model 2 -->
 				<div class="thumbnail border shadow padding_top">
 					<div class="row">
@@ -253,57 +196,6 @@
 					</div>
 				</div>
 				<!-- Fin Model 2 -->
-				<!-- Model 3 -->
-				<div class="row">
-					<div class="col-md-3">
-						<div class="thumbnail shadow">
-							<img id="test" src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail">
-						</div>
-					</div>
-					<div class="col-md-9">
-						<div class="thumbnail shadow">
-							<div class="row">
-								<div class="col-md-12">
-									<p class="float-left">Maurice D.</p>
-									<p class="float-right">Il y a 10 min</p>
-								</div>
-								<div class="col-md-12">
-									<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Fin Model 3 -->
-				<!-- Model 4 -->
-				<div class="thumbnail border shadow padding_top">
-					<div class="row">
-						<div class="col-md-2">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-circle avatar_post">
-						</div>
-						<div class="col-md-10">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-10">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-						</div>
-					</div>
-					<hr>
-					<div class="row">
-						<div class="col-md-2">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-circle avatar_post">
-						</div>
-						<div class="col-md-10">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-10">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-						</div>
-					</div>
-				</div>
-				<!-- Fin Model 4 -->
 			</div>
 			<div class="col-md-3">
 				<h1>Colonne 3</h1>

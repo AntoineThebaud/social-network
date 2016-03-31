@@ -2,16 +2,22 @@ package social.network;
 
 import java.util.ArrayList;
 
+import com.googlecode.objectify.annotation.*;
+
+@Entity
 public class Personne {
-	private String nom;
-	private String prenom;
-	private String mail;
-	private int id; //Unique
+	private @Index String nom;
+	private @Index String prenom;
+	private @Index String mail;
+	private @Id Long id; //Unique
 	private int age;
 	private String ville;
 	private ArrayList<String>interet;
 	private String mdp;
 	
+	public Personne(){
+		
+	}
 	
 	public String getNom() {
 		return nom;
@@ -31,10 +37,10 @@ public class Personne {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public int getAge() {

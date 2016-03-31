@@ -12,6 +12,7 @@ public class Incription extends HttpServlet {
 	private char[] char_table;
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("On viens de passer dans la servlet Inscription !");
 		Personne nouvelUser = new Personne();
 		nouvelUser.setAge(Integer.parseInt(req.getParameter("age")));
 		nouvelUser.setMail(req.getParameter("mail"));
