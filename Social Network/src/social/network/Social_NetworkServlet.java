@@ -10,9 +10,7 @@ public class Social_NetworkServlet extends HttpServlet {
         ObjectifyService.register(Personne.class); // Fait connaître Personne à Objectify
     }
 	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException {
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		resp.sendRedirect("/inscription.jsp");
 	}
 }

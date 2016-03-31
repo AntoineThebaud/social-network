@@ -51,25 +51,25 @@
 				<form class="form-horizontal" method="post" action="Inscription">
 				  <div class="form-group">
 				    <div class="col-sm-5">
-				      <input type="text" class="form-control" id="prenom" placeholder="Prénom" required>
+				      <input type="text" class="form-control" name="prenom" placeholder="Prénom" required>
 				    </div>
 				    <div class="col-sm-5">
-				      <input type="text" class="form-control" id="nom" placeholder="Nom" required>
+				      <input type="text" class="form-control" name="nom" placeholder="Nom" required>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <div class="col-sm-10">
-				      <input type="email" class="form-control" id="mail" placeholder="Email" required>
+				      <input type="email" class="form-control" name="mail" placeholder="Email" required>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <div class="col-sm-10">
-				      <input type="password" class="form-control" id="mdp" placeholder="Mot de passe" required>
+				      <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" required>
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <div class="col-sm-10">
-				      <input type="password" class="form-control" id="mdp2" placeholder="Confirmation du mot de passe" required>
+				      <input type="password" class="form-control" name="mdp2" placeholder="Confirmation du mot de passe" required>
 				    </div>
 				  </div>
 				  <div class="form-group">
@@ -77,7 +77,7 @@
 						<label class="control-label">Date de naissance</label>
 					</div>
 					<div class="col-sm-2">
-						<select class="form-control" id="jour">
+						<select class="form-control" name="jour">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -85,15 +85,15 @@
 						</select>
 					</div>
 					<div class="col-sm-3">
-						<select class="form-control" id="mois">
-							<option>Janvier</option>
-							<option>Février</option>
-							<option>Mars</option>
-							<option>Novembre</option>
+						<select class="form-control" name="mois">
+							<option>01</option>
+							<option>02</option>
+							<option>03</option>
+							<option>04</option>
 						</select>
 					</div>
 					<div class="col-sm-3">
-						<select class="form-control" id="annees">
+						<select class="form-control" name="annees">
 							<option>2000</option>
 							<option>1999</option>
 							<option>1998</option>

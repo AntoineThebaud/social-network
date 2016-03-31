@@ -1,6 +1,6 @@
 <%
 	if (session.isNew()){
-		response.sendRedirect("/inscription.jsp");
+		response.sendRedirect("/social_network");
 	}
 %>
 <!DOCTYPE html>
