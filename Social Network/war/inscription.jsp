@@ -44,7 +44,11 @@
 	<div class="container">
 		<div class="row">
 		 	<div class="col-md-6">
-		 		<p>Image de bienvenue </p>
+		 		<br/>
+		 		<br/>
+		 		<div class="thumbnail border shadow">
+					<img src="images/image_accueil.jpg" alt="Bienvenue" class="">
+				</div>
 		 	</div>
 		 	<div class="col-md-6">
 		 		<h2>Inscription</h2>
