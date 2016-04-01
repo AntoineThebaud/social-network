@@ -46,7 +46,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="#">Paramètres</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Se deconnecter</a></li>
+							<li><a href="/deconnexion">Se deconnecter</a></li>
 						</ul>
 					</li>
 				</ul>
