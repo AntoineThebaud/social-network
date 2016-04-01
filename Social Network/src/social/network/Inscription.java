@@ -13,13 +13,12 @@ import org.apache.tools.ant.taskdefs.condition.Http;
 import com.google.apphosting.utils.config.ClientDeployYamlMaker.Request;
 
 public class Inscription extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-	private char[] char_table;
-	private int jour, mois, annees;
-	private boolean erreur;
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("Je suis dans la servlet Inscription");
+		char[] char_table;
+		int jour, mois, annees;
+		boolean erreur;
 		erreur = false;
 		Personne nouvelUser = new Personne();
 		//nouvelUser.setAge(Integer.parseInt(req.getParameter("age")));
@@ -73,6 +72,7 @@ public class Inscription extends HttpServlet {
 			session.setAttribute("Nom", nouvelUser.getNom());
 			session.setAttribute("Prenom", nouvelUser.getPrenom());
 			session.setAttribute("Mail", nouvelUser.getMail());
+			session.setAttribute("Valide", true);
 			
 			//Redirection vers son flux d'actualité.
 			resp.sendRedirect("/index.jsp");

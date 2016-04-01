@@ -18,7 +18,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Accueil</a>
+				<a class="navbar-brand" href="/">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -28,10 +28,10 @@
 					<li><a href="#">A propos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<form class="navbar-form navbar-left" role="connexion">
+					<form class="navbar-form navbar-left" role="connexion" method="post" action="connexion">
 						<div class="form-group">
-							<input type="email" class="form-control" placeholder="Email">
-							<input type="password" class="form-control" placeholder="Mot de passe">
+							<input type="email" class="form-control" placeholder="Email" name="mail">
+							<input type="password" class="form-control" placeholder="Mot de passe" name="pw">
 						</div>
 						<button type="submit" class="btn btn-success">Se connecter</button>
 					</form>

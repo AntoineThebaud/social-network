@@ -11,8 +11,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Social_Network</servlet-name>
 		<url-pattern>/social_network</url-pattern>
-	</servlet-mapping>
-	
+	</servlet-mapping>	
 	
 	<servlet>
 		<servlet-name>Inscription</servlet-name>
@@ -21,6 +20,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Inscription</servlet-name>
 		<url-pattern>/Inscription</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>connexion</servlet-name>
+		<servlet-class>social.network.Connexion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>connexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
 	</servlet-mapping>
 	 
 	
