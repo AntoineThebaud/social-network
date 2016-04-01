@@ -1,6 +1,8 @@
 package social.network;
 
 import java.io.IOException;
+import java.util.List;
+
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tools.ant.taskdefs.condition.Http;
+import org.apache.tools.ant.types.CommandlineJava.SysProperties;
 
 import com.google.apphosting.utils.config.ClientDeployYamlMaker.Request;
 
@@ -32,9 +35,14 @@ public class Inscription extends HttpServlet {
 		annees = Integer.parseInt(req.getParameter("annees"));
 		
 		//Verification du mail dans la base de données.
-		if(/*si un select dans la bdd sur mail renvoi un resultat*/true){
-			//Erreur le client existe deja.
-			//erreur = true;
+		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", nouvelUser.getMail()).list();
+		
+		for (int i=0; i < personnes.size(); i++){
+			if (personnes.get(i).getMail().equals(nouvelUser.getMail())) {
+				//Erreur le client existe deja.
+				System.out.println("L'adresse mail existe deja.");
+				erreur = true;
+			}
 		}
 		
 		//Verification du double mot de passe
