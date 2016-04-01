@@ -68,7 +68,7 @@
 						<img src="images/minions.jpg" alt="Photo de profile" class="img-circle image_profile">
 					</div>
 					<div class="caption text-center">
-						<h3>Maurice D.</h3>
+						<h3><%= session.getAttribute("Prenom")%> <%= session.getAttribute("Nom")%></h3>
 						<p>Une description, un slogan !</p>
 						<hr>
 					</div>

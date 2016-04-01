@@ -27,6 +27,8 @@ public class Connexion extends HttpServlet {
 				if (personnes.get(i).getMdp().equals(pw)) {
 					//Success !
 					HttpSession session = req.getSession();
+					session.setAttribute("Nom", personnes.get(i).getNom());
+					session.setAttribute("Prenom", personnes.get(i).getPrenom());
 					session.setAttribute("Valide", true);
 					succes = true;
 					resp.sendRedirect("/index.jsp");

@@ -5,6 +5,7 @@ import java.util.List;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,6 +49,7 @@ public class Inscription extends HttpServlet {
 		//Verification du double mot de passe
 		if(!req.getParameter("mdp2").equals(nouvelUser.getMdp())){
 			System.out.println("Les deux mdp ne sont pas identiques");
+			req.setAttribute("erreur", "mdp");
 			erreur = true;
 		}
 		
@@ -70,7 +72,12 @@ public class Inscription extends HttpServlet {
 		//Si tout est OK, inserer le nouvel utilisateur et rediriger.
 		//Sinon renvoyer sur le formulaire avec une erreure.
 		if (erreur) {
-			resp.sendRedirect("/inscription.jsp");
+			//resp.sendRedirect("/inscription.jsp");
+			try {
+				this.getServletContext().getRequestDispatcher("/inscription.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				System.out.println("erreur dans le forwarding !");
+			}
 		} else {
 			//Sauvegarde dans le Datastore.
 			ofy().save().entity(nouvelUser).now();

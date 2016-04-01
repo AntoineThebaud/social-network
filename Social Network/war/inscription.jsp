@@ -52,6 +52,14 @@
 		 	</div>
 		 	<div class="col-md-6">
 		 		<h2>Inscription</h2>
+		 		
+		 		
+		 		<div class="alert alert-danger" role="alert">Les mots de passe ne sont pas identiques</div>
+		 		<% if(request.getAttribute("erreur") != null) {%>
+				    <div class="error">Une erreur a été rencontrée: <%=request.getAttribute("erreur")%></div>
+				<%}%>
+				
+				
 				<form class="form-horizontal" method="post" action="Inscription">
 				  <div class="form-group">
 				    <div class="col-sm-5">
