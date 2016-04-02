@@ -5,6 +5,7 @@ import java.util.List;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +39,12 @@ public class Connexion extends HttpServlet {
 		//Sinon afficher une erreur dans la page d'inscription / connexion.
 		if (!succes) {
 			//Erreur
-			resp.sendRedirect("/inscription.jsp");
+			req.setAttribute("erreur", "Identifiant ou mot de passe incorrect");
+			try {
+				this.getServletContext().getRequestDispatcher("/inscription.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				System.out.println("Erreur du forwarding dans la servlet Connexion");
+			}
 		}
 	}
 }

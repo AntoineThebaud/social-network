@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,9 +30,17 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form class="navbar-form navbar-left" role="connexion" method="post" action="connexion">
-						<div class="form-group">
-							<input type="email" class="form-control" placeholder="Email" name="mail">
-							<input type="password" class="form-control" placeholder="Mot de passe" name="pw">
+					  <% if(request.getAttribute("erreur") != null && request.getAttribute("erreur").equals("Identifiant ou mot de passe incorrect")) {%>
+					  	<div class="form-group has-error has-feedback">
+					  <%}else {%>
+					  	<div class="form-group">
+					  <%}%>
+					  <% if(request.getAttribute("erreur") != null && request.getAttribute("erreur").equals("Identifiant ou mot de passe incorrect")) {%>
+				  		<input type="email" class="form-control" name="mail" value="<%= request.getParameter("mail")%>" required>
+				  	  <%}else {%>
+				    	<input type="email" class="form-control" name="mail" placeholder="Email" required>
+				      <%}%>
+						<input type="password" class="form-control" placeholder="Mot de passe" name="pw" required>
 						</div>
 						<button type="submit" class="btn btn-success">Se connecter</button>
 					</form>
@@ -52,34 +61,57 @@
 		 	</div>
 		 	<div class="col-md-6">
 		 		<h2>Inscription</h2>
-		 		
-		 		
-		 		<div class="alert alert-danger" role="alert">Les mots de passe ne sont pas identiques</div>
 		 		<% if(request.getAttribute("erreur") != null) {%>
-				    <div class="error">Une erreur a été rencontrée: <%=request.getAttribute("erreur")%></div>
+		 		<div class="col-sm-10">
+				    <div class="alert alert-danger" role="alert" align="center">
+				    	<%=request.getAttribute("erreur")%>
+				    </div>
+				</div>
 				<%}%>
-				
-				
 				<form class="form-horizontal" method="post" action="Inscription">
 				  <div class="form-group">
 				    <div class="col-sm-5">
-				      <input type="text" class="form-control" name="prenom" placeholder="Prénom" required>
+				    <% if(request.getAttribute("erreur") != null && !request.getAttribute("erreur").equals("Identifiant ou mot de passe incorrect")) {%>
+				  		<input type="text" class="form-control" name="prenom" value="<%= request.getParameter("prenom")%>" required>
+				  	<%}else {%>
+				    	<input type="text" class="form-control" name="prenom" placeholder="Prénom" required>
+				    <%}%>
 				    </div>
 				    <div class="col-sm-5">
-				      <input type="text" class="form-control" name="nom" placeholder="Nom" required>
+				      <% if(request.getAttribute("erreur") != null && !request.getAttribute("erreur").equals("Identifiant ou mot de passe incorrect")) {%>
+				  		<input type="text" class="form-control" name="nom" value="<%= request.getParameter("nom")%>" required>
+				  	  <%}else {%>
+				    	<input type="text" class="form-control" name="nom" placeholder="Nom" required>
+				      <%}%>
 				    </div>
 				  </div>
-				  <div class="form-group">
+				  <% if(request.getAttribute("erreur") != null && request.getAttribute("erreur").equals("L'adresse mail existe déjà !")) {%>
+				  	<div class="form-group has-error has-feedback">
+				  <%}else {%>
+				  	<div class="form-group">
+				  <%}%>
 				    <div class="col-sm-10">
-				      <input type="email" class="form-control" name="mail" placeholder="Email" required>
+				    <% if(request.getAttribute("erreur") != null && !request.getAttribute("erreur").equals("Identifiant ou mot de passe incorrect")) {%>
+				  		<input type="email" class="form-control" name="mail" value="<%= request.getParameter("mail")%>" required>
+				  	  <%}else {%>
+				    	<input type="email" class="form-control" name="mail" placeholder="Email" required>
+				      <%}%>
 				    </div>
 				  </div>
-				  <div class="form-group">
+				  <% if(request.getAttribute("erreur") != null && request.getAttribute("erreur").equals("Les deux mots de passe ne sont pas identiques !")) {%>
+				  	<div class="form-group has-error has-feedback">
+				  <%}else {%>
+				  	<div class="form-group">
+				  <%}%>
 				    <div class="col-sm-10">
 				      <input type="password" class="form-control" name="mdp" placeholder="Mot de passe" required>
 				    </div>
 				  </div>
-				  <div class="form-group">
+				  <% if(request.getAttribute("erreur") != null && request.getAttribute("erreur").equals("Les deux mots de passe ne sont pas identiques !")) {%>
+				  	<div class="form-group has-error has-feedback">
+				  <%}else {%>
+				  	<div class="form-group">
+				  <%}%>
 				    <div class="col-sm-10">
 				      <input type="password" class="form-control" name="mdp2" placeholder="Confirmation du mot de passe" required>
 				    </div>

@@ -42,6 +42,7 @@ public class Inscription extends HttpServlet {
 			if (personnes.get(i).getMail().equals(nouvelUser.getMail())) {
 				//Erreur le client existe deja.
 				System.out.println("L'adresse mail existe deja.");
+				req.setAttribute("erreur", "L'adresse mail existe déjà !");
 				erreur = true;
 			}
 		}
@@ -49,7 +50,7 @@ public class Inscription extends HttpServlet {
 		//Verification du double mot de passe
 		if(!req.getParameter("mdp2").equals(nouvelUser.getMdp())){
 			System.out.println("Les deux mdp ne sont pas identiques");
-			req.setAttribute("erreur", "mdp");
+			req.setAttribute("erreur", "Les deux mots de passe ne sont pas identiques !");
 			erreur = true;
 		}
 		
