@@ -38,6 +38,14 @@ public class Inscription extends HttpServlet {
 		//Verification du mail dans la base de données.
 		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", nouvelUser.getMail()).list();
 		
+		//Verification du double mot de passe
+		if(!req.getParameter("mdp2").equals(nouvelUser.getMdp())){
+			System.out.println("Les deux mdp ne sont pas identiques");
+			req.setAttribute("erreur", "Les deux mots de passe ne sont pas identiques !");
+			erreur = true;
+		}
+		
+		
 		for (int i=0; i < personnes.size(); i++){
 			if (personnes.get(i).getMail().equals(nouvelUser.getMail())) {
 				//Erreur le client existe deja.
@@ -45,13 +53,6 @@ public class Inscription extends HttpServlet {
 				req.setAttribute("erreur", "L'adresse mail existe déjà !");
 				erreur = true;
 			}
-		}
-		
-		//Verification du double mot de passe
-		if(!req.getParameter("mdp2").equals(nouvelUser.getMdp())){
-			System.out.println("Les deux mdp ne sont pas identiques");
-			req.setAttribute("erreur", "Les deux mots de passe ne sont pas identiques !");
-			erreur = true;
 		}
 		
 		//Formattage du nom => Premiere lettre en majuscule

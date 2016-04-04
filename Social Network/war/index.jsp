@@ -39,7 +39,7 @@
 						</div>
 						<button type="submit" class="btn btn-primary">Envoyer</button>
 					</form>
-					<li><a href="#"><img src="images/minions.jpg" alt="Moi" class="image_post size32">&nbsp;&nbsp;Mon profil</a></li>
+					<li><a href="/profil"><img src="images/minions.jpg" alt="Moi" class="image_post size32">&nbsp;&nbsp;Mon profil</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Options <span class="caret"></span></a>

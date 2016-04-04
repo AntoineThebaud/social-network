@@ -98,7 +98,51 @@
 			<!-- Fin colonne de gauche -->
 			<!-- Colonne du milieu affichant une zone de text et le flux des autres personness -->
 			<div class="col-md-6">
-			
+				<form class="form-horizontal" method="post" action="profil">
+					<div class="form-group">
+						<div class="col-sm-6">
+						    <label for="exampleInputEmail1">Adresse mail</label>
+						    <input type="email" class="form-control" id="exampleInputEmail1" value="" disabled>
+						    <p class="help-block">L'adresse mail n'est pas modifiable</p>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-6">
+						    <label for="exampleInputEmail1">Nom</label>
+						    <input type="text" class="form-control" value="">
+						</div>
+						<div class="col-sm-6">
+						    <label for="exampleInputEmail1">Prénom</label>
+						    <input type="text" class="form-control" value="">
+						</div>	
+					</div>
+					<hr>
+					<div class="form-group">
+						<div class="col-sm-6">
+						    <label for="exampleInputEmail1">Modifier mon mot de passe</label>
+						    <input type="password" class="form-control" placeholder="Mot de passe actuel">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-6">
+						    <input type="password" class="form-control" placeholder="Nouveau mot de passe">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-6">
+						    <input type="password" class="form-control" placeholder="Confirmez le mot de passe">
+						</div>
+					</div>
+					<hr>
+					<div class="form-group">
+						<div class="col-sm-12">
+						    <label for="exampleInputEmail1">Modifier mon slogan</label>
+						    <input type="email" class="form-control" value="">
+						    <p class="help-block">Le slogan s'affichera sous mon nom</p>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Enregistrer</button>
+				</form>
 			</div>
 			<div class="col-md-3">
 				<h1>Colonne 3</h1>

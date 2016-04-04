@@ -5,6 +5,7 @@ import static com.googlecode.objectify.ObjectifyService.ofy;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 @SuppressWarnings("serial")
 public class Profil extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("Je suis dans le doGet de profil");
 		//Quand on veut acceder a la page profil
 		//Cette servlet va faire une requete dans le datastore pour recuperer les informations de la personne.
 		//Ajoutes les variables a req.
@@ -40,9 +42,17 @@ public class Profil extends HttpServlet {
 		req.setAttribute("Nom", client.getNom());
 		req.setAttribute("Prenom", client.getPrenom());
 		req.setAttribute("Mail", client.getMail());
+		
+		//Redirection vers la page profil.jsp
+		try {
+			this.getServletContext().getRequestDispatcher("/profil.jsp").forward(req, resp);
+		} catch (ServletException e) {
+			System.out.println("Erreur dans le forwarding (Profil.java)");
+		}
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("Je suis dans le doPost de profil");
 		//L'acces a cette servlet en "post" se fait uniquement apres avoir valider le formulaire
 		//qui se trouve dans la page profil.jsp
 		//La servlet va sauvegarder dans le datastore les nouvelles données apres verifications.

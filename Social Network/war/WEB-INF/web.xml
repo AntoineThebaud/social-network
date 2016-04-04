@@ -39,6 +39,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>deconnexion</servlet-name>
 		<url-pattern>/deconnexion</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>profil</servlet-name>
+		<servlet-class>social.network.Profil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>profil</servlet-name>
+		<url-pattern>/profil</url-pattern>
+	</servlet-mapping>
 	 
 	
 	<welcome-file-list>
