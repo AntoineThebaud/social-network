@@ -30,6 +30,7 @@ public class Connexion extends HttpServlet {
 					HttpSession session = req.getSession();
 					session.setAttribute("Nom", personnes.get(i).getNom());
 					session.setAttribute("Prenom", personnes.get(i).getPrenom());
+					session.setAttribute("Mail", personnes.get(i).getMail());
 					session.setAttribute("Valide", true);
 					succes = true;
 					resp.sendRedirect("/index.jsp");
