@@ -11,15 +11,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import social.network.services.ServicePersonne;
+
 @SuppressWarnings("serial")
-public class Connexion extends HttpServlet {
+public class ServletConnexion extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String addrMail = req.getParameter("mail");
-		String pw = req.getParameter("pw");
+		String mail = checkNull(req.getParameter("mail"));
+		String pw = checkNull(req.getParameter("pw"));
 		boolean succes = false;
-		
+		ServicePersonne service = new ServicePersonne();
 		//Requete dans la base ...
+		
+		if(service.exists(mail)){
+			Personne personne = service.getPersonne(mail);
+			if (personne.getMdp().equals(pw)) {
+				//Success !
+				HttpSession session = req.getSession();
+				session.setAttribute("Nom", personne.getNom());
+				session.setAttribute("Prenom", personne.getPrenom());
+				session.setAttribute("Mail", personne.getMail());
+				session.setAttribute("Valide", true);
+				succes = true;
+				resp.sendRedirect("/index.jsp");
+			}
+		}
+		
+		/*
 		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", addrMail).list();
 		
 		//Analyse des resultats ...
@@ -37,6 +55,7 @@ public class Connexion extends HttpServlet {
 				}
 			}
 		}
+		*/
 		//Sinon afficher une erreur dans la page d'inscription / connexion.
 		if (!succes) {
 			//Erreur
@@ -47,5 +66,12 @@ public class Connexion extends HttpServlet {
 				System.out.println("Erreur du forwarding dans la servlet Connexion");
 			}
 		}
+	}
+	
+	private String checkNull(String s) {
+	    if (s == null) {
+	      return "";
+	    }
+	    return s;
 	}
 }

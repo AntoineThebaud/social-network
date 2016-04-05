@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @SuppressWarnings("serial")
-public class Profil extends HttpServlet {
+public class ServletProfil extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("Je suis dans le doGet de profil");
 		//Quand on veut acceder a la page profil
