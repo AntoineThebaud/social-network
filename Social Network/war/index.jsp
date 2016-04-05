@@ -69,7 +69,7 @@
 					</div>
 					<div class="caption text-center">
 						<h3><%= session.getAttribute("Prenom")%> <%= session.getAttribute("Nom")%></h3>
-						<p>Une description, un slogan !</p>
+						<p><%= session.getAttribute("Slogan")%></p>
 						<hr>
 					</div>
 					<div class="row">
@@ -128,7 +128,7 @@
 						      <textarea onblur="montreMoi()" class="form-control vertical-resize" rows="4" id="area" placeholder="Quoi de neuf ?"></textarea>
 						    </div>
 						  </div>
-						  <div class="form-group">     
+						  <div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <button type="submit" class="btn btn-primary">Publie !</button>
 						    </div>
@@ -147,12 +147,12 @@
 						      <textarea  onfocus="cacheMoi()" class="form-control vertical-resize" rows="4" id="comment" placeholder="Quoi de neuf ?"></textarea>
 						    </div>
 						  </div>
-						  <div class="form-group">     
+						  <div class="form-group">
 						    <div class="col-sm-offset-2 col-sm-10">
 						      <button type="submit" class="btn btn-primary">Publie !</button>
 						    </div>
 						  </div>
-						</form>	
+						</form>
 					  </div>
 					   <!-- Fin Tab image -->
 					   <!-- Tab video -->
@@ -165,7 +165,7 @@
 				</div>
 				<!-- Fin zone de text -->
 				<!-- Debut zone d'affichage du flux -->
-				
+
 				<!-- Model 2 -->
 				<div class="thumbnail border shadow padding_top">
 					<div class="row">

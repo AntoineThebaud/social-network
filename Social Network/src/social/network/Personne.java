@@ -16,12 +16,13 @@ public class Personne {
 	private String ville;
 	private ArrayList<String>interet;
 	private String mdp;
-	
+	private String slogan;
+
 	public Personne(){
-		
+
 	}
-	
-	public Personne(String nom, String prenom, String mail,int dateNaissance,String ville,ArrayList<String>interet, String mdp){
+
+	public Personne(String nom, String prenom, String mail,int dateNaissance,String ville,ArrayList<String>interet, String mdp, String description){
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
@@ -29,8 +30,9 @@ public class Personne {
 		this.ville = ville;
 		this.interet = interet;
 		this.mdp = mdp;
+		this.slogan = description;
 	}
-	
+
 	public String getNom() {
 		return nom;
 	}
@@ -79,6 +81,13 @@ public class Personne {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
-	
-	
+
+	public String getSlogan(){
+		return this.slogan;
+	}
+
+	public void setSlogan(String desciption){
+		this.slogan = desciption;
+	}
+
 }

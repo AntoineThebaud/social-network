@@ -19,30 +19,31 @@ public class ServletProfil extends HttpServlet {
 		//Cette servlet va faire une requete dans le datastore pour recuperer les informations de la personne.
 		//Ajoutes les variables a req.
 		//Et enfin rediriger vers la page profil.jsp ainsi le client verra sa page pré-rempli avec ses informations.
-		
+
 		//On recupere la session en cours pour avoir l'adresse mail.
 		HttpSession session = req.getSession();
 		String mail = (String) session.getAttribute("Mail");
-		
+
 		//On etablie une requete dans le datastore pour recuperer les informatiions liées au compte.
 		Personne client = null;
 		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", mail).list();
 		for (int i=0; i < personnes.size(); i++){
 			if (personnes.get(i).getMail().equals(mail)) {
-				client = personnes.get(i); 
+				client = personnes.get(i);
 			}
 		}
-		
+
 		// ----------------  /!\ WARNING /!\ -----------------------
 		//Verifer que "client" contient bien une personne. Sinon nullPointerException !!!
 		//Ce qui devrait etre le cas theoriquement.
-		
+
 		//A ce stade, nous avons recup la classe 'Personne' du client. Donc on ajoute
 		//les variables dans req pour pré-emplir le formualaire.
 		req.setAttribute("Nom", client.getNom());
 		req.setAttribute("Prenom", client.getPrenom());
 		req.setAttribute("Mail", client.getMail());
-		
+		req.setAttribute("Slogan", client.getSlogan());
+
 		//Redirection vers la page profil.jsp
 		try {
 			this.getServletContext().getRequestDispatcher("/profil.jsp").forward(req, resp);
@@ -50,7 +51,7 @@ public class ServletProfil extends HttpServlet {
 			System.out.println("Erreur dans le forwarding (Profil.java)");
 		}
 	}
-	
+
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("Je suis dans le doPost de profil");
 		//L'acces a cette servlet en "post" se fait uniquement apres avoir valider le formulaire

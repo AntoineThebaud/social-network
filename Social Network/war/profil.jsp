@@ -69,7 +69,7 @@
 					</div>
 					<div class="caption text-center">
 						<h3><%= session.getAttribute("Prenom")%> <%= session.getAttribute("Nom")%></h3>
-						<p>Une description, un slogan !</p>
+						<p><%= session.getAttribute("Slogan")%></p>
 						<hr>
 					</div>
 					<div class="row">
@@ -102,19 +102,19 @@
 					<div class="form-group">
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Adresse mail</label>
-						    <input type="email" class="form-control" id="exampleInputEmail1" value="" disabled>
+						    <input type="email" class="form-control" id="exampleInputEmail1" value="<%= session.getAttribute("Mail")%>" disabled>
 						    <p class="help-block">L'adresse mail n'est pas modifiable</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Nom</label>
-						    <input type="text" class="form-control" value="">
+						    <input type="text" class="form-control" value="<%= session.getAttribute("Nom")%>">
 						</div>
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Prénom</label>
-						    <input type="text" class="form-control" value="">
-						</div>	
+						    <input type="text" class="form-control" value="<%= session.getAttribute("Prenom")%>">
+						</div>
 					</div>
 					<hr>
 					<div class="form-group">
@@ -137,7 +137,7 @@
 					<div class="form-group">
 						<div class="col-sm-12">
 						    <label for="exampleInputEmail1">Modifier mon slogan</label>
-						    <input type="email" class="form-control" value="">
+						    <input type="text" class="form-control" value="<%= session.getAttribute("Slogan")%>">
 						    <p class="help-block">Le slogan s'affichera sous mon nom</p>
 						</div>
 					</div>

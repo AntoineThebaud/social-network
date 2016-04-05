@@ -22,7 +22,7 @@ public class ServletConnexion extends HttpServlet {
 		boolean succes = false;
 		ServicePersonne service = new ServicePersonne();
 		//Requete dans la base ...
-		
+
 		if(service.exists(mail)){
 			Personne personne = service.getPersonne(mail);
 			if (personne.getMdp().equals(pw)) {
@@ -31,15 +31,16 @@ public class ServletConnexion extends HttpServlet {
 				session.setAttribute("Nom", personne.getNom());
 				session.setAttribute("Prenom", personne.getPrenom());
 				session.setAttribute("Mail", personne.getMail());
+				session.setAttribute("Slogan", personne.getSlogan());
 				session.setAttribute("Valide", true);
 				succes = true;
 				resp.sendRedirect("/index.jsp");
 			}
 		}
-		
+
 		/*
 		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", addrMail).list();
-		
+
 		//Analyse des resultats ...
 		for (int i=0; i < personnes.size(); i++){
 			if (personnes.get(i).getMail().equals(addrMail)) {
@@ -67,7 +68,7 @@ public class ServletConnexion extends HttpServlet {
 			}
 		}
 	}
-	
+
 	private String checkNull(String s) {
 	    if (s == null) {
 	      return "";
