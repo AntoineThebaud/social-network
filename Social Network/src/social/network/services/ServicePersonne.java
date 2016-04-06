@@ -43,7 +43,7 @@ public class ServicePersonne {
 		gestionInteret.put(interet);
 	}
 	
-	public void addInteret(Personne personne, Interet interet){
+	/*public void addInteret(Personne personne, Interet interet){
 		// ajout a la liste d'interets de la personne
 		List<Interet> interets = personne.getInterets();
 		interets.add(interet);
@@ -63,6 +63,6 @@ public class ServicePersonne {
 		amis.add(ami);
 		personne.setAmis(amis);
 		update(personne);
-	}
+	}*/
 	
 }

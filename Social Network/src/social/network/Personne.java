@@ -14,10 +14,10 @@ public class Personne {
 	private @Index String prenom;
 	private @Index String mail;
 	private @Id Long id; //Unique
-	private GregorianCalendar dateNaissance;
+	//private GregorianCalendar dateNaissance;
 	private String ville;
-	private List<Interet> interets;
-	private List<Personne> amis;
+	/*private List<Interet> interets;*/
+	/*private List<Personne> amis;*/
 	private String mdp;
 	private String slogan;
 
@@ -29,11 +29,11 @@ public class Personne {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
-		this.dateNaissance = new GregorianCalendar(annee,mois,jour);
+		//this.dateNaissance = new GregorianCalendar(annee,mois,jour);
 		this.mdp = mdp;
 		this.slogan = description;
-		this.interets = new ArrayList<Interet>();
-		this.amis = new ArrayList<Personne>();
+		/*this.interets = new ArrayList<Interet>();
+		this.amis = new ArrayList<Personne>();*/
 	}
 
 	public String getNom() {
@@ -60,31 +60,31 @@ public class Personne {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public GregorianCalendar getAge() {
+	/*public GregorianCalendar getAge() {
 		return dateNaissance;
 	}
 	public void setAge(GregorianCalendar age) {
 		this.dateNaissance = age;
-	}
+	}*/
 	public String getVille() {
 		return ville;
 	}
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	public List<Interet> getInterets() {
+	/*public List<Interet> getInterets() {
 		return interets;
 	}
 	public void setInterets(List<Interet> interets) {
 		this.interets = interets;
-	}
+	}*/
 	
-	public List<Personne> getAmis() {
+	/*public List<Personne> getAmis() {
 		return amis;
 	}
 	public void setAmis(List<Personne> amis) {
 		this.amis = amis;
-	}
+	}*/
 	
 	public String getMdp() {
 		return mdp;
