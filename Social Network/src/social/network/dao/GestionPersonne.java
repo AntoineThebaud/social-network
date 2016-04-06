@@ -2,7 +2,7 @@ package social.network.dao;
 
 import social.network.Personne; 
  
-public class GestionPersonne extends Dao<Personne> { 
+public class GestionPersonne extends Dao<Personne> {
     public GestionPersonne() {
         super(Personne.class); 
     } 

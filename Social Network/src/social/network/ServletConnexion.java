@@ -37,26 +37,6 @@ public class ServletConnexion extends HttpServlet {
 				resp.sendRedirect("/index.jsp");
 			}
 		}
-
-		/*
-		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", addrMail).list();
-
-		//Analyse des resultats ...
-		for (int i=0; i < personnes.size(); i++){
-			if (personnes.get(i).getMail().equals(addrMail)) {
-				if (personnes.get(i).getMdp().equals(pw)) {
-					//Success !
-					HttpSession session = req.getSession();
-					session.setAttribute("Nom", personnes.get(i).getNom());
-					session.setAttribute("Prenom", personnes.get(i).getPrenom());
-					session.setAttribute("Mail", personnes.get(i).getMail());
-					session.setAttribute("Valide", true);
-					succes = true;
-					resp.sendRedirect("/index.jsp");
-				}
-			}
-		}
-		*/
 		//Sinon afficher une erreur dans la page d'inscription / connexion.
 		if (!succes) {
 			//Erreur

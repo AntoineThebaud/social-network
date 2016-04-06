@@ -30,16 +30,6 @@ public class ServletProfil extends HttpServlet {
 		ServicePersonne service = new ServicePersonne();
 		Personne client = service.getPersonne(mail);
 
-		/*
-		Personne client = null;
-		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", mail).list();
-		for (int i=0; i < personnes.size(); i++){
-			if (personnes.get(i).getMail().equals(mail)) {
-				client = personnes.get(i);
-			}
-		}
-		*/
-
 		// ----------------  /!\ WARNING /!\ -----------------------
 		//Verifer que "client" contient bien une personne. Sinon nullPointerException !!!
 		//Ce qui devrait etre le cas theoriquement.

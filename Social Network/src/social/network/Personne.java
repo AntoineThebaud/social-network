@@ -1,6 +1,8 @@
 package social.network;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
@@ -12,9 +14,10 @@ public class Personne {
 	private @Index String prenom;
 	private @Index String mail;
 	private @Id Long id; //Unique
-	private int dateNaissance;
+	private GregorianCalendar dateNaissance;
 	private String ville;
-	private ArrayList<String>interet;
+	private List<Interet> interets;
+	private List<Personne> amis;
 	private String mdp;
 	private String slogan;
 
@@ -22,15 +25,15 @@ public class Personne {
 
 	}
 
-	public Personne(String nom, String prenom, String mail,int dateNaissance,String ville,ArrayList<String>interet, String mdp, String description){
+	public Personne(String nom, String prenom, String mail,int jour, int mois,int annee, String mdp, String description){
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
-		this.dateNaissance = dateNaissance;
-		this.ville = ville;
-		this.interet = interet;
+		this.dateNaissance = new GregorianCalendar(annee,mois,jour);
 		this.mdp = mdp;
 		this.slogan = description;
+		this.interets = new ArrayList<Interet>();
+		this.amis = new ArrayList<Personne>();
 	}
 
 	public String getNom() {
@@ -57,10 +60,10 @@ public class Personne {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public int getAge() {
+	public GregorianCalendar getAge() {
 		return dateNaissance;
 	}
-	public void setAge(int age) {
+	public void setAge(GregorianCalendar age) {
 		this.dateNaissance = age;
 	}
 	public String getVille() {
@@ -69,12 +72,20 @@ public class Personne {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	public ArrayList<String> getInteret() {
-		return interet;
+	public List<Interet> getInterets() {
+		return interets;
 	}
-	public void setInteret(ArrayList<String> interet) {
-		this.interet = interet;
+	public void setInterets(List<Interet> interets) {
+		this.interets = interets;
 	}
+	
+	public List<Personne> getAmis() {
+		return amis;
+	}
+	public void setAmis(List<Personne> amis) {
+		this.amis = amis;
+	}
+	
 	public String getMdp() {
 		return mdp;
 	}
@@ -89,5 +100,6 @@ public class Personne {
 	public void setSlogan(String desciption){
 		this.slogan = desciption;
 	}
+	
 
 }
