@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -122,26 +123,23 @@
 					</div>
 					<div class="col-sm-2">
 						<select class="form-control" name="jour">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>24</option>
+							<c:forEach var="i" begin="1" end="31">
+								<option>${i}</option>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-3">
 						<select class="form-control" name="mois">
-							<option>01</option>
-							<option>02</option>
-							<option>03</option>
-							<option>04</option>
+								<c:forEach var="i" begin="1" end="12">
+									<option>${i}</option>
+								</c:forEach>
 						</select>
 					</div>
 					<div class="col-sm-3">
 						<select class="form-control" name="annees">
-							<option>2000</option>
-							<option>1999</option>
-							<option>1998</option>
-							<option>1997</option>
+								<c:forEach var="i" begin="1900" end="2016">
+									<option>${i}</option>
+								</c:forEach>
 						</select>
 					</div>
 				  </div>
@@ -170,7 +168,6 @@
 		 	</div>
 		</div>
 	</div>
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
