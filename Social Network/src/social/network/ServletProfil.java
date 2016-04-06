@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import social.network.services.ServicePersonne;
+
 @SuppressWarnings("serial")
 public class ServletProfil extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -25,6 +27,10 @@ public class ServletProfil extends HttpServlet {
 		String mail = (String) session.getAttribute("Mail");
 
 		//On etablie une requete dans le datastore pour recuperer les informatiions liées au compte.
+		ServicePersonne service = new ServicePersonne();
+		Personne client = service.getPersonne(mail);
+		
+		/*
 		Personne client = null;
 		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", mail).list();
 		for (int i=0; i < personnes.size(); i++){
@@ -32,6 +38,7 @@ public class ServletProfil extends HttpServlet {
 				client = personnes.get(i);
 			}
 		}
+		*/
 
 		// ----------------  /!\ WARNING /!\ -----------------------
 		//Verifer que "client" contient bien une personne. Sinon nullPointerException !!!
@@ -39,6 +46,7 @@ public class ServletProfil extends HttpServlet {
 
 		//A ce stade, nous avons recup la classe 'Personne' du client. Donc on ajoute
 		//les variables dans req pour pré-emplir le formualaire.
+		
 		req.setAttribute("Nom", client.getNom());
 		req.setAttribute("Prenom", client.getPrenom());
 		req.setAttribute("Mail", client.getMail());
@@ -57,5 +65,21 @@ public class ServletProfil extends HttpServlet {
 		//L'acces a cette servlet en "post" se fait uniquement apres avoir valider le formulaire
 		//qui se trouve dans la page profil.jsp
 		//La servlet va sauvegarder dans le datastore les nouvelles données apres verifications.
+		HttpSession session = req.getSession();
+		String mail = (String) session.getAttribute("Mail");
+		
+		String slogan = checkNull(req.getParameter("slogan"));
+		System.out.println("Slogan : " + slogan);
+		ServicePersonne service = new ServicePersonne();
+		Personne client = service.getPersonne(mail);
+		client.setSlogan(slogan);
+		service.update(client);
+	}
+	
+	private String checkNull(String s) {
+	    if (s == null) {
+	      return "";
+	    }
+	    return s;
 	}
 }

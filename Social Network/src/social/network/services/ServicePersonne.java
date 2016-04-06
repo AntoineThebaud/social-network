@@ -29,4 +29,8 @@ public class ServicePersonne {
 	public Personne getPersonne(String mail){
 		return gestion.findByMail(mail);
 	}
+	
+	public void update(Personne personne){
+		gestion.put(personne);
+	}
 }
