@@ -102,42 +102,49 @@
 					<div class="form-group">
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Adresse mail</label>
-						    <input type="email" class="form-control" id="exampleInputEmail1" value="<%= session.getAttribute("Mail")%>" disabled>
+						    <input type="email" class="form-control" value="<%= session.getAttribute("Mail")%>" disabled>
 						    <p class="help-block">L'adresse mail n'est pas modifiable</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Nom</label>
-						    <input type="text" class="form-control" value="<%= session.getAttribute("Nom")%>">
+						    <input type="text" class="form-control" value="<%= session.getAttribute("Nom")%>" name="Nom">
 						</div>
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Prénom</label>
-						    <input type="text" class="form-control" value="<%= session.getAttribute("Prenom")%>">
+						    <input type="text" class="form-control" value="<%= session.getAttribute("Prenom")%>" name="Prenom">
 						</div>
 					</div>
 					<hr>
+						<% if(request.getAttribute("erreur") != null) {%>
+				 		<div class="col-sm-10">
+						    <div class="alert alert-danger" role="alert" align="center">
+						    	<%=request.getAttribute("erreur")%>
+						    </div>
+						</div>
+						<%}%>
 					<div class="form-group">
 						<div class="col-sm-6">
 						    <label for="exampleInputEmail1">Modifier mon mot de passe</label>
-						    <input type="password" class="form-control" placeholder="Mot de passe actuel">
+						    <input type="password" class="form-control" placeholder="Mot de passe actuel" name="Pw1">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
-						    <input type="password" class="form-control" placeholder="Nouveau mot de passe">
+						    <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="Pw2">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-6">
-						    <input type="password" class="form-control" placeholder="Confirmez le mot de passe">
+						    <input type="password" class="form-control" placeholder="Confirmez le mot de passe" name="Pw3">
 						</div>
 					</div>
 					<hr>
 					<div class="form-group">
 						<div class="col-sm-12">
 						    <label for="exampleInputEmail1">Modifier mon slogan</label>
-						    <input type="text" class="form-control" value="<%= session.getAttribute("Slogan")%>">
+						    <input type="text" class="form-control" value="<%= session.getAttribute("Slogan")%>" name="Slogan">
 						    <p class="help-block">Le slogan s'affichera sous mon nom</p>
 						</div>
 					</div>

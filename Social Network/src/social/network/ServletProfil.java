@@ -29,7 +29,7 @@ public class ServletProfil extends HttpServlet {
 		//On etablie une requete dans le datastore pour recuperer les informatiions liées au compte.
 		ServicePersonne service = new ServicePersonne();
 		Personne client = service.getPersonne(mail);
-		
+
 		/*
 		Personne client = null;
 		List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", mail).list();
@@ -46,7 +46,7 @@ public class ServletProfil extends HttpServlet {
 
 		//A ce stade, nous avons recup la classe 'Personne' du client. Donc on ajoute
 		//les variables dans req pour pré-emplir le formualaire.
-		
+
 		req.setAttribute("Nom", client.getNom());
 		req.setAttribute("Prenom", client.getPrenom());
 		req.setAttribute("Mail", client.getMail());
@@ -67,15 +67,68 @@ public class ServletProfil extends HttpServlet {
 		//La servlet va sauvegarder dans le datastore les nouvelles données apres verifications.
 		HttpSession session = req.getSession();
 		String mail = (String) session.getAttribute("Mail");
-		
-		String slogan = checkNull(req.getParameter("slogan"));
-		System.out.println("Slogan : " + slogan);
+
+		System.out.println("Mail : " + mail);
+		String slogan = checkNull(req.getParameter("Slogan"));
+		String nom = checkNull(req.getParameter("Nom"));
+		String prenom = checkNull(req.getParameter("Prenom"));
+		session.setAttribute("Slogan", slogan);
+		session.setAttribute("Nom", nom);
+		session.setAttribute("Prenom", prenom);
+
+
 		ServicePersonne service = new ServicePersonne();
 		Personne client = service.getPersonne(mail);
-		client.setSlogan(slogan);
-		service.update(client);
+
+		//Si l'utilisateur veut changer son mot de passe.
+		//On test que le premier input de mot de passe soit rempli.
+		String pwActuel = "";
+		String pwNew = "";
+		String pwNewConfirme = "";
+		String erreur = "";
+		if (!req.getParameter("Pw1").equals("") && !req.getParameter("Pw2").equals("") && !req.getParameter("Pw3").equals("")){
+			pwActuel = req.getParameter("Pw1");
+			System.out.println("Pw1 = "+pwActuel);
+			pwNew = req.getParameter("Pw2");
+			pwNewConfirme = req.getParameter("Pw3");
+
+			//Test du mot de passe actuel
+			if (client.getMdp().equals(pwActuel)) {
+				if (pwNew.equals(pwNewConfirme)) {
+					//Le mot de passe actuel est bon ET les deux mot de passe suisvant sont egaux
+					client.setMdp(pwNew);
+				} else {
+					erreur = "Le mot de passe et la confimation ne correspondent pas !";
+					req.setAttribute("erreur", erreur);
+					try {
+						this.getServletContext().getRequestDispatcher("/profil.jsp").forward(req, resp);
+					} catch (ServletException e) {
+						System.out.println("Erreur dans le forwarding dans ServletProfil");
+					}
+				}
+			} else {
+				erreur = "Le mot de passe actuel est incorrect !";
+				req.setAttribute("erreur", erreur);
+				try {
+					this.getServletContext().getRequestDispatcher("/profil.jsp").forward(req, resp);
+				} catch (ServletException e) {
+					System.out.println("Erreur dans le forwarding dans ServletProfil");
+				}
+			}
+		}
+
+		//Si il y a eu une erreur dans le changement des mot de passe.
+		//On n'enregistre rien et on ne redirige pas.
+		if (erreur.equals("")) {
+			client.setSlogan(slogan);
+			client.setNom(nom);
+			client.setPrenom(prenom);
+			service.update(client);
+
+			resp.sendRedirect("/index.jsp");
+		}
 	}
-	
+
 	private String checkNull(String s) {
 	    if (s == null) {
 	      return "";

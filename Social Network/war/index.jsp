@@ -1,6 +1,6 @@
 <%
 	if (session.getAttribute("Valide") == null){
-		response.sendRedirect("/social_network");
+		response.sendRedirect("/inscription.jsp");
 	}
 %>
 <!DOCTYPE html>
