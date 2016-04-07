@@ -198,11 +198,39 @@
 				<!-- Fin Model 2 -->
 			</div>
 			<div class="col-md-3">
-				<h1>Colonne 3</h1>
+				<div class="thumbnail border shadow">
+					<div class="interets">
+						<h3 align="center">Mes intérêts</h3>
+						 <div class="list-group">
+							<a href="#" class="list-group-item">#IBD</a>
+							<a href="#" class="list-group-item">#Bootstrap</a>
+							<a href="#" class="list-group-item">#Minions</a>
+						</div>
+						<form class="form-horizontal" role="interets" method="post" action="/">
+							<div class="form-group">
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="text" placeholder="#Exemple">
+								</div>
+								<div class="col-sm-5">
+									<button type="submit" class="btn btn-primary">Ajouter</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="thumbnail border shadow">
+					<div class="interets">
+						<h3 align="center">Mes abonnements</h3>
+						 <div class="list-group">
+							<a href="#" class="list-group-item"> John Doe</a>
+							<a href="#" class="list-group-item">Maurice Martin</a>
+							<a href="#" class="list-group-item">Kevin Dubois</a>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
