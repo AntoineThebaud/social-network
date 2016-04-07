@@ -1,12 +1,14 @@
 package social.network;
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
+
+import com.googlecode.objectify.Ref;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.Load;
 
 @Entity
 public class Personne {
@@ -14,10 +16,12 @@ public class Personne {
 	private @Index String prenom;
 	private @Index String mail;
 	private @Id Long id; //Unique
-	//private GregorianCalendar dateNaissance;
 	private String ville;
-	/*private List<Interet> interets;*/
-	/*private List<Personne> amis;*/
+	private @Load List<Ref<Interet>> interets;
+	private @Load List<Ref<Personne>> amis;
+	private int jour;
+	private int mois;
+	private int annee;
 	private String mdp;
 	private String slogan;
 
@@ -29,11 +33,13 @@ public class Personne {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
-		//this.dateNaissance = new GregorianCalendar(annee,mois,jour);
+		this.jour = jour;
+		this.mois = mois;
+		this.annee = annee;
 		this.mdp = mdp;
 		this.slogan = description;
-		/*this.interets = new ArrayList<Interet>();
-		this.amis = new ArrayList<Personne>();*/
+		this.interets = new ArrayList<Ref<Interet>>();
+		this.amis = new ArrayList<Ref<Personne>>();
 	}
 
 	public String getNom() {
@@ -60,31 +66,50 @@ public class Personne {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/*public GregorianCalendar getAge() {
-		return dateNaissance;
+	
+	public int getJour(){
+		return jour;
 	}
-	public void setAge(GregorianCalendar age) {
-		this.dateNaissance = age;
-	}*/
+	
+	public void setJour(int jour){
+		this.jour = jour;
+	}
+	
+	public int getMois(){
+		return mois;
+	}
+	
+	public void setMois(int mois){
+		this.mois = mois;
+	}
+	
+	public int getAnnee(){
+		return annee;
+	}
+	
+	public void setAnnee(int annee){
+		this.annee = annee;
+	}
+	
 	public String getVille() {
 		return ville;
 	}
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	/*public List<Interet> getInterets() {
+	public List<Ref<Interet>> getInterets() {
 		return interets;
 	}
-	public void setInterets(List<Interet> interets) {
+	public void setInterets(List<Ref<Interet>> interets) {
 		this.interets = interets;
-	}*/
+	}
 	
-	/*public List<Personne> getAmis() {
+	public List<Ref<Personne>> getAmis() {
 		return amis;
 	}
-	public void setAmis(List<Personne> amis) {
+	public void setAmis(List<Ref<Personne>> amis) {
 		this.amis = amis;
-	}*/
+	}
 	
 	public String getMdp() {
 		return mdp;
@@ -101,5 +126,4 @@ public class Personne {
 		this.slogan = desciption;
 	}
 	
-
 }
