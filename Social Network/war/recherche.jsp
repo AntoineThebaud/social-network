@@ -1,8 +1,13 @@
 <%
 	if (session.getAttribute("Valide") == null){
-		response.sendRedirect("/index.jsp");
+		response.sendRedirect("/social_network");
 	}
 %>
+	<%@page isELIgnored ="false" %> 
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    <%@page import="java.util.List" %>
+	<%@page import="social.network.Personne" %>
+	
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,7 +28,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/affichageProfil">Accueil</a>
+				<a class="navbar-brand" href="/">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -39,7 +44,7 @@
 						</div>
 						<button type="submit" class="btn btn-primary">Envoyer</button>
 					</form>
-					<li><a href="#"><img src="images/minions.jpg" alt="Moi" class="image_post size32">&nbsp;&nbsp;Mon profil</a></li>
+					<li><a href="/profil"><img src="images/minions.jpg" alt="Moi" class="image_post size32">&nbsp;&nbsp;Mon profil</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Options <span class="caret"></span></a>
@@ -57,7 +62,7 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-		 	<!-- Colonne de gauche affichant le profile et les tandences -->
+		 	<!-- Colonne de gauche affichant le profile et les tendances -->
 			<div class="col-md-3">
 				<!-- Thumbnail affichant le profil du user -->
 				<div class="thumbnail border shadow">
@@ -98,58 +103,27 @@
 			<!-- Fin colonne de gauche -->
 			<!-- Colonne du milieu affichant une zone de text et le flux des autres personness -->
 			<div class="col-md-6">
-				<form class="form-horizontal" method="post" action="profil">
-					<div class="form-group">
-						<div class="col-sm-6">
-						    <label for="exampleInputEmail1">Adresse mail</label>
-						    <input type="email" class="form-control" value="<%= session.getAttribute("Mail")%>" disabled>
-						    <p class="help-block">L'adresse mail n'est pas modifiable</p>
+				<h3 align="center">Résultat de la recherche "<%= request.getParameter("recherche") %>"</h3>
+				<!-- Debut zone d'affichage du flux -->
+
+				<!-- Model 2 -->
+					<c:forEach items="${resultat}" var="v">
+					<div class="thumbnail border shadow padding_top">
+						<div class="row">
+						<div class="col-md-3">
+							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+						</div>
+						<div class="col-md-9">
+							<p class="float-left"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></p>
+							<p class="float-right">Il y a 10 min</p>
+						</div>
+						<div class=" col-md-9">
+							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+						</div>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="col-sm-6">
-						    <label for="exampleInputEmail1">Nom</label>
-						    <input type="text" class="form-control" value="<%= session.getAttribute("Nom")%>" name="Nom">
-						</div>
-						<div class="col-sm-6">
-						    <label for="exampleInputEmail1">Prénom</label>
-						    <input type="text" class="form-control" value="<%= session.getAttribute("Prenom")%>" name="Prenom">
-						</div>
-					</div>
-					<hr>
-						<% if(request.getAttribute("erreur") != null) {%>
-				 		<div class="col-sm-10">
-						    <div class="alert alert-danger" role="alert" align="center">
-						    	<%=request.getAttribute("erreur")%>
-						    </div>
-						</div>
-						<%}%>
-					<div class="form-group">
-						<div class="col-sm-6">
-						    <label for="exampleInputEmail1">Modifier mon mot de passe</label>
-						    <input type="password" class="form-control" placeholder="Mot de passe actuel" name="Pw1">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-6">
-						    <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="Pw2">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-6">
-						    <input type="password" class="form-control" placeholder="Confirmez le mot de passe" name="Pw3">
-						</div>
-					</div>
-					<hr>
-					<div class="form-group">
-						<div class="col-sm-12">
-						    <label for="exampleInputEmail1">Modifier mon slogan</label>
-						    <input type="text" class="form-control" value="<%= session.getAttribute("Slogan")%>" name="Slogan">
-						    <p class="help-block">Le slogan s'affichera sous mon nom</p>
-						</div>
-					</div>
-					<button type="submit" class="btn btn-primary">Enregistrer</button>
-				</form>
+					</c:forEach>
+				<!-- Fin Model 2 -->
 			</div>
 			<div class="col-md-3">
 				<h1>Colonne 3</h1>

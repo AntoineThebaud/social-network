@@ -2,10 +2,6 @@
 	if (session.getAttribute("Valide") == null){
 		response.sendRedirect("/inscription.jsp");
 	}
-
-	System.out.println("Le nom est "+request.getAttribute("Nom"));
-	System.out.println("Le prenom est "+request.getAttribute("Prenom"));
-	System.out.println("Le slogan est "+request.getAttribute("Slogan"));
 %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,7 +23,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/affichageProfil">Accueil</a>
+				<a class="navbar-brand" href="/">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,8 +68,8 @@
 						<img src="images/minions.jpg" alt="Photo de profile" class="img-circle image_profile">
 					</div>
 					<div class="caption text-center">
-						<h3><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></h3>
-						<p><%= request.getAttribute("Slogan")%></p>
+						<h3><%= session.getAttribute("Prenom")%> <%= session.getAttribute("Nom")%></h3>
+						<p><%= session.getAttribute("Slogan")%></p>
 						<hr>
 					</div>
 					<div class="row">
@@ -100,7 +96,7 @@
 				<!-- Fin thumbnail profil -->
 			</div>
 			<!-- Fin colonne de gauche -->
-			<!-- Colonne du milieu affichant une zone de texte et le flux des autres personnes -->
+			<!-- Colonne du milieu affichant une zone de text et le flux des autres personness -->
 			<div class="col-md-6">
 			 	<!-- Zone de text -->
 				<div class="thumbnail border shadow padding_top">
@@ -202,39 +198,11 @@
 				<!-- Fin Model 2 -->
 			</div>
 			<div class="col-md-3">
-				<div class="thumbnail border shadow">
-					<div class="interets">
-						<h3 align="center">Mes intérêts</h3>
-						 <div class="list-group" id="list-interet">
-							<a href="#" class="list-group-item">#IBD</a>
-							<a href="#" class="list-group-item">#Bootstrap</a>
-							<a href="#" class="list-group-item">#Minions</a>
-						</div>
-						<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
-							<div class="form-group">
-								<div class="col-sm-7">
-									<input type="text" class="form-control" id="tagInput" placeholder="#Exemple">
-								</div>
-								<div class="col-sm-5">
-									<button type="submit" class="btn btn-primary">Ajouter</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="thumbnail border shadow">
-					<div class="interets">
-						<h3 align="center">Mes abonnements</h3>
-						 <div class="list-group">
-							<a href="#" class="list-group-item"> John Doe</a>
-							<a href="#" class="list-group-item">Maurice Martin</a>
-							<a href="#" class="list-group-item">Kevin Dubois</a>
-						</div>
-					</div>
-				</div>
+				<h1>Colonne 3</h1>
 			</div>
 		</div>
 	</div>
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->

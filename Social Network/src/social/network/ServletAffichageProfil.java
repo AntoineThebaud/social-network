@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+@SuppressWarnings("serial")
 public class ServletAffichageProfil extends HttpServlet {
   //Cette servlet remplace une redirection vers /index.jsp.
   //On verifie si il y a un parametre
@@ -16,6 +18,7 @@ public class ServletAffichageProfil extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     System.out.println("Je suis dans le doGet de ServletAffichageProfil");
     if (req.getParameter("id") != null ) {
+    	System.out.println("id = "+req.getParameter("id"));
       //On ne veut pas afficher le profil de la session connectée.
       //Requete pour recuperer le nom, prenom, slogan de la Personne concernée.
     }else{
