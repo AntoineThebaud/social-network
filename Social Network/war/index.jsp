@@ -2,6 +2,10 @@
 	if (session.getAttribute("Valide") == null){
 		response.sendRedirect("/inscription.jsp");
 	}
+
+	System.out.println("Le nom est "+request.getAttribute("Nom"));
+	System.out.println("Le prenom est "+request.getAttribute("Prenom"));
+	System.out.println("Le slogan est "+request.getAttribute("Slogan"));
 %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -68,8 +72,8 @@
 						<img src="images/minions.jpg" alt="Photo de profile" class="img-circle image_profile">
 					</div>
 					<div class="caption text-center">
-						<h3><%= session.getAttribute("Prenom")%> <%= session.getAttribute("Nom")%></h3>
-						<p><%= session.getAttribute("Slogan")%></p>
+						<h3><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></h3>
+						<p><%= request.getAttribute("Slogan")%></p>
 						<hr>
 					</div>
 					<div class="row">

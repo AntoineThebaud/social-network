@@ -92,7 +92,7 @@ public class ServletInscription extends HttpServlet {
 			session.setAttribute("Valide", true);
 
 			//Redirection vers son flux d'actualité.
-			resp.sendRedirect("/index.jsp");
+			resp.sendRedirect("/index");
 		}
 	}
 
