@@ -37,9 +37,9 @@
 					<li><a href="#">A propos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<form class="navbar-form navbar-left" role="search">
+					<form class="navbar-form navbar-left" role="search" method="post" action="recherche">
 						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Rechercher">
+							<input type="text" class="form-control" name="recherche" placeholder="Rechercher">
 						</div>
 						<button type="submit" class="btn btn-primary">Envoyer</button>
 					</form>

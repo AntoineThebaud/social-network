@@ -50,6 +50,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>recherche</servlet-name>
+		<servlet-class>social.network.ServletRecherche</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>recherche</servlet-name>
+		<url-pattern>/recherche</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>affichageProfil</servlet-name>
 		<servlet-class>social.network.ServletAffichageProfil</servlet-class>
 	</servlet>
