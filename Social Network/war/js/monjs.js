@@ -35,7 +35,7 @@ $('#formNewTag').submit(function () {
 	if(valid) {
 		//Ajax :
 		$.post("/ajoutInteret", {inputKey:input}).done(function(data) {
-//			alert("name: " + data);
+			alert("name: " + data);
 			var newtag = "<a href=\"#\" class=\"list-group-item\">#"+input+"</a>";
 			$('#list-interet').append(newtag);
 		})
