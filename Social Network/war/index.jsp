@@ -57,7 +57,7 @@
 	</nav>
 	<div class="container">
 		<div class="row">
-		 	<!-- Colonne de gauche affichant le profile et les tandences -->
+		 	<!-- Colonne de gauche affichant le profile et les tendances -->
 			<div class="col-md-3">
 				<!-- Thumbnail affichant le profil du user -->
 				<div class="thumbnail border shadow">
@@ -96,7 +96,7 @@
 				<!-- Fin thumbnail profil -->
 			</div>
 			<!-- Fin colonne de gauche -->
-			<!-- Colonne du milieu affichant une zone de text et le flux des autres personness -->
+			<!-- Colonne du milieu affichant une zone de texte et le flux des autres personnes -->
 			<div class="col-md-6">
 			 	<!-- Zone de text -->
 				<div class="thumbnail border shadow padding_top">
@@ -201,15 +201,15 @@
 				<div class="thumbnail border shadow">
 					<div class="interets">
 						<h3 align="center">Mes intérêts</h3>
-						 <div class="list-group">
+						 <div class="list-group" id="list-interet">
 							<a href="#" class="list-group-item">#IBD</a>
 							<a href="#" class="list-group-item">#Bootstrap</a>
 							<a href="#" class="list-group-item">#Minions</a>
 						</div>
-						<form class="form-horizontal" role="interets" method="post" action="/">
+						<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
 							<div class="form-group">
 								<div class="col-sm-7">
-									<input type="text" class="form-control" id="text" placeholder="#Exemple">
+									<input type="text" class="form-control" id="tagInput" placeholder="#Exemple">
 								</div>
 								<div class="col-sm-5">
 									<button type="submit" class="btn btn-primary">Ajouter</button>
