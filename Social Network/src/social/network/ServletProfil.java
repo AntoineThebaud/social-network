@@ -115,7 +115,7 @@ public class ServletProfil extends HttpServlet {
 			client.setPrenom(prenom);
 			service.update(client);
 
-			resp.sendRedirect("/index");
+			resp.sendRedirect("/affichageProfil");
 		}
 	}
 

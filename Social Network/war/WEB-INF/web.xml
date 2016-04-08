@@ -55,9 +55,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>affichageProfil</servlet-name>
-		<url-pattern>/index</url-pattern>
+		<url-pattern>/affichageProfil</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>ajoutInteret</servlet-name>
 		<servlet-class>social.network.ServletAjoutInteret</servlet-class>

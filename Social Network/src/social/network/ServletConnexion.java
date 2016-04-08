@@ -34,7 +34,7 @@ public class ServletConnexion extends HttpServlet {
 				session.setAttribute("Slogan", personne.getSlogan());
 				session.setAttribute("Valide", true);
 				succes = true;
-				resp.sendRedirect("/index");
+				resp.sendRedirect("/affichageProfil");
 			}
 		}
 		//Sinon afficher une erreur dans la page d'inscription / connexion.

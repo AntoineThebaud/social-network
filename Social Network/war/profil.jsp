@@ -1,6 +1,6 @@
 <%
 	if (session.getAttribute("Valide") == null){
-		response.sendRedirect("/social_network");
+		response.sendRedirect("/index.jsp");
 	}
 %>
 <!DOCTYPE html>
@@ -23,7 +23,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
