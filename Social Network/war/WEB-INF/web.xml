@@ -11,8 +11,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>Social_Network</servlet-name>
 		<url-pattern>/social_network</url-pattern>
-	</servlet-mapping>	
-	
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>inscription</servlet-name>
 		<servlet-class>social.network.ServletInscription</servlet-class>
@@ -21,7 +21,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>inscription</servlet-name>
 		<url-pattern>/Inscription</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>connexion</servlet-name>
 		<servlet-class>social.network.ServletConnexion</servlet-class>
@@ -30,7 +30,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>connexion</servlet-name>
 		<url-pattern>/connexion</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>deconnexion</servlet-name>
 		<servlet-class>social.network.ServletDeconnexion</servlet-class>
@@ -39,7 +39,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>deconnexion</servlet-name>
 		<url-pattern>/deconnexion</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>profil</servlet-name>
 		<servlet-class>social.network.ServletProfil</servlet-class>
@@ -56,10 +56,26 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>recherche</servlet-name>
 		<url-pattern>/recherche</url-pattern>
-
 	</servlet-mapping>
-	 
 	
+	<servlet>
+		<servlet-name>affichageProfil</servlet-name>
+		<servlet-class>social.network.ServletAffichageProfil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>affichageProfil</servlet-name>
+		<url-pattern>/affichageProfil</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ajoutInteret</servlet-name>
+		<servlet-class>social.network.ServletAjoutInteret</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ajoutInteret</servlet-name>
+		<url-pattern>/ajoutInteret</url-pattern>
+	</servlet-mapping>
+
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>

@@ -20,7 +20,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil">Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -121,22 +121,22 @@
 				  	<div class="col-sm-12">
 						<label class="control-label">Date de naissance</label>
 					</div>
-					<div class="col-sm-2">
-						<select class="form-control" name="jour">
+					<div class="col-sm-1">
+						<select name="jour">
 							<c:forEach var="i" begin="1" end="31">
 								<option>${i}</option>
 							</c:forEach>
 						</select>
 					</div>
-					<div class="col-sm-3">
-						<select class="form-control" name="mois">
+					<div class="col-sm-1">
+						<select name="mois">
 								<c:forEach var="i" begin="1" end="12">
 									<option>${i}</option>
 								</c:forEach>
 						</select>
 					</div>
-					<div class="col-sm-3">
-						<select class="form-control" name="annees">
+					<div class="col-sm-1">
+						<select name="annees">
 								<c:forEach var="i" begin="1900" end="2016">
 									<option>${i}</option>
 								</c:forEach>
