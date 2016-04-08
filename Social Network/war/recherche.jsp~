@@ -1,8 +1,13 @@
 <%
 	if (session.getAttribute("Valide") == null){
-		response.sendRedirect("/inscription.jsp");
+		response.sendRedirect("/social_network");
 	}
 %>
+	<%@page isELIgnored ="false" %> 
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+    <%@page import="java.util.List" %>
+	<%@page import="social.network.Personne" %>
+	
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -98,103 +103,26 @@
 			<!-- Fin colonne de gauche -->
 			<!-- Colonne du milieu affichant une zone de text et le flux des autres personness -->
 			<div class="col-md-6">
-			 	<!-- Zone de text -->
-				<div class="thumbnail border shadow padding_top">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#message">Message</a></li>
-						<li><a href="#image">Image</a></li>
-						<li><a href="#video">Vidéo</a></li>
-					</ul>
-					<div class="tab-content">
-					  <!-- Tab message -->
-					  <div id="message" class="tab-pane fade in active">
-					  	<div id="message_base">
-						    <br/>
-							<form class="form-horizontal" role="form">
-							  <div class="form-group">
-							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
-							    <div class="col-sm-10">
-							      <input onfocus="cacheMoi()" type="text" class="form-control" id="text" placeholder="Quoi de neuf ?">
-							    </div>
-							  </div>
-							</form>
-						</div>
-						<div id="message_full" hidden>
-							<br/>
-						  	<form class="form-horizontal" role="form">
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" ><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
-						    <div class="col-sm-10">
-						      <textarea onblur="montreMoi()" class="form-control vertical-resize" rows="4" id="area" placeholder="Quoi de neuf ?"></textarea>
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-sm-offset-2 col-sm-10">
-						      <button type="submit" class="btn btn-primary">Publie !</button>
-						    </div>
-						  </div>
-						</form>
-						</div>
-					  </div>
-					  <!-- fin Tab message -->
-					  <!-- Tab image -->
-					  <div id="image" class="tab-pane fade">
-					  <br/>
-						<form class="form-horizontal" role="form">
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" ><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
-						    <div class="col-sm-10">
-						      <textarea  onfocus="cacheMoi()" class="form-control vertical-resize" rows="4" id="comment" placeholder="Quoi de neuf ?"></textarea>
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-sm-offset-2 col-sm-10">
-						      <button type="submit" class="btn btn-primary">Publie !</button>
-						    </div>
-						  </div>
-						</form>
-					  </div>
-					   <!-- Fin Tab image -->
-					   <!-- Tab video -->
-					  <div id="video" class="tab-pane fade">
-				  		<h3>Menu 2</h3>
-				    	<p>Some content in menu 2.</p>
-					  </div>
-					   <!-- Fin Tab video -->
-					</div>
-				</div>
-				<!-- Fin zone de text -->
+				<h3 align="center">Résultat de la recherche "<%= request.getParameter("recherche") %>"</h3>
 				<!-- Debut zone d'affichage du flux -->
 
 				<!-- Model 2 -->
-				<div class="thumbnail border shadow padding_top">
-					<div class="row">
+					<c:forEach items="${resultat}" var="v">
+					<div class="thumbnail border shadow padding_top">
+						<div class="row">
 						<div class="col-md-3">
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left">Maurice D.</p>
+							<p class="float-left"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></p>
 							<p class="float-right">Il y a 10 min</p>
 						</div>
 						<div class=" col-md-9">
 							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
 						</div>
-					</div>
-				</div>
-				<div class="thumbnail border shadow padding_top">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-						</div>
-						<div class="col-md-9">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
 						</div>
 					</div>
-				</div>
+					</c:forEach>
 				<!-- Fin Model 2 -->
 			</div>
 			<div class="col-md-3">

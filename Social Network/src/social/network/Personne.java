@@ -3,12 +3,14 @@ package social.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
-
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Ignore;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.annotation.Load;
+import com.googlecode.objectify.annotation.OnLoad;
 
 @Entity
 public class Personne {
@@ -17,8 +19,12 @@ public class Personne {
 	private @Index String mail;
 	private @Id Long id; //Unique
 	private String ville;
-	private @Load List<Ref<Interet>> interets;
-	private @Load List<Ref<Personne>> amis;
+	private List<String> refInterets;
+	private List<Long> refAmis;
+	/*
+	private @Ignore List<Interet> interets;
+	private @Ignore List<Personne> amis;
+	*/
 	private int jour;
 	private int mois;
 	private int annee;
@@ -38,9 +44,31 @@ public class Personne {
 		this.annee = annee;
 		this.mdp = mdp;
 		this.slogan = description;
-		this.interets = new ArrayList<Ref<Interet>>();
-		this.amis = new ArrayList<Ref<Personne>>();
+		this.refInterets = new ArrayList<String>();
+		this.refAmis = new ArrayList<Long>();
 	}
+	/*
+	@OnLoad
+	public void deRef() {
+		if (refInterets != null) {
+			interets = new ArrayList<Interet>();
+			for (Ref<Interet> interet : refInterets) {
+				if (interet.isLoaded()) {
+					interets.add(interet.get());
+				}
+			}
+		}
+		
+		if (refAmis != null) {
+			amis = new ArrayList<Personne>();
+			for (Ref<Personne> ami : refAmis) {
+				if (ami.isLoaded()) {
+					amis.add(ami.get());
+				}
+			}
+		}
+	}
+	*/
 
 	public String getNom() {
 		return nom;
@@ -82,7 +110,6 @@ public class Personne {
 	public void setMois(int mois){
 		this.mois = mois;
 	}
-	
 	public int getAnnee(){
 		return annee;
 	}
@@ -97,19 +124,34 @@ public class Personne {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
-	public List<Ref<Interet>> getInterets() {
+	public List<String> getRefInterets() {
+		return refInterets;
+	}
+	public void setRefInterets(List<String> refInterets) {
+		this.refInterets = refInterets;
+	}
+	
+	public List<Long> getRefAmis() {
+		return refAmis;
+	}
+	public void setRefAmis(List<Long> refAmis) {
+		this.refAmis = refAmis;
+	}
+	/*
+	public List<Interet> getInterets() {
 		return interets;
 	}
-	public void setInterets(List<Ref<Interet>> interets) {
+	public void setInterets(List<Interet> interets) {
 		this.interets = interets;
 	}
 	
-	public List<Ref<Personne>> getAmis() {
+	public List<Personne> getAmis() {
 		return amis;
 	}
-	public void setAmis(List<Ref<Personne>> amis) {
+	public void setAmis(List<Personne> amis) {
 		this.amis = amis;
 	}
+	*/
 	
 	public String getMdp() {
 		return mdp;
@@ -124,6 +166,34 @@ public class Personne {
 
 	public void setSlogan(String desciption){
 		this.slogan = desciption;
+	}
+	
+	/*
+	public Key<Personne> getKey() {
+		return Key.create(Personne.class, id);
+	}
+	*/
+	
+	public void addInteret(Interet interet){
+		// ajout a la liste d'interets de la personne
+		refInterets.add(interet.getNom());
+		/*
+		Ref<Interet> refInteret = Ref.create(interet.getKey());
+		if (!refInterets.contains(refInteret)) {
+			refInterets.add(refInteret);
+		}
+		*/
+	}
+	
+	public void addAmi(Personne ami){
+		// ajout a la liste d'amis de la personne
+		refAmis.add(ami.getId());
+		/*
+		Ref<Personne> ref = Ref.create(ami.getKey());
+		if (!refAmis.contains(ref)) {
+			refAmis.add(ref);
+		}
+		*/
 	}
 	
 }

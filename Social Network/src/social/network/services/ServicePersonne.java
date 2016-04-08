@@ -2,7 +2,9 @@ package social.network.services;
 
 import java.util.List;
 
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
+import com.googlecode.objectify.Ref;
 
 import social.network.Interet;
 import social.network.Personne;
@@ -43,26 +45,15 @@ public class ServicePersonne {
 		gestionInteret.put(interet);
 	}
 	
-	/*public void addInteret(Personne personne, Interet interet){
-		// ajout a la liste d'interets de la personne
-		List<Interet> interets = personne.getInterets();
-		interets.add(interet);
-		personne.setInterets(interets);
-		update(personne);
-		
-		// ajout a la liste de personne ayant cet interet
-		List<Personne> interesses = interet.getInteresses();
-		interesses.add(personne);
-		interet.setInteresses(interesses);
-		update(interet);
+	
+	public void creerInteret(Personne personne,String nom){
+		Interet interet = new Interet(nom);
+		interet.addInteresse(personne);
+		gestionInteret.put(interet);
+		personne.addInteret(interet);
+		gestionPers.put(personne);
 	}
-	
-	public void addAmi(Personne personne, Personne ami){
-		// ajout a la liste d'amis de la personne
-		List<Personne> amis = personne.getAmis();
-		amis.add(ami);
-		personne.setAmis(amis);
-		update(personne);
-	}*/
-	
+	public List<Personne> researchPersonne(String nom){
+		return gestionPers.search(nom);
+	}
 }

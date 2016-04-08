@@ -41,13 +41,13 @@ public class ServletProfil extends HttpServlet {
 		req.setAttribute("Prenom", client.getPrenom());
 		req.setAttribute("Mail", client.getMail());
 		req.setAttribute("Slogan", client.getSlogan());
-
+	
 		//Redirection vers la page profil.jsp
 		try {
 			this.getServletContext().getRequestDispatcher("/profil.jsp").forward(req, resp);
 		} catch (ServletException e) {
 			System.out.println("Erreur dans le forwarding (Profil.java)");
-		}
+		}	
 	}
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
