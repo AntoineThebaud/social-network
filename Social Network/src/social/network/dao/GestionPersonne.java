@@ -11,11 +11,19 @@ public class GestionPersonne extends Dao<Personne> {
  
     public Personne findByMail(String mail) { 
         return query().filter("mail", mail).first().now(); 
-    } 
+    }
     
-    public List<Personne> search(String nom) { 
-        List<Personne> personnes = query().filter("nom", nom).list();
-        personnes.addAll(query().filter("prenom",nom).list());
+    public boolean exists(String mail) { 
+        return (findByMail(mail) != null); 
+    }
+    
+    public List<Personne> search(String nom) {
+    	List<Personne> personnes = query().filter("nom", nom).list();
+        personnes.addAll(query().filter("prenom", nom).list());
+    	/*
+        List<Personne> personnes = query().filter("nom >=", nom).filter("nom <", nom + "\uFFFD").list();
+        personnes.addAll(query().filter("nom >=", nom).filter("nom <", nom + "\uFFFD").list());
+        */
         return personnes;
     }
 }

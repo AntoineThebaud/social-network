@@ -42,7 +42,7 @@ public class ServletInscription extends HttpServlet {
 		//Verification du mail dans la base de données.
 		//List<Personne> personnes = ofy().load().type(Personne.class).filter("mail ==", mail).list();
 		ServicePersonne service = new ServicePersonne();
-		if(service.exists(mail)){
+		if(service.existsPersonne(mail)){
 			System.out.println("L'adresse mail existe deja.");
 			req.setAttribute("erreur", "L'adresse mail existe déjà !");
 			erreur = true;

@@ -23,7 +23,7 @@ public class ServletConnexion extends HttpServlet {
 		ServicePersonne service = new ServicePersonne();
 		//Requete dans la base ...
 
-		if(service.exists(mail)){
+		if(service.existsPersonne(mail)){
 			Personne personne = service.getPersonne(mail);
 			if (personne.getMdp().equals(pw)) {
 				//Success !

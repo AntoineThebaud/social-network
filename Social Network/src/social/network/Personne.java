@@ -19,8 +19,8 @@ public class Personne {
 	private @Index String mail;
 	private @Id Long id; //Unique
 	private String ville;
-	private List<String> refInterets;
-	private List<Long> refAmis;
+	private List<String> refInterets = new ArrayList<String>();
+	private List<Long> refAmis = new ArrayList<Long>();
 	/*
 	private @Ignore List<Interet> interets;
 	private @Ignore List<Personne> amis;
@@ -44,8 +44,6 @@ public class Personne {
 		this.annee = annee;
 		this.mdp = mdp;
 		this.slogan = description;
-		this.refInterets = new ArrayList<String>();
-		this.refAmis = new ArrayList<Long>();
 	}
 	/*
 	@OnLoad
@@ -176,6 +174,8 @@ public class Personne {
 	
 	public void addInteret(Interet interet){
 		// ajout a la liste d'interets de la personne
+		System.out.println("Nom interet : " + interet.getNom());
+		System.out.print("Taille ref : " +refInterets.size());
 		refInterets.add(interet.getNom());
 		/*
 		Ref<Interet> refInteret = Ref.create(interet.getKey());

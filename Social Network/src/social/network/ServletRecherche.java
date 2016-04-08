@@ -51,12 +51,12 @@ public class ServletRecherche extends HttpServlet {
 		session.setAttribute("Recherche", client.getSlogan());
 		
 		//On etablie une requete dans le datastore le resultat de la recherche
-		List<Personne> resultat = service.researchPersonne(recherche);
-		req.setAttribute("resultat", resultat);
-		//session.setAttribute("resultat", resultat);
-		System.out.println("size : " + resultat.size());
+		List<Personne> resultatPersonne = service.researchPersonne(recherche);
+		req.setAttribute("resultatPersonne", resultatPersonne);
 		
-		System.out.println("recherche : " + recherche);
+		List<Interet> resultatInteret = service.researchInteret(recherche);
+		req.setAttribute("resultatInteret", resultatInteret);
+		
 		
 		//Redirection vers la page recherche.jsp
 		try {

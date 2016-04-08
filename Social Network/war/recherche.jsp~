@@ -110,7 +110,7 @@
 				<!-- Model 2 -->
 				<%  List<Personne> listPersonne = (List<Personne>)request.getAttribute("resultatPersonne");
 					List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInteret");
-					if(listPersonne.size() != 0 || listInteret.size() != 0){ %>
+					if(listPersonne.size() != 0 ||listInteret.size() != 0){ %>
 					<c:forEach items="${resultatPersonne}" var="v">
 					<div class="thumbnail border shadow padding_top">
 						<div class="row">

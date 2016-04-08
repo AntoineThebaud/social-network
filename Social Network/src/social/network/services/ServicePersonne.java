@@ -24,17 +24,20 @@ public class ServicePersonne {
 	    gestionPers.delete(personne);
 	}
 	
-	public boolean exists(String mail){
-		if(gestionPers.findByMail(mail)==null){
-			return false;
-		}
-		else{
-			return true;
-		}
+	public boolean existsPersonne(String mail){
+		return gestionPers.exists(mail);
+	}
+	
+	public boolean existsInteret(String nom){
+		return gestionInteret.exists(nom);
 	}
 	
 	public Personne getPersonne(String mail){
 		return gestionPers.findByMail(mail);
+	}
+	
+	public Interet getInteret(String mail){
+		return gestionInteret.get(mail);
 	}
 	
 	public void update(Personne personne){
@@ -45,7 +48,7 @@ public class ServicePersonne {
 		gestionInteret.put(interet);
 	}
 	
-	
+	/* une personne cree un interet */
 	public void creerInteret(Personne personne,String nom){
 		Interet interet = new Interet(nom);
 		interet.addInteresse(personne);
@@ -53,7 +56,14 @@ public class ServicePersonne {
 		personne.addInteret(interet);
 		gestionPers.put(personne);
 	}
+	
 	public List<Personne> researchPersonne(String nom){
 		return gestionPers.search(nom);
 	}
+	
+	public List<Interet> researchInteret(String nom){
+		return gestionInteret.search(nom);
+	}
+	
+	
 }

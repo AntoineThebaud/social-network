@@ -19,16 +19,23 @@ public class ServletAjoutInteret extends HttpServlet {
 		//TODO : requete base de donnée :
 		//	- si interet existe deja : renvoyer ref, sinon creer et envoyer ref
 		//	- ajout de la ref dans la classe personne
+		// XXX -> c'est fait par la methode creerInteret(personne,string)
+		
+		HttpSession session = req.getSession();
+		String mail = (String) session.getAttribute("Mail");
 		
 		
-		ServiceInteret service = new ServiceInteret();
+		//ServiceInteret service = new ServiceInteret();
+		ServicePersonne service = new ServicePersonne();
+		Personne client = service.getPersonne(mail);
+		
 		//Requete dans la base ...
 
-		if(service.exists(input)){
+		if(service.existsInteret(input)){
 			System.out.println("exist : true");
 		} else {	
 			System.out.println("exist : false");
-			service.register(new Interet(input));
+			service.creerInteret(client,input);
 		}
 		
 		//return

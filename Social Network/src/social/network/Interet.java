@@ -14,12 +14,13 @@ import com.googlecode.objectify.annotation.OnLoad;
 @Entity
 public class Interet {
 	private @Id String nom;
-	private List<Long> refInteresses;
+	private String interet;
+	private List<Long> refInteresses = new ArrayList<Long>();
 	// private @Ignore List<Long> refInteresses;
 
 	public Interet(String nom){
 		this.nom = nom;
-		this.refInteresses = new ArrayList<Long>();
+		this.interet = nom;
 	}
 	
 	/*
@@ -42,6 +43,7 @@ public class Interet {
 	
 	public void setNom(String nom) {
 		this.nom = nom;
+		this.interet = nom;
 	}
 
 	public List<Long> getRefInteresses() {
