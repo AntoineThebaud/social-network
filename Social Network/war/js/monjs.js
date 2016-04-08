@@ -34,16 +34,11 @@ $('#formNewTag').submit(function () {
 	});
 	if(valid) {
 		//Ajax :
-//		$.post("AjaxpostloginServlet.java", function() {
-//             name:"kevin",
-//             pass:"Duckburg"
-//        });
-//		$.post("ServletInteret", input).done(function(data) {
-//             alert("name: " + data);
-//        })
-		
-		var newtag = "<a href=\"#\" class=\"list-group-item\">#"+input+"</a>";
-		$('#list-interet').append(newtag);
+		$.post("/ajoutInteret", {inputKey:input}).done(function(data) {
+			alert("name: " + data);
+			var newtag = "<a href=\"#\" class=\"list-group-item\">#"+input+"</a>";
+			$('#list-interet').append(newtag);
+		})
 	}
 	//reset field value
 	$('#tagInput').val("");
