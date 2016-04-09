@@ -20,14 +20,14 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/affichageProfil">Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">A propos</a></li>
+					<li><a href="/about.jsp">A propos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form class="navbar-form navbar-left" role="connexion" method="post" action="connexion">

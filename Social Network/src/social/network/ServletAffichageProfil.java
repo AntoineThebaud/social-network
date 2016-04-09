@@ -20,13 +20,26 @@ public class ServletAffichageProfil extends HttpServlet {
     if (req.getParameter("id") != null ) {
     	System.out.println("id = "+req.getParameter("id"));
       //On ne veut pas afficher le profil de la session connectée.
-      //Requete pour recuperer le nom, prenom, slogan de la Personne concernée.
+      //Requete pour recuperer le nom, prenom, slogan, liste des interets et des follower de la Personne concernée.
+    	//A des fin de tests, creation de la condition suivante.
+    	if (req.getParameter("id").equals("123456")) {
+    		req.setAttribute("Nom", "Durand");
+    	    req.setAttribute("Prenom", "Maurice");
+    	    req.setAttribute("Slogan", "Faut pas respirer la compote, ca fait tousser !");
+    	    req.setAttribute("Statut", "Suivi");
+    	    try {
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
+			}
+		}
     }else{
       //On veut afficher le profil de la session courante.
       HttpSession session = req.getSession();
       req.setAttribute("Nom", session.getAttribute("Nom"));
       req.setAttribute("Prenom", session.getAttribute("Prenom"));
       req.setAttribute("Slogan", session.getAttribute("Slogan"));
+      //Recuperer la liste des interets et des follower de la personne.
       try {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 			} catch (ServletException e) {

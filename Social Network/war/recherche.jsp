@@ -3,12 +3,12 @@
 		response.sendRedirect("/social_network");
 	}
 %>
-	<%@page isELIgnored ="false" %> 
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+	<%@page isELIgnored ="false" %>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
-	
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +29,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->

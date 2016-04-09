@@ -27,14 +27,14 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/affichageProfil">Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">A propos</a></li>
+					<li><a href="/about.jsp">A propos</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<form class="navbar-form navbar-left" role="search" method="post" action="recherche">
@@ -86,6 +86,28 @@
 							<p><span class="badge">236</span></p>
 						</div>
 					</div>
+					<% if (request.getAttribute("Statut") != null) {
+						//Si l'attribut status est != de null alors on regarde un autre profil.
+						//Et on doit afficher quelque chose
+							if (request.getAttribute("Statut").equals("NonSuivi")) {%>
+							<div class="row">
+								</br>
+								<div class="col-md-12 text-center">
+									<button class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Suivre</button>
+								</div>
+							</div>
+							<%	//On ajoute le bouton "+ Suivre" car on ne suit pas la personne que l'on regarde.
+							} else if (request.getAttribute("Statut").equals("Suivi")) {
+								//On ajoute le bouton "- Ne plus suivre".
+								%><div class="row">
+									</br>
+									<div class="col-md-12 text-center">
+										<button class="btn btn-primary"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;Ne plus suivre</button>
+									</div>
+								</div>
+							<%}
+					}%>
+
 				</div>
 				<div class="thumbnail border shadow">
 					<div class="tendance">
@@ -204,8 +226,12 @@
 			<div class="col-md-3">
 				<div class="thumbnail border shadow">
 					<div class="interets">
-						<h3 align="center">Mes intérêts</h3>
-						 <div class="list-group" id="list-interet">
+						<% if (request.getAttribute("Statut") != null) {%>
+								<h3 align="center">Les intérêts de <%= request.getAttribute("Prenom")%></h3>
+						<%} else {%>
+								<h3 align="center">Mes intérêts</h3>
+							<%}%>
+							<div class="list-group" id="list-interet">
 							<a href="#" class="list-group-item">#IBD</a>
 							<a href="#" class="list-group-item">#Bootstrap</a>
 							<a href="#" class="list-group-item">#Minions</a>
@@ -224,7 +250,11 @@
 				</div>
 				<div class="thumbnail border shadow">
 					<div class="interets">
-						<h3 align="center">Mes abonnements</h3>
+						<% if (request.getAttribute("Statut") != null) {%>
+								<h3 align="center">Les abonnements de <%= request.getAttribute("Prenom")%></h3>
+						<%} else {%>
+								<h3 align="center">Mes abonnements</h3>
+							<%}%>
 						 <div class="list-group">
 							<a href="#" class="list-group-item"> John Doe</a>
 							<a href="#" class="list-group-item">Maurice Martin</a>
