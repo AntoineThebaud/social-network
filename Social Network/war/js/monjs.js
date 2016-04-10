@@ -21,7 +21,7 @@ $('#formNewTag').submit(function () {
 	//cas erreur 1 : champ vide
 	if (input == "") {
 		alert("erreur : veuillez remplir le champ correctement");
-		return;
+		return false;
 	}
 	var valid = true;
 	//cas erreur 2 : champ deja existant
@@ -29,13 +29,12 @@ $('#formNewTag').submit(function () {
 		if($(this).text() == "#"+input) {
 			alert("vous avez déjà cet intérêt");
 			valid = false;
-			return;
+			return false;
 		}
 	});
 	if(valid) {
 		//Ajax :
 		$.post("/ajoutInteret", {inputKey:input}).done(function(data) {
-//			alert("name: " + data);
 			var newtag = "<a href=\"#\" class=\"list-group-item\">#"+input+"</a>";
 			$('#list-interet').append(newtag);
 		})
