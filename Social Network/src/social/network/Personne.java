@@ -185,17 +185,27 @@ public class Personne {
 		*/
 	}
 	
+	public void removeInteret(Interet interet){
+		if(refInterets.contains(interet.getNom())){
+			refInterets.remove(interet.getNom()); // XXX pas sure que ca marche...
+		}
+	}
+	
+	public boolean estAmi(Personne personne){
+		return refAmis.contains(personne.getId()); //XXX pas sure que ca marche...
+	}
+	
 	public void addAmi(Personne ami){
 		// ajout a la liste d'amis de la personne
 		if(!refAmis.contains(ami.getId())){
 			refAmis.add(ami.getId());
 		}
-		/*
-		Ref<Personne> ref = Ref.create(ami.getKey());
-		if (!refAmis.contains(ref)) {
-			refAmis.add(ref);
+	}
+	
+	public void removeAmi(Personne ami){
+		if(refAmis.contains(ami.getId())){
+			refAmis.remove(ami.getId()); // XXX pas sure que ca marche...
 		}
-		*/
 	}
 	
 }

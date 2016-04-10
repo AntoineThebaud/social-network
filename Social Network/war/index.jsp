@@ -97,18 +97,26 @@
 							if (request.getAttribute("Statut").equals("NonSuivi")) {%>
 							<div class="row">
 								</br>
-								<div class="col-md-12 text-center">
-									<button class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Suivre</button>
-								</div>
+								<form method="post" action="affichageProfil">
+									<input type="hidden" name="id" value=<%= request.getAttribute("Id")%>>
+									<input type="hidden" name="suivre" value="true">
+									<div class="col-md-12 text-center">
+										<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Suivre</button>
+									</div>
+								</form>
 							</div>
 							<%	//On ajoute le bouton "+ Suivre" car on ne suit pas la personne que l'on regarde.
 							} else if (request.getAttribute("Statut").equals("Suivi")) {
 								//On ajoute le bouton "- Ne plus suivre".
 								%><div class="row">
 									</br>
-									<div class="col-md-12 text-center">
-										<button class="btn btn-primary"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;Ne plus suivre</button>
-									</div>
+									<form method="post" action="affichageProfil">
+										<input type="hidden" name="id" value=<%= request.getAttribute("Id")%>>
+										<input type="hidden" name="suivre" value="false">
+										<div class="col-md-12 text-center">
+											<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;Ne plus suivre</button>
+										</div>
+									</form>
 								</div>
 							<%}
 						}%>
@@ -295,7 +303,7 @@
 							<%  List<Personne> listAmis = (List<Personne>)request.getAttribute("resultatAmis");
 								if(listAmis != null && listAmis.size() != 0){ %>
 									<c:forEach items="${resultatAmis}" var="v">
-										<a href="#" class="list-group-item"> <c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a>
+										<a href="affichageProfil?id=<c:out value="${v.id}"/>" class="list-group-item"> <c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a>
 									</c:forEach>
 							<%	} else {%>
 									<h5 align="center">Aucun abonnement actuellement.</h5>
