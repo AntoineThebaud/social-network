@@ -3,12 +3,12 @@
 		response.sendRedirect("/social_network");
 	}
 %>
-	<%@page isELIgnored ="false" %> 
-	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+	<%@page isELIgnored ="false" %>
+	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
-	
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +29,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/">Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -110,7 +110,7 @@
 				<!-- Model 2 -->
 				<%  List<Personne> listPersonne = (List<Personne>)request.getAttribute("resultatPersonne");
 					List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInteret");
-					if(listPersonne.size() != 0 ||listInteret.size() != 0){ %>
+					if(listPersonne.size() != 0 || listInteret.size() != 0){ %>
 					<c:forEach items="${resultatPersonne}" var="v">
 					<div class="thumbnail border shadow padding_top">
 						<div class="row">
@@ -118,11 +118,10 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></p>
-							<p class="float-right">Il y a 10 min</p>
+							<p class="float-left"><h4><a href="/profil"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+							<span>Decription ?</span>
 						</div>
 						</div>
 					</div>
@@ -134,11 +133,10 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><c:out value="${v.nom}"/></p>
-							<p class="float-right">Il y a 10 min</p>
+							<p class="float-left"><h4><a href="/profil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+							<span>Description ?</span>
 						</div>
 						</div>
 					</div>

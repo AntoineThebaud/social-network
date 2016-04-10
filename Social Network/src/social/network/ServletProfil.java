@@ -41,6 +41,10 @@ public class ServletProfil extends HttpServlet {
 		req.setAttribute("Prenom", client.getPrenom());
 		req.setAttribute("Mail", client.getMail());
 		req.setAttribute("Slogan", client.getSlogan());
+		req.setAttribute("resultatAmis", service.getAmis(client));
+		System.out.println("resulatsAmis taille : " + service.getAmis(client).size());
+		req.setAttribute("resultatInterets", service.getInterets(client));
+		System.out.println("resulatsInterets taille : " + service.getInterets(client).size());
 	
 		//Redirection vers la page profil.jsp
 		try {

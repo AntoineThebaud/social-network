@@ -174,9 +174,9 @@ public class Personne {
 	
 	public void addInteret(Interet interet){
 		// ajout a la liste d'interets de la personne
-		System.out.println("Nom interet : " + interet.getNom());
-		System.out.print("Taille ref : " +refInterets.size());
-		refInterets.add(interet.getNom());
+		if(!refInterets.contains(interet.getNom())){
+			refInterets.add(interet.getNom());
+		}
 		/*
 		Ref<Interet> refInteret = Ref.create(interet.getKey());
 		if (!refInterets.contains(refInteret)) {
@@ -187,7 +187,9 @@ public class Personne {
 	
 	public void addAmi(Personne ami){
 		// ajout a la liste d'amis de la personne
-		refAmis.add(ami.getId());
+		if(!refAmis.contains(ami.getId())){
+			refAmis.add(ami.getId());
+		}
 		/*
 		Ref<Personne> ref = Ref.create(ami.getKey());
 		if (!refAmis.contains(ref)) {

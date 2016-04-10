@@ -12,6 +12,10 @@
     <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
+
+<%  List<Personne> listPersonne = (List<Personne>)request.getAttribute("resultatAmis");
+	List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");
+%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

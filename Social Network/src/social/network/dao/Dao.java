@@ -54,6 +54,10 @@ public abstract class Dao<T> {
  
     public List<T> getSubset(Iterable<Long> ids) { 
         return new ArrayList<T>(query().ids(ids).values()); 
+    }
+    
+    public List<T> getSubset(List<String> ids) { 
+        return new ArrayList<T>(query().ids(ids).values()); 
     } 
  
     public Map<Long, T> getSubsetMap(Iterable<Long> ids) { 

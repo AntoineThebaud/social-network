@@ -15,8 +15,8 @@ import social.network.services.ServicePersonne;
 
 @SuppressWarnings("serial")
 public class ServletConnexion extends HttpServlet {
-
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("Dans le doPost de ServletConnexion");
 		String mail = checkNull(req.getParameter("mail"));
 		String pw = checkNull(req.getParameter("pw"));
 		boolean succes = false;
@@ -32,6 +32,7 @@ public class ServletConnexion extends HttpServlet {
 				session.setAttribute("Prenom", personne.getPrenom());
 				session.setAttribute("Mail", personne.getMail());
 				session.setAttribute("Slogan", personne.getSlogan());
+				
 				session.setAttribute("Valide", true);
 				succes = true;
 				resp.sendRedirect("/affichageProfil");

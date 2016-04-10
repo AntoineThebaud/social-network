@@ -65,5 +65,15 @@ public class ServicePersonne {
 		return gestionInteret.search(nom);
 	}
 	
+	public List<Personne> getAmis(Personne personne){
+		return gestionPers.getSubset(personne.getRefAmis());
+	}
 	
+	public List<Personne> getInteresses(Interet interet){
+		return gestionPers.getSubset(interet.getRefInteresses());
+	}
+	
+	public List<Interet> getInterets(Personne personne){
+		return gestionInteret.getSubset(personne.getRefInterets());
+	}
 }

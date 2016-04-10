@@ -118,11 +118,10 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></p>
-							<p class="float-right">Il y a 10 min</p>
+							<p class="float-left"><h4><a href="/profil"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+							<span><c:out value="${v.slogan}"/></span>
 						</div>
 						</div>
 					</div>
@@ -134,11 +133,10 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><c:out value="${v.nom}"/></p>
-							<p class="float-right">Il y a 10 min</p>
+							<p class="float-left"><h4><a href="/profil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+							<span>Description ?</span>
 						</div>
 						</div>
 					</div>

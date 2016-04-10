@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import social.network.services.ServicePersonne;
+
 
 @SuppressWarnings("serial")
 public class ServletAffichageProfil extends HttpServlet {
@@ -36,9 +38,17 @@ public class ServletAffichageProfil extends HttpServlet {
     }else{
       //On veut afficher le profil de la session courante.
       HttpSession session = req.getSession();
+      ServicePersonne service = new ServicePersonne();
+      Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
       req.setAttribute("Nom", session.getAttribute("Nom"));
       req.setAttribute("Prenom", session.getAttribute("Prenom"));
       req.setAttribute("Slogan", session.getAttribute("Slogan"));
+      req.setAttribute("resultatAmis", service.getAmis(personne));
+	  System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
+	  req.setAttribute("resultatInterets", service.getInterets(personne));
+	  //session.setAttribute("resultatInterets", service.getInterets(personne));
+	  System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
+	  System.out.println("interet : " + service.getInterets(personne).get(0).getNom());
       //Recuperer la liste des interets et des follower de la personne.
       try {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
