@@ -1,6 +1,7 @@
 package social.network;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,21 +22,37 @@ public class ServletAffichageProfil extends HttpServlet {
     System.out.println("Je suis dans le doGet de ServletAffichageProfil");
     HttpSession session = req.getSession();
     ServicePersonne service = new ServicePersonne();
+    Personne personneCourante = service.getPersonne((String) session.getAttribute("Mail"));
     if (req.getParameter("id") != null && !req.getParameter("id").equals(session.getAttribute("Id").toString())) {
     	System.out.println("id = "+req.getParameter("id"));
     	System.out.println("id de la session courante = "+session.getAttribute("Id"));
       //On ne veut pas afficher le profil de la session connectée.
       //Requete pour recuperer le nom, prenom, slogan, liste des interets et des follower de la Personne concernée.
     	//A des fin de tests, creation de la condition suivante.
-    	Personne personne = service.getPersonne(Long.parseLong(req.getParameter("id")));
-    	req.setAttribute("Nom", personne.getNom());
-	    req.setAttribute("Prenom", personne.getPrenom());
-	    req.setAttribute("Slogan", personne.getSlogan());
-	    req.setAttribute("Statut", "Suivi"); // XXX Pourquoi Suivi ???
-	    req.setAttribute("resultatAmis", service.getAmis(personne));
-		System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
-		req.setAttribute("resultatInterets", service.getInterets(personne));
-		System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
+    	Personne personne2 = service.getPersonne(Long.parseLong(req.getParameter("id")));
+    	req.setAttribute("Nom", personne2.getNom());
+	    req.setAttribute("Prenom", personne2.getPrenom());
+	    req.setAttribute("Slogan", personne2.getSlogan());
+	    
+	    //Pour savoir quel type de statut mettre, il faut savoir si la session courante suit deja la personne qu'il consulte.
+	    List<Personne> amisComtpeCourant = service.getAmis(personneCourante);
+	    System.out.println("Affichage de la liste des amis de la session courante :");
+	    boolean statut = false;
+	    for (int i = 0; i < amisComtpeCourant.size(); i++) {
+			System.out.println(amisComtpeCourant.get(i).getPrenom());
+			if (amisComtpeCourant.get(i).getId().equals(personne2.getId())) {
+				statut = true;
+			}
+		}
+	    if (statut) {
+	    	req.setAttribute("Statut", "Suivi");
+		}else {
+			req.setAttribute("Statut", "NonSuivi");
+		}
+	    req.setAttribute("resultatAmis", service.getAmis(personne2));
+		System.out.println("resulatsAmis taille : " + service.getAmis(personne2).size());
+		req.setAttribute("resultatInterets", service.getInterets(personne2));
+		System.out.println("resulatsInterets taille : " + service.getInterets(personne2).size());
 	    
 	    try {
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -44,14 +61,13 @@ public class ServletAffichageProfil extends HttpServlet {
 		}
     }else{
       //On veut afficher le profil de la session courante.
-      Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
       req.setAttribute("Nom", session.getAttribute("Nom"));
       req.setAttribute("Prenom", session.getAttribute("Prenom"));
       req.setAttribute("Slogan", session.getAttribute("Slogan"));
-      req.setAttribute("resultatAmis", service.getAmis(personne));
-	  System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
-	  req.setAttribute("resultatInterets", service.getInterets(personne));
-	  System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
+      req.setAttribute("resultatAmis", service.getAmis(personneCourante));
+	  System.out.println("resulatsAmis taille : " + service.getAmis(personneCourante).size());
+	  req.setAttribute("resultatInterets", service.getInterets(personneCourante));
+	  System.out.println("resulatsInterets taille : " + service.getInterets(personneCourante).size());
       //Recuperer la liste des interets et des follower de la personne.
       try {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
