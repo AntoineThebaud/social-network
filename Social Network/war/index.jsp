@@ -111,8 +111,7 @@
 									</div>
 								</div>
 							<%}
-					}%>
-
+						}%>
 				</div>
 				<div class="thumbnail border shadow">
 					<div class="tendance">
@@ -197,7 +196,34 @@
 				<!-- Fin zone de text -->
 				<!-- Debut zone d'affichage du flux -->
 
+
+				<!-- Pseudo code futur implèm -->
+				<!-- 
+				<%//  List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublications");
+				  //  if(listPublication != null && listPublication.size() != 0) { %>
+						<c:forEach items="${publications}" var="v">
+							<div class="thumbnail border shadow padding_top">
+								<div class="row">
+									<div class="col-md-3">
+										<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+									</div>
+									<div class="col-md-9">
+										<p class="float-left"><%//<c:out value="${v.auteur}"%></p>
+										<p class="float-right"><%//<c:out value="${v.date}"%> min</p>
+									</div>
+									<div class=" col-md-9">
+										<span><%//<c:out value="${v.contenu}"%></span>
+									</div>
+								</div>
+							</div>
+						</c:forEach>
+				<%//} else {%>
+						<h5 align="center">Aucune publication actuellement.</h5>
+				<%//}%>
+				 -->
+				 
 				<!-- Model 2 -->
+				
 				<div class="thumbnail border shadow padding_top">
 					<div class="row">
 						<div class="col-md-3">
@@ -208,7 +234,7 @@
 							<p class="float-right">Il y a 10 min</p>
 						</div>
 						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
+							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed</span>
 						</div>
 					</div>
 				</div>
@@ -235,18 +261,17 @@
 								<h3 align="center">Les intérêts de <%= request.getAttribute("Prenom")%></h3>
 						<%} else {%>
 								<h3 align="center">Mes intérêts</h3>
-							<%}%>
-							<div class="list-group" id="list-interet">
-								<%  List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");
-									if(listInteret != null && listInteret.size() != 0){ %>
-										<c:forEach items="${resultatInterets}" var="v">
-											<a href="#" class="list-group-item">#<c:out value="${v.nom}"/></a>
-										</c:forEach>
-									<% }
-									else{%>
-										<h5 align="center">Aucun intérêt actuellement.</h5>
-									<%}%>
-							</div>
+						<%}%>
+						<div class="list-group" id="list-interet">
+							<%  List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");
+								if(listInteret != null && listInteret.size() != 0) { %>
+									<c:forEach items="${resultatInterets}" var="v">
+										<a href="#" class="list-group-item">#<c:out value="${v.nom}"/></a>
+									</c:forEach>
+							<% 	} else {%>
+									<h5 align="center">Aucun intérêt actuellement.</h5>
+							<%	}%>
+						</div>
 						<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
 							<div class="form-group">
 								<div class="col-sm-7">
@@ -261,21 +286,20 @@
 				</div>
 				<div class="thumbnail border shadow">
 					<div class="interets">
-						<% if (request.getAttribute("Statut") != null) {%>
+						<% 	if (request.getAttribute("Statut") != null) {%>
 								<h3 align="center">Les abonnements de <%= request.getAttribute("Prenom")%></h3>
-						<%} else {%>
+						<%	} else {%>
 								<h3 align="center">Mes abonnements</h3>
-							<%}%>
-						 <div class="list-group">
+						<%	}%>
+						<div class="list-group">
 							<%  List<Personne> listAmis = (List<Personne>)request.getAttribute("resultatAmis");
 								if(listAmis != null && listAmis.size() != 0){ %>
 									<c:forEach items="${resultatAmis}" var="v">
 										<a href="#" class="list-group-item"> <c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a>
 									</c:forEach>
-								<% }
-								else{%>
+							<%	} else {%>
 									<h5 align="center">Aucun abonnement actuellement.</h5>
-								<%}%>
+							<%	}%>
 						</div>
 					</div>
 				</div>
