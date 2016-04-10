@@ -20,18 +20,22 @@ public class ServletAffichageProfil extends HttpServlet {
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     System.out.println("Je suis dans le doGet de ServletAffichageProfil");
     HttpSession session = req.getSession();
+    ServicePersonne service = new ServicePersonne();
     if (req.getParameter("id") != null && !req.getParameter("id").equals(session.getAttribute("Id").toString())) {
     	System.out.println("id = "+req.getParameter("id"));
     	System.out.println("id de la session courante = "+session.getAttribute("Id"));
       //On ne veut pas afficher le profil de la session connectée.
       //Requete pour recuperer le nom, prenom, slogan, liste des interets et des follower de la Personne concernée.
     	//A des fin de tests, creation de la condition suivante.
-    	ServicePersonne service = new ServicePersonne();
     	Personne personne = service.getPersonne(Long.parseLong(req.getParameter("id")));
     	req.setAttribute("Nom", personne.getNom());
 	    req.setAttribute("Prenom", personne.getPrenom());
 	    req.setAttribute("Slogan", personne.getSlogan());
 	    req.setAttribute("Statut", "Suivi"); // XXX Pourquoi Suivi ???
+	    req.setAttribute("resultatAmis", service.getAmis(personne));
+		System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
+		req.setAttribute("resultatInterets", service.getInterets(personne));
+		System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
 	    
 	    try {
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -40,7 +44,6 @@ public class ServletAffichageProfil extends HttpServlet {
 		}
     }else{
       //On veut afficher le profil de la session courante.
-      ServicePersonne service = new ServicePersonne();
       Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
       req.setAttribute("Nom", session.getAttribute("Nom"));
       req.setAttribute("Prenom", session.getAttribute("Prenom"));
