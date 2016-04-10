@@ -4,18 +4,12 @@ $(document).ready(function(){
     });
 });
 
-function cacheMoi() {
-	document.getElementById("message_full").removeAttribute("hidden");
-	document.getElementById("message_base").setAttribute("hidden", true);
-	document.getElementById("area").focus();
-}
 
-function montreMoi() {
-	document.getElementById("message_base").removeAttribute("hidden");
-	document.getElementById("message_full").setAttribute("hidden", true);
-}
+/***********************
+ *   Nouvel intérêt
+ ***********************/
 
-//ajout d'un interet
+//Submit :
 $('#formNewTag').submit(function () {
 	input = $('#tagInput').val();
 	//cas erreur 1 : champ vide
@@ -24,7 +18,7 @@ $('#formNewTag').submit(function () {
 		return false;
 	}
 	var valid = true;
-	//cas erreur 2 : champ deja existant
+	//cas erreur 2 : champ existant
 	$('#list-interet').children("a").each(function(index) {
 		if($(this).text() == "#"+input) {
 			alert("vous avez déjà cet intérêt");
@@ -41,5 +35,42 @@ $('#formNewTag').submit(function () {
 	}
 	//reset field value
 	$('#tagInput').val("");
-	return false;//dont refresh
+	return false;//= no refresh
+});
+
+
+/***********************
+ * Nouvelle publication
+ ***********************/
+
+//affichage de la textaera :
+function showFull() {
+	document.getElementById("btn_pub").removeAttribute("hidden");
+	document.getElementById("pub_aera").setAttribute("rows", 4);
+}
+function showReduce() {
+	if($("#submit_pub").data("mouseDown") != true){
+		console.log("HIDE ALL");
+	  	document.getElementById("btn_pub").setAttribute("hidden", true);
+		document.getElementById("pub_aera").setAttribute("rows", 1);
+	}
+}
+//Submit : ces 3 fonctions sont appellées dans l'ordre
+//(astuce pour ne pas que l'event onblur se déclenche avant l'event onclic) :
+$("#submit_pub").on("mousedown", function(e){
+	console.log("MOUSEDOWN");
+    $("#submit_pub").data("mouseDown", true);
+});
+$("#submit_pub").on("mouseup", function(e){
+	console.log("MOUSEUP");
+    $("#submit_pub").data("mouseDown", false);
+});
+$('#formNewPub').submit(function () {
+	console.log("new pub submitted");
+	//TODO : Ajax pour creation de la nouvelle publication
+	// ...
+	//TODO : à décommenter quand cette fonction marchera :
+	//showReduce();
+	//$('#pub_aera').val("");
+	return false;//= no refresh
 });

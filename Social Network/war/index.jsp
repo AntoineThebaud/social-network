@@ -146,32 +146,21 @@
 					<div class="tab-content">
 					  <!-- Tab message -->
 					  <div id="message" class="tab-pane fade in active">
-					  	<div id="message_base">
+					  	<div>
 						    <br/>
-							<form class="form-horizontal" role="form">
+							<form id="formNewPub" class="form-horizontal" role="form">
 							  <div class="form-group">
 							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
-							    <div class="col-sm-10">
-							      <input onfocus="cacheMoi()" type="text" class="form-control" id="text" placeholder="Quoi de neuf ?">
+							    <div class="col-sm-10">							   <!--  onblur="showBaseHideFull()" -->
+							      <textarea onfocus="showFull()" onblur="showReduce()" style="resize:none" class="form-control" id="pub_aera" rows="1" placeholder="Quoi de neuf ?"></textarea>
 							    </div>
 							  </div>
+							  <div class="form-group" id="btn_pub" hidden>
+							      <div class="col-sm-offset-2 col-sm-10">
+							        <button type="submit" id="submit_pub" class="btn btn-primary">Publie !</button>
+							      </div>
+							   </div>
 							</form>
-						</div>
-						<div id="message_full" hidden>
-							<br/>
-						  	<form class="form-horizontal" role="form">
-						  <div class="form-group">
-						    <label class="control-label col-sm-2" ><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
-						    <div class="col-sm-10">
-						      <textarea onblur="montreMoi()" class="form-control vertical-resize" rows="4" id="area" placeholder="Quoi de neuf ?"></textarea>
-						    </div>
-						  </div>
-						  <div class="form-group">
-						    <div class="col-sm-offset-2 col-sm-10">
-						      <button type="submit" class="btn btn-primary">Publie !</button>
-						    </div>
-						  </div>
-						</form>
 						</div>
 					  </div>
 					  <!-- fin Tab message -->
@@ -206,29 +195,37 @@
 
 
 				<!-- Pseudo code futur implèm -->
-				<!-- 
-				<%//  List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublications");
-				  //  if(listPublication != null && listPublication.size() != 0) { %>
-						<c:forEach items="${publications}" var="v">
-							<div class="thumbnail border shadow padding_top">
-								<div class="row">
-									<div class="col-md-3">
-										<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-									</div>
-									<div class="col-md-9">
-										<p class="float-left"><%//<c:out value="${v.auteur}"%></p>
-										<p class="float-right"><%//<c:out value="${v.date}"%> min</p>
-									</div>
-									<div class=" col-md-9">
-										<span><%//<c:out value="${v.contenu}"%></span>
-									</div>
+				<%-- 				
+				<%List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublications");
+				  if(listPublication != null && listPublication.size() != 0) { %>
+					<c:forEach items="${publications}" var="v">
+						<div class="thumbnail border shadow padding_top">
+							<div class="row">
+								<div class="col-md-3">
+									<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+								</div>
+								<div class="col-md-9">
+									<p class="float-left"><%<c:out value="${v.auteur}"%></p>
+									<p class="float-right"><%<c:out value="${v.date}"%> min</p>
+								</div>
+								<div class=" col-md-9">
+									<%if (${v.type}.equals("SIMPLE")) {%>
+										<span><%<c:out value="${v.contenu}"%></span>
+									<%} else if (${v.type}.equals("PARTAGE")) {%>
+										//todo : afficher le texte de la publication partagée
+										<span><%<c:out value="${v.contenu}"%></span>
+									<%} else if (${v.type}.equals("REPONSE")) {%>
+										//todo : affichage en mode réponse
+										<span><%<c:out value="${v.contenu}"%></span>
+									<%}%>
 								</div>
 							</div>
-						</c:forEach>
-				<%//} else {%>
+						</div>
+					</c:forEach>
+				<%} else {%>
 						<h5 align="center">Aucune publication actuellement.</h5>
-				<%//}%>
-				 -->
+				<%}%>
+				--%>
 				 
 				<!-- Model 2 -->
 				
