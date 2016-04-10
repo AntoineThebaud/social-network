@@ -1,6 +1,7 @@
 package social.network;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,6 +22,7 @@ public class ServletAffichageProfil extends HttpServlet {
     System.out.println("Je suis dans le doGet de ServletAffichageProfil");
     HttpSession session = req.getSession();
     ServicePersonne service = new ServicePersonne();
+    Personne personneCourante = service.getPersonne((String) session.getAttribute("Mail"));
     if (req.getParameter("id") != null && !req.getParameter("id").equals(session.getAttribute("Id").toString())) {
 		System.out.println("id = "+req.getParameter("id"));
 		System.out.println("id de la session courante = "+session.getAttribute("Id"));
