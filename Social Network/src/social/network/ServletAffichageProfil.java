@@ -46,9 +46,7 @@ public class ServletAffichageProfil extends HttpServlet {
       req.setAttribute("resultatAmis", service.getAmis(personne));
 	  System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
 	  req.setAttribute("resultatInterets", service.getInterets(personne));
-	  //session.setAttribute("resultatInterets", service.getInterets(personne));
 	  System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
-	  System.out.println("interet : " + service.getInterets(personne).get(0).getNom());
       //Recuperer la liste des interets et des follower de la personne.
       try {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);

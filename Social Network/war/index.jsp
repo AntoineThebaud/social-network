@@ -237,9 +237,15 @@
 								<h3 align="center">Mes intérêts</h3>
 							<%}%>
 							<div class="list-group" id="list-interet">
-								<c:forEach items="${resultatInterets}" var="v">
-									<a href="#" class="list-group-item">#<c:out value="${v.nom}"/></a>
-								</c:forEach>
+								<%  List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");
+									if(listInteret != null && listInteret.size() != 0){ %>
+										<c:forEach items="${resultatInterets}" var="v">
+											<a href="#" class="list-group-item">#<c:out value="${v.nom}"/></a>
+										</c:forEach>
+									<% }
+									else{%>
+										<h5 align="center">Aucun intérêt actuellement.</h5>
+									<%}%>
 							</div>
 						<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
 							<div class="form-group">
@@ -261,9 +267,15 @@
 								<h3 align="center">Mes abonnements</h3>
 							<%}%>
 						 <div class="list-group">
-							<c:forEach items="${resultatAmis}" var="v">
-								<a href="#" class="list-group-item"> <c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a>
-							</c:forEach>
+							<%  List<Personne> listAmis = (List<Personne>)request.getAttribute("resultatAmis");
+								if(listAmis != null && listAmis.size() != 0){ %>
+									<c:forEach items="${resultatAmis}" var="v">
+										<a href="#" class="list-group-item"> <c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a>
+									</c:forEach>
+								<% }
+								else{%>
+									<h5 align="center">Aucun abonnement actuellement.</h5>
+								<%}%>
 						</div>
 					</div>
 				</div>
