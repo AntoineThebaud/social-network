@@ -36,6 +36,10 @@ public class ServicePersonne {
 		return gestionPers.findByMail(mail);
 	}
 	
+	public Personne getPersonne(Long id){
+		return gestionPers.get(id);
+	}
+	
 	public Interet getInteret(String mail){
 		return gestionInteret.get(mail);
 	}

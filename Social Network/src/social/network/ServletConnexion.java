@@ -28,6 +28,7 @@ public class ServletConnexion extends HttpServlet {
 			if (personne.getMdp().equals(pw)) {
 				//Success !
 				HttpSession session = req.getSession();
+				session.setAttribute("Id", personne.getId());
 				session.setAttribute("Nom", personne.getNom());
 				session.setAttribute("Prenom", personne.getPrenom());
 				session.setAttribute("Mail", personne.getMail());

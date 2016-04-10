@@ -19,25 +19,27 @@ public class ServletAffichageProfil extends HttpServlet {
     //Sinon on redirige vers index.jsp et les variables de session contiennent deja les infos utiles.
   public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
     System.out.println("Je suis dans le doGet de ServletAffichageProfil");
-    if (req.getParameter("id") != null ) {
+    HttpSession session = req.getSession();
+    if (req.getParameter("id") != null && !req.getParameter("id").equals(session.getAttribute("Id").toString())) {
     	System.out.println("id = "+req.getParameter("id"));
+    	System.out.println("id de la session courante = "+session.getAttribute("Id"));
       //On ne veut pas afficher le profil de la session connectée.
       //Requete pour recuperer le nom, prenom, slogan, liste des interets et des follower de la Personne concernée.
     	//A des fin de tests, creation de la condition suivante.
-    	if (req.getParameter("id").equals("123456")) {
-    		req.setAttribute("Nom", "Durand");
-    	    req.setAttribute("Prenom", "Maurice");
-    	    req.setAttribute("Slogan", "Faut pas respirer la compote, ca fait tousser !");
-    	    req.setAttribute("Statut", "Suivi");
-    	    try {
-				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
-			}
+    	ServicePersonne service = new ServicePersonne();
+    	Personne personne = service.getPersonne(Long.parseLong(req.getParameter("id")));
+    	req.setAttribute("Nom", personne.getNom());
+	    req.setAttribute("Prenom", personne.getPrenom());
+	    req.setAttribute("Slogan", personne.getSlogan());
+	    req.setAttribute("Statut", "Suivi"); // XXX Pourquoi Suivi ???
+	    
+	    try {
+			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+		} catch (ServletException e) {
+			System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
 		}
     }else{
       //On veut afficher le profil de la session courante.
-      HttpSession session = req.getSession();
       ServicePersonne service = new ServicePersonne();
       Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
       req.setAttribute("Nom", session.getAttribute("Nom"));
