@@ -118,7 +118,7 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><h4><a href="/profil"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a></h4></p>
+							<p class="float-left"><h4><a href="/affichageProfil?id=<c:out value="${v.id}"/>"><c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
 							<span><c:out value="${v.slogan}"/></span>
@@ -133,7 +133,7 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><h4><a href="/profil"><c:out value="${v.nom}"/></a></h4></p>
+							<p class="float-left"><h4><a href="/affichageProfil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
 							<span>Description ?</span>
