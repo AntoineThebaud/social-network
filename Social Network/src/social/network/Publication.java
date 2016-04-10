@@ -1,16 +1,10 @@
 package social.network;
 
-import java.util.Date;
-
-import com.googlecode.objectify.annotation.Id;
-
 public class Publication {
-	
-	private @Id Long id;
-	private String auteur;
+
+	private Long auteur;
 	private String contenu;
 	private int nblikes;
-	private Date datepub;
 	
 	/* à confirmer 
 	 * 
@@ -22,11 +16,8 @@ public class Publication {
 	 * private TypePublication type;
 	 */
 
-	public Publication(Long id, String auteur, String contenu) {
-		this.id = id;
-		this.auteur = auteur;
-		this.contenu = contenu;
-		this.nblikes = 0;
+	public Publication() {
+		
 	}
 
 	public String getContenu() {
@@ -37,12 +28,8 @@ public class Publication {
 		this.contenu = contenu;
 	}
 
-	public String getAuteur() {
+	public Long getAuteur() {
 		return auteur;
-	}
-	
-	public void incrLike() {
-		nblikes++;
 	}
 	
 //	//inutilisé :
