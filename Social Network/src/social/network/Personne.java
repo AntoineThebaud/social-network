@@ -3,6 +3,8 @@ package social.network;
 import java.util.ArrayList;
 import java.util.List;
 
+import social.network.services.ServicePersonne;
+
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
 import com.googlecode.objectify.annotation.Entity;
@@ -45,28 +47,6 @@ public class Personne {
 		this.mdp = mdp;
 		this.slogan = description;
 	}
-	/*
-	@OnLoad
-	public void deRef() {
-		if (refInterets != null) {
-			interets = new ArrayList<Interet>();
-			for (Ref<Interet> interet : refInterets) {
-				if (interet.isLoaded()) {
-					interets.add(interet.get());
-				}
-			}
-		}
-		
-		if (refAmis != null) {
-			amis = new ArrayList<Personne>();
-			for (Ref<Personne> ami : refAmis) {
-				if (ami.isLoaded()) {
-					amis.add(ami.get());
-				}
-			}
-		}
-	}
-	*/
 
 	public String getNom() {
 		return nom;
@@ -135,21 +115,6 @@ public class Personne {
 	public void setRefAmis(List<Long> refAmis) {
 		this.refAmis = refAmis;
 	}
-	/*
-	public List<Interet> getInterets() {
-		return interets;
-	}
-	public void setInterets(List<Interet> interets) {
-		this.interets = interets;
-	}
-	
-	public List<Personne> getAmis() {
-		return amis;
-	}
-	public void setAmis(List<Personne> amis) {
-		this.amis = amis;
-	}
-	*/
 	
 	public String getMdp() {
 		return mdp;
@@ -166,33 +131,21 @@ public class Personne {
 		this.slogan = desciption;
 	}
 	
-	/*
-	public Key<Personne> getKey() {
-		return Key.create(Personne.class, id);
-	}
-	*/
-	
 	public void addInteret(Interet interet){
 		// ajout a la liste d'interets de la personne
 		if(!refInterets.contains(interet.getNom())){
 			refInterets.add(interet.getNom());
 		}
-		/*
-		Ref<Interet> refInteret = Ref.create(interet.getKey());
-		if (!refInterets.contains(refInteret)) {
-			refInterets.add(refInteret);
-		}
-		*/
 	}
 	
 	public void removeInteret(Interet interet){
 		if(refInterets.contains(interet.getNom())){
-			refInterets.remove(interet.getNom()); // XXX pas sure que ca marche...
+			refInterets.remove(interet.getNom()); 
 		}
 	}
 	
 	public boolean estAmi(Personne personne){
-		return refAmis.contains(personne.getId()); //XXX pas sure que ca marche...
+		return refAmis.contains(personne.getId());
 	}
 	
 	public void addAmi(Personne ami){
@@ -204,8 +157,7 @@ public class Personne {
 	
 	public void removeAmi(Personne ami){
 		if(refAmis.contains(ami.getId())){
-			refAmis.remove(ami.getId()); // XXX pas sure que ca marche...
+			refAmis.remove(ami.getId());
 		}
 	}
-	
 }
