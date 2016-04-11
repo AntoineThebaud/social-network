@@ -152,7 +152,7 @@
 							  <div class="form-group">
 							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
 							    <div class="col-sm-10">							   <!--  onblur="showBaseHideFull()" -->
-							      <textarea onfocus="showFull()" onblur="showReduce()" style="resize:none" class="form-control" id="pub_aera" rows="1" placeholder="Quoi de neuf ?"></textarea>
+							      <textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Quoi de neuf ?"></textarea>
 							    </div>
 							  </div>
 							  <div class="form-group" id="btn_pub" hidden>

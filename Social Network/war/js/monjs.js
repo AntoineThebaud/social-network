@@ -46,13 +46,15 @@ $('#formNewTag').submit(function () {
 //affichage de la textaera :
 function showFull() {
 	document.getElementById("btn_pub").removeAttribute("hidden");
-	document.getElementById("pub_aera").setAttribute("rows", 4);
+//	document.getElementById("pub_aera").setAttribute("rows", 4);
+	document.getElementById("pub_aera").style["height"]='140px';
 }
 function showReduce() {
 	if($("#submit_pub").data("mouseDown") != true){
 		console.log("HIDE ALL");
 	  	document.getElementById("btn_pub").setAttribute("hidden", true);
-		document.getElementById("pub_aera").setAttribute("rows", 1);
+		//document.getElementById("pub_aera").setAttribute("rows", 1);
+		document.getElementById("pub_aera").style["height"]='35px';
 	}
 }
 //Submit : ces 3 fonctions sont appellées dans l'ordre
@@ -69,8 +71,7 @@ $('#formNewPub').submit(function () {
 	console.log("new pub submitted");
 	//TODO : Ajax pour creation de la nouvelle publication
 	// ...
-	//TODO : à décommenter quand cette fonction marchera :
-	//showReduce();
-	//$('#pub_aera').val("");
+	showReduce();
+	$('#pub_aera').val("");
 	return false;//= no refresh
 });
