@@ -22,7 +22,7 @@ public class ServletAffichageProfil extends HttpServlet {
     System.out.println("Je suis dans le doGet de ServletAffichageProfil");
     HttpSession session = req.getSession();
     ServicePersonne service = new ServicePersonne();
-    Personne personneCourante = service.getPersonne((String) session.getAttribute("Mail"));
+    //Personne personneCourante = service.getPersonne((String) session.getAttribute("Mail"));
     if (req.getParameter("id") != null && !req.getParameter("id").equals(session.getAttribute("Id").toString())) {
 		System.out.println("id = "+req.getParameter("id"));
 		System.out.println("id de la session courante = "+session.getAttribute("Id"));
@@ -46,6 +46,8 @@ public class ServletAffichageProfil extends HttpServlet {
 		System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
 		req.setAttribute("resultatInterets", service.getInterets(personne));
 		System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
+		req.setAttribute("NbTags", service.getInterets(personne).size());
+		req.setAttribute("NbAmis", service.getAmis(personne).size());
 	    
 	    try {
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -62,12 +64,14 @@ public class ServletAffichageProfil extends HttpServlet {
 		 System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
 		 req.setAttribute("resultatInterets", service.getInterets(personne));
 		 System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
+		 req.setAttribute("NbTags", service.getInterets(personne).size());
+		 req.setAttribute("NbAmis", service.getAmis(personne).size());
 		 //Recuperer la liste des interets et des follower de la personne.
 		 try {
-					this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			 this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 		 } catch (ServletException e) {
 			System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
-				}
+		 }
 		}
   }
   
