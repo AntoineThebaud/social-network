@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import social.network.services.ServicePersonne;
 
-public class ServletAjoutInteret extends HttpServlet {
-
+public class ServletCreerPublication extends HttpServlet {
+	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		String input = req.getParameter("inputKey");
 		System.out.println("input = " + input);
@@ -21,6 +21,7 @@ public class ServletAjoutInteret extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		String mail = (String) session.getAttribute("Mail");
+		
 		
 		//ServiceInteret service = new ServiceInteret();
 		ServicePersonne service = new ServicePersonne();

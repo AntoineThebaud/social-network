@@ -46,14 +46,12 @@ $('#formNewTag').submit(function () {
 //affichage de la textaera :
 function showFull() {
 	document.getElementById("btn_pub").removeAttribute("hidden");
-//	document.getElementById("pub_aera").setAttribute("rows", 4);
 	document.getElementById("pub_aera").style["height"]='140px';
 }
 function showReduce() {
 	if($("#submit_pub").data("mouseDown") != true){
 		console.log("HIDE ALL");
 	  	document.getElementById("btn_pub").setAttribute("hidden", true);
-		//document.getElementById("pub_aera").setAttribute("rows", 1);
 		document.getElementById("pub_aera").style["height"]='35px';
 	}
 }
