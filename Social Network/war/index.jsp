@@ -234,7 +234,7 @@
 				      <ul class="nav navbar-nav">
 				        <li class="active"><a href="#">Flux</a></li>
 				        <li><a href="#">Messages reçus</a></li>
-								<li><a href="#">Messages envoyés</a></li>
+						<li><a href="#">Messages envoyés</a></li>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
@@ -317,6 +317,25 @@
 									</c:forEach>
 							<%	} else {%>
 									<h5 align="center">Aucun abonnement actuellement.</h5>
+							<%	}%>
+						</div>
+					</div>
+				</div>
+				<div class="thumbnail border shadow">
+					<div class="interets">
+						<% if (request.getAttribute("Statut") != null) {%>
+								<h3 align="center">Les abonnements avec intérêts en commun de <%= request.getAttribute("Prenom")%></h3>
+						<%} else {%>
+								<h3 align="center">Mes abonnements avec intérêts en commun</h3>
+						<%}%>
+						<div class="list-group" id="list-interet">
+							<%  List<Personne> listAmisInterets = (List<Personne>)request.getAttribute("resultatCommuns");
+								if(listAmisInterets != null && listAmisInterets.size() != 0) { %>
+									<c:forEach items="${resultatCommuns}" var="v">
+										<a href="affichageProfil?id=<c:out value="${v.id}"/>" class="list-group-item"> <c:out value="${v.prenom}"/> <c:out value="${v.nom}"/></a>
+									</c:forEach>
+							<% 	} else {%>
+									<h5 align="center">Aucun abonnement avec intérêt commun.</h5>
 							<%	}%>
 						</div>
 					</div>

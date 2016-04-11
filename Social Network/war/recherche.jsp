@@ -105,6 +105,31 @@
 			<!-- Colonne du milieu affichant une zone de text et le flux des autres personness -->
 			<div class="col-md-6">
 				<h3 align="center">Résultat de la recherche "<%= request.getParameter("recherche") %>"</h3>
+
+				<nav class="navbar navbar-default">
+				  <div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse">
+				      <ul class="nav navbar-nav">
+				        <li class="active"><a href="#">Tout</a></li>
+				        <li><a href="#">Comptes</a></li>
+						<li><a href="#">Intérêts</a></li>
+						<li><a href="#">Publications</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Autres options <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">De tout le monde</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">De personnes que vous suivez</a></li>
+						</ul>
+					</li>
+				      </ul>
+				    </div><!-- /.navbar-collapse -->
+				  </div><!-- /.container-fluid -->
+				</nav>
+
 				<!-- Debut zone d'affichage du flux -->
 
 				<!-- Model 2 -->
@@ -129,11 +154,8 @@
 					<c:forEach items="${resultatInteret}" var="v">
 					<div class="thumbnail border shadow padding_top">
 						<div class="row">
-						<div class="col-md-3">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-						</div>
 						<div class="col-md-9">
-							<p class="float-left"><h4><a href="/affichageProfil"><c:out value="${v.nom}"/></a></h4></p>
+							<p class="float-left"><h4><a href="/affichageProfil">#<c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
 							<span>Description ?</span>

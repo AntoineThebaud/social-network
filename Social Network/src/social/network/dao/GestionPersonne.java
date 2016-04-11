@@ -18,11 +18,7 @@ public class GestionPersonne extends Dao<Personne> {
         return (findByMail(mail) != null); 
     }
     
-    public List<Personne> search(String nom) {
-    	/*
-    	List<Personne> personnes = query().filter("nom", nom).list();
-        personnes.addAll(query().filter("prenom", nom).list());
-        */
+    public List<Personne> searchAll(String nom) {
     	List<Personne> all = super.getAll();
     	List<Personne> personnes = new ArrayList<Personne>();
     	for(Personne p : all){
@@ -30,10 +26,18 @@ public class GestionPersonne extends Dao<Personne> {
     			personnes.add(p);
     		}
     	}
-    	/*
-        List<Personne> personnes = query().filter("nom >=", nom).filter("nom <", nom + "\uFFFD").list();
-        personnes.addAll(query().filter("prenom >=", nom).filter("prenom <", nom + "\uFFFD").list());
-        */
         return personnes;
     }
+    
+    public List<Personne> searchAmis(Personne personne,String nom) {
+    	List<Personne> all = super.getSubset(personne.getRefAmis());
+    	List<Personne> personnes = new ArrayList<Personne>();
+    	for(Personne p : all){
+    		if(p.getNom().toUpperCase().contains(nom.toUpperCase()) || p.getPrenom().toUpperCase().contains(nom.toUpperCase())){
+    			personnes.add(p);
+    		}
+    	}
+        return personnes;
+    }
+    
 }

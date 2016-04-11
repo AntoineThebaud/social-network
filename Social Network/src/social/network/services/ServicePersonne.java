@@ -1,5 +1,6 @@
 package social.network.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.googlecode.objectify.Key;
@@ -62,7 +63,7 @@ public class ServicePersonne {
 	}
 	
 	public List<Personne> researchPersonne(String nom){
-		return gestionPers.search(nom);
+		return gestionPers.searchAll(nom);
 	}
 	
 	public List<Interet> researchInteret(String nom){
@@ -79,5 +80,21 @@ public class ServicePersonne {
 	
 	public List<Interet> getInterets(Personne personne){
 		return gestionInteret.getSubset(personne.getRefInterets());
+	}
+	
+	public List<Personne> getAmisInterets(Personne personne){
+		System.out.println("amisInterets");
+		List<Personne> communs = new ArrayList<Personne>();
+		List<Personne> amis = getAmis(personne);
+		List<Interet> interets = getInterets(personne);
+		for(Personne ami:amis){
+			for(Interet interet:interets){
+				if(!communs.contains(ami) && getInterets(ami).contains(interet)){ //XXX pas sure que ca marche
+					System.out.println("ok");
+					communs.add(ami);
+				}
+			}
+		}
+		return communs;
 	}
 }
