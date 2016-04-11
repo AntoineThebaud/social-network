@@ -195,7 +195,7 @@
 
 
 				<!-- Pseudo code futur implèm -->
-				<%-- 				
+				<%--
 				<%List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublications");
 				  if(listPublication != null && listPublication.size() != 0) { %>
 					<c:forEach items="${publications}" var="v">
@@ -226,9 +226,22 @@
 						<h5 align="center">Aucune publication actuellement.</h5>
 				<%}%>
 				--%>
-				 
+				<nav class="navbar navbar-inverse">
+				  <div class="container-fluid">
+				    <!-- Brand and toggle get grouped for better mobile display -->
+				    <!-- Collect the nav links, forms, and other content for toggling -->
+				    <div class="collapse navbar-collapse">
+				      <ul class="nav navbar-nav">
+				        <li class="active"><a href="#">Flux</a></li>
+				        <li><a href="#">Messages reçus</a></li>
+								<li><a href="#">Messages envoyés</a></li>
+				      </ul>
+				    </div><!-- /.navbar-collapse -->
+				  </div><!-- /.container-fluid -->
+				</nav>
+
 				<!-- Model 2 -->
-				
+
 				<div class="thumbnail border shadow padding_top">
 					<div class="row">
 						<div class="col-md-3">
