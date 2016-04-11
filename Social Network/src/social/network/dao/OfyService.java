@@ -2,6 +2,7 @@ package social.network.dao;
 
 import social.network.Interet;
 import social.network.Personne;
+import social.network.Publication;
 
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
@@ -11,6 +12,7 @@ public class OfyService {
 	static {
 		ObjectifyService.register(Personne.class);
 		ObjectifyService.register(Interet.class);
+		ObjectifyService.register(Publication.class);
 	}
 	public static Objectify ofy() {
 		return ObjectifyService.ofy();

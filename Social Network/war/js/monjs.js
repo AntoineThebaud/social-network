@@ -14,14 +14,14 @@ $('#formNewTag').submit(function () {
 	input = $('#tagInput').val();
 	//cas erreur 1 : champ vide
 	if (input == "") {
-		alert("erreur : veuillez remplir le champ correctement");
+		alert("Erreur : champ vide");
 		return false;
 	}
 	var valid = true;
 	//cas erreur 2 : champ existant
 	$('#list-interet').children("a").each(function(index) {
 		if($(this).text() == "#"+input) {
-			alert("vous avez déjà cet intérêt");
+			alert("Erreur : vous avez déjà cet intérêt");
 			valid = false;
 			return false;
 		}
@@ -67,8 +67,20 @@ $("#submit_pub").on("mouseup", function(e){
 });
 $('#formNewPub').submit(function () {
 	console.log("new pub submitted");
+	
 	//TODO : Ajax pour creation de la nouvelle publication
-	// ...
+	input = $('#pub_aera').val();
+	console.log("input="+input);
+	//cas erreur : champ vide
+	if (input == "") {
+		alert("Erreur : champ vide");
+		return false;
+	}
+	//Ajax :
+	$.post("/creerPublication", {inputKey:input}).done(function(data) {
+		//TODO : Ajax inutile, à changer
+	});
+	//reset field	
 	showReduce();
 	$('#pub_aera').val("");
 	return false;//= no refresh
