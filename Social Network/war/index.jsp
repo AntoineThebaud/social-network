@@ -148,10 +148,10 @@
 					  <div id="message" class="tab-pane fade in active">
 					  	<div>
 						    <br/>
-							<form id="formNewPub" class="form-horizontal" role="form">
+							<form id="formNewPub" class="form-horizontal" role="form" method="post" action="/">
 							  <div class="form-group">
 							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
-							    <div class="col-sm-10">							   <!--  onblur="showBaseHideFull()" -->
+							    <div class="col-sm-10">
 							      <textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Quoi de neuf ?"></textarea>
 							    </div>
 							  </div>
