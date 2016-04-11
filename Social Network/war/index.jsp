@@ -19,7 +19,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Social Network</title>
+<title>Agora</title>
 <link rel="icon" href="favicon.ico" />
 
 <!-- Bootstrap -->
@@ -32,7 +32,7 @@
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/affichageProfil"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Accueil</a>
+				<a class="navbar-brand" href="/affichageProfil"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Agora</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -84,11 +84,11 @@
 					<div class="row">
 						<div class="col-md-offset-3 col-md-2 text-center">
 							<p>#Tags</p>
-							<p><span class="badge">56</span></p>
+							<p><span class="badge"><%= request.getAttribute("NbTags")%></span></p>
 						</div>
 						<div class="col-md-offset-1 col-md-2  text-center divider-vertical">
 							<p>Contacts</p>
-							<p><span class="badge">236</span></p>
+							<p><span class="badge"><%= request.getAttribute("NbAmis")%></span></p>
 						</div>
 					</div>
 					<% if (request.getAttribute("Statut") != null) {
@@ -152,7 +152,12 @@
 							  <div class="form-group">
 							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
 							    <div class="col-sm-10">							   <!--  onblur="showBaseHideFull()" -->
-							      <textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Quoi de neuf ?"></textarea>
+										<% if (request.getParameter("id") != null) {%>
+											<textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Laissez un message pour <%= request.getAttribute("Prenom")%> ..."></textarea>
+										<%} else {%>
+											<textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Quoi de neuf ?"></textarea>
+										<%}%>
+
 							    </div>
 							  </div>
 							  <div class="form-group" id="btn_pub" hidden>
@@ -290,16 +295,20 @@
 									<h5 align="center">Aucun intérêt actuellement.</h5>
 							<%	}%>
 						</div>
-						<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
-							<div class="form-group">
-								<div class="col-sm-7">
-									<input type="text" class="form-control" id="tagInput" placeholder="#Exemple">
+						<% if (request.getParameter("id") != null) {
+							//Ne pas afficher le formulaire d'ajout d'interets.
+						} else {%>
+							<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
+								<div class="form-group">
+									<div class="col-sm-7">
+										<input type="text" class="form-control" id="tagInput" placeholder="#Exemple">
+									</div>
+									<div class="col-sm-5">
+										<button type="submit" class="btn btn-primary">Ajouter</button>
+									</div>
 								</div>
-								<div class="col-sm-5">
-									<button type="submit" class="btn btn-primary">Ajouter</button>
-								</div>
-							</div>
-						</form>
+							</form>
+					<%	}%>
 					</div>
 				</div>
 				<div class="thumbnail border shadow">
