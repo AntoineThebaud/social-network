@@ -2,16 +2,13 @@ package social.network;
 
 import java.util.Date;
 
-import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
 
-@Entity
 public class Publication {
 
 	private @Id Long id;
-	private @Index Long id_auteur;
-	private @Index String contenu;
+	private String auteur;
+	private String contenu;
 	private int nblikes;
 	private Date datepub;
 	
@@ -24,8 +21,9 @@ public class Publication {
 	 * private List<Publication> commentaires;
 	 */
 
-	public Publication(Long id_auteur, String contenu) {
-		this.id_auteur = id_auteur;
+	public Publication(Long id, String auteur, String contenu) {
+		this.id = id;
+		this.auteur = auteur;
 		this.contenu = contenu;
 		this.nblikes = 0;
 	}
@@ -34,8 +32,8 @@ public class Publication {
 		return contenu;
 	}
 
-	public Long getAuteur() {
-		return id_auteur;
+	public String getAuteur() {
+		return auteur;
 	}
 	
 	public Date getDatepub() {

@@ -8,16 +8,13 @@ import com.googlecode.objectify.Ref;
 
 import social.network.Interet;
 import social.network.Personne;
-import social.network.Publication;
 import social.network.dao.GestionInteret;
 import social.network.dao.GestionPersonne;
-import social.network.dao.GestionPub;
 import social.network.dao.OfyService;
 
 public class ServicePersonne {
 	private final GestionPersonne gestionPers = new GestionPersonne(); 
 	private final GestionInteret gestionInteret = new GestionInteret();
-	private final GestionPub gestionPub = new GestionPub();
 	
 	public void register(Personne personne) {
 	    gestionPers.put(personne);
@@ -64,12 +61,6 @@ public class ServicePersonne {
 		gestionPers.put(personne);
 	}
 	
-
-	public void creerPublication(Personne client, String input) {
-		Publication pub = new Publication(client.getId(), input);
-		gestionPub.put(pub);
-	}
-	
 	public List<Personne> researchPersonne(String nom){
 		return gestionPers.search(nom);
 	}
@@ -89,5 +80,4 @@ public class ServicePersonne {
 	public List<Interet> getInterets(Personne personne){
 		return gestionInteret.getSubset(personne.getRefInterets());
 	}
-
 }
