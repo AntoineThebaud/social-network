@@ -12,7 +12,7 @@ import social.network.services.ServicePersonne;
 public class ServletAjoutInteret extends HttpServlet {
 
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String input = req.getParameter("inputKey");
+		String input = "#"+req.getParameter("inputKey");
 		System.out.println("input = " + input);//TODO : remove line
 		
 		HttpSession session = req.getSession();

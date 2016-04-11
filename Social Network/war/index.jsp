@@ -288,7 +288,7 @@
 							<%  List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");
 								if(listInteret != null && listInteret.size() != 0) { %>
 									<c:forEach items="${resultatInterets}" var="v">
-										<a href="#" class="list-group-item">#<c:out value="${v.nom}"/></a>
+										<a href="#" class="list-group-item"><c:out value="${v.nom}"/></a>
 									</c:forEach>
 							<% 	} else {%>
 									<h5 align="center">Aucun intérêt actuellement.</h5>
