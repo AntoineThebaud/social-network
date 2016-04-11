@@ -238,7 +238,7 @@
 				      <ul class="nav navbar-nav">
 				        <li class="active"><a href="#">Flux</a></li>
 				        <li><a href="#">Messages reçus</a></li>
-						<li><a href="#">Messages envoyés</a></li>
+						<li id="disp_mess_sent"><a href="#">Messages envoyés</a></li>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->

@@ -76,12 +76,18 @@ $('#formNewPub').submit(function () {
 		alert("Erreur : champ vide");
 		return false;
 	}
-	//Ajax :
-	$.post("/creerPublication", {inputKey:input}).done(function(data) {
-		//TODO : Ajax inutile, à changer
-	});
+	$.post("/creerPublication", {inputKey:input});
 	//reset field	
 	showReduce();
 	$('#pub_aera').val("");
 	return false;//= no refresh
+});
+
+
+/*************************
+ * Affichage publications
+ *************************/
+$("#disp_mess_sent").click(function(e){
+	console.log("um posso volo");
+	$.post("/afficherMesPublications");
 });

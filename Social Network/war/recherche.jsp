@@ -155,7 +155,7 @@
 					<div class="thumbnail border shadow padding_top">
 						<div class="row">
 						<div class="col-md-9">
-							<p class="float-left"><h4><a href="/affichageProfil">#<c:out value="${v.nom}"/></a></h4></p>
+							<p class="float-left"><h4><a href="/affichageProfil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
 							<span>Description ?</span>
