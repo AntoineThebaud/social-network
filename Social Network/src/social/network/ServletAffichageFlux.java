@@ -20,7 +20,9 @@ public class ServletAffichageFlux extends HttpServlet {
 		HttpSession session = req.getSession();
 		ServicePersonne service = new ServicePersonne();
 		
-		Long id = Long.parseLong(req.getParameter("id"));
+		String str_id = (req.getParameter("id") == null ? req.getAttribute("Id").toString() : req.getParameter("id"));
+		
+		Long id = Long.parseLong(str_id);
 		List<Publication> mesFlux = service.researchMesFlux(id);
 		
 		//pour l'affichage : récupérer le nom & prenom des auteurs des publications.
@@ -37,8 +39,15 @@ public class ServletAffichageFlux extends HttpServlet {
 		
 		//Redirection vers la meme page
 		try {
-			//besoin de recharger les infos de la page consultée donc appel à la servlet affichageProfil (TODO : peut mieux faire?)
-			this.getServletContext().getRequestDispatcher("/affichageProfil").forward(req, resp);
+			
+			if(req.getAttribute("Id") != null ) {
+				//id est deja set (c'est en fait affichageProfil qui a appellé la servlet mesFlux), donc
+				// on redirige directement sur l'index
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			} else {
+				//besoin de recharger les infos de la page consultée donc appel à la servlet affichageProfil (TODO : peut mieux faire?)
+				this.getServletContext().getRequestDispatcher("/affichageProfil").forward(req, resp);
+			}
 		} catch (ServletException e) {
 			System.out.println("Erreur dans le forwarding (ServletAffichageFlux.java)");
 			e.printStackTrace();

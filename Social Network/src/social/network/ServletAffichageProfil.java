@@ -52,11 +52,6 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
 			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
 			req.setAttribute("tendances", service.getTendances());
-			try {
-				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
-			}
 		} else {
 			//On veut afficher le profil de la session courante.
 			Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
@@ -70,12 +65,18 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
 			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
 			req.setAttribute("tendances", service.getTendances());
-			//Recuperer la liste des interets et des follower de la personne.
-			try {
-				 this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-			} catch (ServletException e) {
-				System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
+		}
+
+		try {
+			if(req.getAttribute("mesPublications") != null || req.getAttribute("mesMessagesReçus") != null) {
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			} else {
+				//Redirection vers afficherFlux pour.. afficher les flux
+				this.getServletContext().getRequestDispatcher("/afficherFlux").forward(req, resp);
 			}
+		} catch (ServletException e) {
+			System.out.println("Erreur dans le forwarding (ServletAffichageFlux.java)");
+			e.printStackTrace();
 		}
 	}
   
