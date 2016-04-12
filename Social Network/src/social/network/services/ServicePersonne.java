@@ -100,4 +100,8 @@ public class ServicePersonne {
 		}
 		return communs;
 	}
+	
+	public List<Publication> researchMesPublications(Long id_user){
+		return gestionPub.searchAll(id_user);
+	}
 }

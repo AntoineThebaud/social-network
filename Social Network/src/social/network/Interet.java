@@ -19,9 +19,7 @@ public class Interet {
 	private List<Long> refInteresses = new ArrayList<Long>();
 	// private @Ignore List<Long> refInteresses;
 
-	public Interet(){
-		
-	}
+	public Interet() {}
 	
 	public Interet(String nom){
 		this.nom = nom;

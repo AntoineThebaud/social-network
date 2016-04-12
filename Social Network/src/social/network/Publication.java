@@ -28,6 +28,8 @@ public class Publication {
 	 * private int nb_partage;
 	 * private List<Publication> commentaires;
 	 */
+	
+	public Publication() {}
 
 	public Publication(Long id_auteur, String contenu) {
 		this.id_auteur = id_auteur;

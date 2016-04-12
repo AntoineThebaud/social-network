@@ -33,9 +33,7 @@ public class Personne {
 	private String mdp;
 	private String slogan;
 
-	public Personne(){
-
-	}
+	public Personne() {}
 
 	public Personne(String nom, String prenom, String mail,int jour, int mois,int annee, String mdp, String description){
 		this.nom = nom;
