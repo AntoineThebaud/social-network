@@ -47,6 +47,7 @@ public class ServletProfil extends HttpServlet {
 		System.out.println("resulatsInterets taille : " + service.getInterets(client).size());
 		req.setAttribute("NbTags", service.getInterets(client).size());
 		req.setAttribute("NbAmis", service.getAmis(client).size());
+		req.setAttribute("tendances", service.getTendances());
 	
 		//Redirection vers la page profil.jsp
 		try {
@@ -75,7 +76,8 @@ public class ServletProfil extends HttpServlet {
 
 		ServicePersonne service = new ServicePersonne();
 		Personne client = service.getPersonne(mail);
-
+		req.setAttribute("tendances", service.getTendances());
+		
 		//Si l'utilisateur veut changer son mot de passe.
 		//On test que le premier input de mot de passe soit rempli.
 		String pwActuel = "";

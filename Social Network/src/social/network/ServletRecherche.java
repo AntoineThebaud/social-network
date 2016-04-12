@@ -89,6 +89,7 @@ public class ServletRecherche extends HttpServlet {
 		else{
 			/* a completer*/
 		}
+		req.setAttribute("tendances", service.getTendances());
 		
 		//Redirection vers la page recherche.jsp
 		try {
@@ -131,6 +132,7 @@ public class ServletRecherche extends HttpServlet {
 		List<Publication> resultatPublication = service.researchPublication(recherche);
 		req.setAttribute("resultatPublication", resultatPublication);
 		
+		req.setAttribute("tendances", service.getTendances());
 		
 		//Redirection vers la page recherche.jsp
 		try {

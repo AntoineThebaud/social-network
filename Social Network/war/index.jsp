@@ -130,9 +130,14 @@
 					<div class="tendance">
 						<h3 align="center">Tendances</h3>
 						 <div class="list-group">
+							<c:forEach items="${tendances}" var="v">
+								<a href="#" class="list-group-item"><c:out value="${v.nom}"/></a>
+							</c:forEach>
+							<!--
 							<a href="#" class="list-group-item active">#First item</a>
 							<a href="#" class="list-group-item" style="color:#337AB7">#Second item</a>
 							<a href="#" class="list-group-item" style="color:#337AB7">#Third item</a>
+							-->
 						</div>
 					</div>
 				</div>

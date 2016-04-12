@@ -67,30 +67,6 @@
 		<div class="row">
 		 	<!-- Colonne de gauche affichant le profile et les tendances -->
 			<div class="col-md-3">
-				<!-- Thumbnail affichant le profil du user -->
-				<div class="thumbnail border shadow">
-					<div class="full_size">
-						<img class=" images_test" src="images/aigle.jpg" alt="Image">
-					</div>
-					<div>
-						<img src="images/minions.jpg" alt="Photo de profile" class="img-circle image_profile">
-					</div>
-					<div class="caption text-center">
-						<h3><%= session.getAttribute("Prenom")%> <%= session.getAttribute("Nom")%></h3>
-						<p><%= session.getAttribute("Slogan")%></p>
-						<hr>
-					</div>
-					<div class="row">
-						<div class="col-md-offset-3 col-md-2 text-center">
-							<p>#Tags</p>
-							<p><span class="badge">56</span></p>
-						</div>
-						<div class="col-md-offset-1 col-md-2  text-center divider-vertical">
-							<p>Contacts</p>
-							<p><span class="badge">236</span></p>
-						</div>
-					</div>
-				</div>
 				<div class="thumbnail border shadow">
 					<div class="tendance">
 						<h3 align="center">Tendances</h3>

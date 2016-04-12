@@ -127,4 +127,9 @@ public class ServicePersonne {
 		return gestionPub.searchText(nom);
 	}
 	
+	/* avoir 3 tendances au total */
+	public List<Interet> getTendances(){
+		List<Interet> tendances = gestionInteret.getAll();
+		return tendances.subList(tendances.size()-3, tendances.size());
+	}
 }

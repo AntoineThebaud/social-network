@@ -51,6 +51,7 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("NbTags", service.getInterets(personne).size());
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
 			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
+			req.setAttribute("tendances", service.getTendances());
 			try {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 			} catch (ServletException e) {
@@ -68,6 +69,7 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("NbTags", service.getInterets(personne).size());
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
 			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
+			req.setAttribute("tendances", service.getTendances());
 			//Recuperer la liste des interets et des follower de la personne.
 			try {
 				 this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -113,6 +115,7 @@ public class ServletAffichageProfil extends HttpServlet {
 		req.setAttribute("resultatCommuns", service.getAmisInterets(ami));
 		req.setAttribute("NbTags", service.getInterets(ami).size());
 		req.setAttribute("NbAmis", service.getAmis(ami).size());
+		req.setAttribute("tendances", service.getTendances());
 		try {
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 		} catch (ServletException e) {
