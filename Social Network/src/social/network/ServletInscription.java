@@ -67,7 +67,6 @@ public class ServletInscription extends HttpServlet {
 		char_table[0]=Character.toUpperCase(char_table[0]);
 		prenom = new String(char_table);
 
-
 		//Si tout est OK, inserer le nouvel utilisateur et rediriger.
 		//Sinon renvoyer sur le formulaire avec une erreure.
 		if (erreur) {
@@ -91,6 +90,12 @@ public class ServletInscription extends HttpServlet {
 			session.setAttribute("Mail", personne.getMail());
 			session.setAttribute("Slogan", defautSlogan);
 			session.setAttribute("Valide", true);
+			
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				System.out.println("erreur de pause dans ServletInscription");
+			}
 
 			//Redirection vers son flux d'actualité.
 			resp.sendRedirect("/affichageProfil");
