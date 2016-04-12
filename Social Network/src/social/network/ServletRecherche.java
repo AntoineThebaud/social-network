@@ -21,11 +21,47 @@ public class ServletRecherche extends HttpServlet {
 		String recherche = (String) session.getAttribute("Recherche");
 		
 		//On etablie une requete dans le datastore le resultat de la recherche
+		 * 
+		 */
 		ServicePersonne service = new ServicePersonne();
-		List<Personne> resultat = service.researchPersonne(recherche);
+		String recherche = checkNull(req.getParameter("recherche"));
 		
-		req.setAttribute("resultat", resultat);
-		*/
+		String filtre = req.getParameter("filtre");
+		
+		if (filtre == null) {
+			//On etablie une requete dans le datastore le resultat de la recherche
+			List<Personne> resultatPersonne = service.researchPersonne(recherche);
+			req.setAttribute("resultatPersonne", resultatPersonne);
+			
+			List<Interet> resultatInteret = service.researchInteret(recherche);
+			req.setAttribute("resultatInteret", resultatInteret);
+			
+			List<Publication> resultatPublication = service.researchPublication(recherche);
+			req.setAttribute("resultatPublication", resultatPublication);
+		}
+		else if(filtre.equals("comptes")){
+			List<Personne> resultatPersonne = service.researchPersonne(recherche);
+			req.setAttribute("resultatPersonne", resultatPersonne);
+		}
+		else if(filtre.equals("interets")){
+			List<Interet> resultatInteret = service.researchInteret(recherche);
+			req.setAttribute("resultatInteret", resultatInteret);
+		}
+		else if(filtre.equals("publications")){
+			List<Publication> resultatPublication = service.researchPublication(recherche);
+			req.setAttribute("resultatPublication", resultatPublication);
+		}
+		else{
+			/* a completer*/
+		}
+		
+		//Redirection vers la page recherche.jsp
+		try {
+			this.getServletContext().getRequestDispatcher("/recherche.jsp").forward(req, resp);
+		} catch (ServletException e) {
+			System.out.println("Erreur dans le forwarding (ServletRecherche.java)");
+			e.printStackTrace();
+		}
 	}
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

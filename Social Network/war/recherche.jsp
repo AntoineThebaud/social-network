@@ -114,72 +114,61 @@
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 				    <div class="collapse navbar-collapse">
 				      <ul class="nav navbar-nav">
-				        <% if (request.getAttribute("comptes") != null) {%>
-				            <li><a href="#">Tout</a></li>
-				            <!--<form method="post" action="recherche">
-				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
-				                <li><a href="#">Comptes</a></li>
-				            </form>-->
-						    <li><a href="#">Intérêts</a></li>
-						    <li><a href="#">Publications</a></li>
+				        <%  String filtre = request.getParameter("filtre");
+							if (filtre == null) {%>
+				            <li class="active"><a href="recherche?recherche=<%= request.getParameter("recherche")%>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
+				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
+						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
+						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>"&groupe=<%= request.getParameter("groupe") %>>Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
 						    aria-expanded="false">Autres options <span class="caret"></span></a>
 						    <ul class="dropdown-menu">
-							    <li><a href="#">De tout le monde</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=all">De tout le monde</a></li>
 							    <li role="separator" class="divider"></li>
-							    <li><a href="#">De personnes que vous suivez</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=amis">De personnes que vous suivez</a></li>
 						    </ul>
 					        </li>
-					    <%} else if (request.getAttribute("interets") != null){%>
-					        <li><a href="#">Tout</a></li>
-				            <!--<form method="post" action="recherche">
-				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
-				                <li><a href="#">Comptes</a></li>
-				            </form>-->
-						    <li class="active"><a href="#">Intérêts</a></li>
-						    <li><a href="#">Publications</a></li>
+					    <%} else if (filtre.equals("interets")){%>
+					        <li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
+				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
+						    <li class="active"><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>">Intérêts</a></li>
+						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
 						    aria-expanded="false">Autres options <span class="caret"></span></a>
 						    <ul class="dropdown-menu">
-							    <li><a href="#">De tout le monde</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=all">De tout le monde</a></li>
 							    <li role="separator" class="divider"></li>
-							    <li><a href="#">De personnes que vous suivez</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=amis">De personnes que vous suivez</a></li>
 						    </ul>
 					        </li>
-					     <%} else if (request.getAttribute("publications") != null){%>
-					        <li><a href="#">Tout</a></li>
-				            <!--<form method="post" action="recherche">
-				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
-				                <li><a href="#">Comptes</a></li>
-				            </form>-->
-						    <li><a href="#">Intérêts</a></li>
-						    <li class="active"><a href="#">Publications</a></li>
+					     <%} else if (filtre.equals("publications")){%>
+					        <li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
+				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
+						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
+			&groupe=<%= request.getParameter("groupe") %>			    <li class="active"><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
 						    aria-expanded="false">Autres options <span class="caret"></span></a>
 						    <ul class="dropdown-menu">
-							    <li><a href="#">De tout le monde</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=all">De tout le monde</a></li>
 							    <li role="separator" class="divider"></li>
-							    <li><a href="#">De personnes que vous suivez</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=amis">De personnes que vous suivez</a></li>
 						    </ul>
 					        </li>
 					     <%} else { %>
-					        <li class="active"><a href="#">Tout</a></li>
-				            <!--<form method="post" action="recherche">
-				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
-				                <li><a href="#">Comptes</a></li>
-				            </form>-->
-						    <li><a href="#">Intérêts</a></li>
-						    <li><a href="#">Publications</a></li>
+							<li><a href="recherche?recherche=<%= request.getParameter("recherche") %>">Tout</a></li>
+				            <li class="active"><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
+						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
+						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche")%>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
 						    aria-expanded="false">Autres options <span class="caret"></span></a>
 						    <ul class="dropdown-menu">
-							    <li><a href="#">De tout le monde</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>&groupe=all">De tout le monde</a></li>
 							    <li role="separator" class="divider"></li>
-							    <li><a href="#">De personnes que vous suivez</a></li>
+							    <li><a href="recherche?filtre=<%= request.getParameter("filtre") %>&recherche=<%= request.getParameter("recherche") %>"&groupe=amis">De personnes que vous suivez</a></li>
 						    </ul>
 					        </li>
 					     <%}%>
@@ -194,7 +183,7 @@
 				<%  List<Personne> listPersonne = (List<Personne>)request.getAttribute("resultatPersonne");
 					List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInteret");
 					List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublication");
-					if(listPersonne.size() != 0 || listInteret.size() != 0 || listPublication.size() != 0){ %>
+					if((listPersonne != null && listPersonne.size() != 0) || (listInteret != null && listInteret.size() != 0) || (listPublication != null && listPublication.size() != 0)){ %>
 					<c:forEach items="${resultatPersonne}" var="v">
 					<div class="thumbnail border shadow padding_top">
 						<div class="row">
