@@ -77,6 +77,20 @@ public class ServicePersonne {
 		return gestionInteret.search(nom);
 	}
 	
+	public List<Interet> researchInteretAmis(Personne personne,String nom){
+		List<Personne> amisInt = getAmisInterets(personne);
+		List<Interet> interets = new ArrayList<Interet>();
+		for(Personne ami : amisInt){
+			List<Interet> list = gestionInteret.getSubset(ami.getRefInterets());
+			interets.addAll(gestionInteret.search(list,nom));
+		}
+		return interets;
+	}
+	
+	public List<Publication> researchPublicationAmis(Personne personne, String nom){
+		return gestionPub.searchText(nom);
+	}
+	
 	public List<Publication> researchPublication(String nom){
 		return gestionPub.searchText(nom);
 	}
@@ -112,19 +126,10 @@ public class ServicePersonne {
 	public List<Publication> researchMesPublications(Long id_user){
 		return gestionPub.searchAll(id_user);
 	}
-	
-	public List<Interet> researchInteretAmis(Personne personne,String nom){
-		List<Personne> amisInt = getAmisInterets(personne);
-		List<Interet> interets = new ArrayList<Interet>();
-		for(Personne ami : amisInt){
-			List<Interet> list = gestionInteret.getSubset(ami.getRefInterets());
-			interets.addAll(gestionInteret.search(list,nom));
-		}
-		return interets;
-	}
-	
-	public List<Publication> researchPublicationAmis(Personne personne, String nom){
-		return gestionPub.searchText(nom);
+
+	public List<Publication> researchMesFlux(Long id_user) {
+		Personne user = getPersonne(id_user); 
+		return gestionPub.searchFlux(user);
 	}
 	
 	/* avoir 3 tendances au total */

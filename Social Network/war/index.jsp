@@ -282,23 +282,23 @@
 				   } else {
 						//affichage par défaut : flux (=posts contenant interets)
 						List<Publication> listFlux = (List<Publication>) request.getAttribute("mesFlux");
-						if (listFlux != null && listFlux.size() != 0) {%>
-							<c:forEach items="${mesFlux}" var="v">
+						List<Personne> listAuteurs = (List<Personne>) request.getAttribute("mesFluxAuteurs");
+						if (listFlux != null && listFlux.size() != 0) {
+							for(int i = 0; i < listFlux.size(); ++i) {%>
 								<div class="thumbnail border shadow padding_top">
 									<div class="row">
 										<div class="col-md-3">
 											<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 										</div>
 										<div class="col-md-9">
-											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
-											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
+											<p class="float-left">Auteur</p>
 										</div>
 										<div class=" col-md-9">
-											<span><c:out value="${v.contenu}"/></span>
+											<span><c:out value="<%listFlux.get(i).getContenu();%>"/></span>
 										</div>
 									</div>
 								</div>
-							</c:forEach>
+						  <%}%>
 					<%	} else {%>
 							<h5 align="center">Aucune publication actuellement.</h5>
 					<%	}

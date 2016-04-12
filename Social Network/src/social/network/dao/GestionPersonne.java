@@ -29,7 +29,7 @@ public class GestionPersonne extends Dao<Personne> {
         return personnes;
     }
     
-    public List<Personne> searchAmis(Personne personne,String nom) {
+    public List<Personne> searchAmis(Personne personne, String nom) {
     	List<Personne> all = super.getSubset(personne.getRefAmis());
     	List<Personne> personnes = new ArrayList<Personne>();
     	for(Personne p : all){
