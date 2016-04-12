@@ -3,13 +3,16 @@
 		response.sendRedirect("/inscription.jsp");
 	}
 
+	if (request.getAttribute("Nom") == null) {
+		response.sendRedirect("/affichageProfil");
+	}
 	System.out.println("Le nom est "+request.getAttribute("Nom"));
 	System.out.println("Le prenom est "+request.getAttribute("Prenom"));
 	System.out.println("Le slogan est "+request.getAttribute("Slogan"));
 %>
 	<%@page isELIgnored ="false" %>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@page import="java.util.List" %>
+  <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
 	<%@page import="social.network.Publication" %>
@@ -196,7 +199,7 @@
 					</div>
 				</div>
 				<!-- Fin zone de text -->
-				
+
 				<!-- Navbar affichage des publications (3 catégories) -->
 				<nav class="navbar navbar-inverse">
 				  <div class="container-fluid">
@@ -221,7 +224,7 @@
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
 				</nav>
-				
+
 				<!-- Zone d'affichage des publications -->
 
 				<% if (request.getAttribute("mesPublications") != null) {
