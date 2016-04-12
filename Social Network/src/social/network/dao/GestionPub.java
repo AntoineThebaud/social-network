@@ -56,4 +56,19 @@ public class GestionPub extends Dao<Publication> {
     	}
         return publications;
 	}
+
+	public List<Publication> searchMessagesRecus(Long id_user) {
+		//récupère toutes les publications :
+		List<Publication> all = super.getAll();
+		//valeur de retour :
+    	List<Publication> publications = new ArrayList<Publication>();
+    	
+    	//pour chaque publication : vérifie si elle a l'utilisateur comme destinataire 
+    	for(Publication p : all) {
+    		if(p.getDestinataire() != null && p.getDestinataire().equals(id_user)) {
+    			publications.add(p);
+    		}
+    	}
+        return publications;
+	}
 }

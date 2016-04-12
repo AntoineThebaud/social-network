@@ -138,8 +138,12 @@ public class ServicePersonne {
 	}
 	
 	/* avoir 3 tendances au total */
-	public List<Interet> getTendances(){
+	public List<Interet> getTendances() {
 		List<Interet> tendances = gestionInteret.getAll();
 		return tendances.subList(tendances.size()-3, tendances.size());
+	}
+
+	public List<Publication> researchMessagesRecus(Long id_user) {
+		return gestionPub.searchMessagesRecus(id_user);
 	}
 }

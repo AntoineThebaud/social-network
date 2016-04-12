@@ -21,7 +21,7 @@ public class ServletAffichageMessagesRecus extends HttpServlet {
 		ServicePersonne service = new ServicePersonne();
 		
 		Long id = Long.parseLong(req.getParameter("id"));
-		List<Publication> mesMessagesReçus = service.researchMesPublications(id);
+		List<Publication> mesMessagesReçus = service.researchMessagesRecus(id);
 		
 		//pour l'affichage : récupérer le nom & prenom des auteurs des publications.
 		List<Personne> auteurs = new ArrayList<>();

@@ -56,6 +56,10 @@ public class Publication {
 	public Date getDatepub() {
 		return datepub;
 	}
+	
+	public Long getDestinataire() {
+		return destinataire;
+	}
 
 	public int getNblikes() {
 		return nblikes;
