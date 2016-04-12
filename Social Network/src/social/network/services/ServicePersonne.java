@@ -73,6 +73,10 @@ public class ServicePersonne {
 		return gestionInteret.search(nom);
 	}
 	
+	public List<Publication> researchPublication(String nom){
+		return gestionPub.searchText(nom);
+	}
+	
 	public List<Personne> getAmis(Personne personne){
 		return gestionPers.getSubset(personne.getRefAmis());
 	}
@@ -92,7 +96,7 @@ public class ServicePersonne {
 		List<Interet> interets = getInterets(personne);
 		for(Personne ami:amis){
 			for(Interet interet:interets){
-				if(!communs.contains(ami) && getInterets(ami).contains(interet)){ //XXX pas sure que ca marche
+				if(!communs.contains(ami) && getInterets(ami).contains(interet)){ 
 					System.out.println("ok");
 					communs.add(ami);
 				}
@@ -100,4 +104,10 @@ public class ServicePersonne {
 		}
 		return communs;
 	}
+	
+	public List<Publication> researchMesPublications(Long id_user){
+		return gestionPub.searchAll(id_user);
+	}
+	
+	
 }

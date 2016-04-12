@@ -12,6 +12,7 @@
     <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
+	<%@page import="social.network.Publication" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -195,94 +196,85 @@
 					</div>
 				</div>
 				<!-- Fin zone de text -->
-				<!-- Debut zone d'affichage du flux -->
-
-
-				<!-- Pseudo code futur implèm -->
-				<%--
-				<%List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublications");
-				  if(listPublication != null && listPublication.size() != 0) { %>
-					<c:forEach items="${publications}" var="v">
-						<div class="thumbnail border shadow padding_top">
-							<div class="row">
-								<div class="col-md-3">
-									<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-								</div>
-								<div class="col-md-9">
-									<p class="float-left"><%<c:out value="${v.auteur}"%></p>
-									<p class="float-right"><%<c:out value="${v.date}"%> min</p>
-								</div>
-								<div class=" col-md-9">
-									<%if (${v.type}.equals("SIMPLE")) {%>
-										<span><%<c:out value="${v.contenu}"%></span>
-									<%} else if (${v.type}.equals("PARTAGE")) {%>
-										//todo : afficher le texte de la publication partagée
-										<span><%<c:out value="${v.contenu}"%></span>
-									<%} else if (${v.type}.equals("REPONSE")) {%>
-										//todo : affichage en mode réponse
-										<span><%<c:out value="${v.contenu}"%></span>
-									<%}%>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				<%} else {%>
-						<h5 align="center">Aucune publication actuellement.</h5>
-				<%}%>
-				--%>
+				
+				<!-- Navbar affichage des publications (3 catégories) -->
 				<nav class="navbar navbar-inverse">
 				  <div class="container-fluid">
 				    <!-- Brand and toggle get grouped for better mobile display -->
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 				    <div class="collapse navbar-collapse">
 				      <ul class="nav navbar-nav">
-				        <li class="active"><a href="#">Flux</a></li>
-				        <li><a href="#">Messages reçus</a></li>
-						<li id="disp_mess_sent"><a href="#">Messages envoyés</a></li>
+						<% if (request.getAttribute("mesPublications") != null) {%>
+							<li><a href="#">Flux</a></li>
+				        	<li><a href="#">Messages reçus</a></li>
+							<li class="active" id="disp_mess_sent"><a href="/afficherMesPublications">Mes publications</a></li>
+						<%} else if (request.getAttribute("mesMessagesReçus") != null){%>
+							<li><a href="#">Flux</a></li>
+					        <li class="active"><a href="#">Messages reçus</a></li>
+							<li id="disp_mess_sent"><a href="/afficherMesPublications">Mes publications</a></li>
+						<%} else { %>
+							<li class="active"><a href="#">Flux</a></li>
+					        <li><a href="#">Messages reçus</a></li>
+							<li id="disp_mess_sent"><a href="/afficherMesPublications">Mes publications</a></li>
+						<%}%>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
 				</nav>
+				
+				<!-- Zone d'affichage des publications -->
 
-				<!-- Model 2 -->
+				<% if (request.getAttribute("mesPublications") != null) {
+						//affichage des posts publiés
+						List<Publication> listPublication = (List<Publication>) request.getAttribute("mesPublications");
+						if (listPublication != null && listPublication.size() != 0) {%>
+							<c:forEach items="${mesPublications}" var="v">
+								<div class="thumbnail border shadow padding_top">
+									<div class="row">
+										<div class="col-md-3">
+											<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+										</div>
+										<div class="col-md-9">
+											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
+											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
+										</div>
+										<div class=" col-md-9">
+											<span><c:out value="${v.contenu}"/></span>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+					<%	} else {%>
+							<h5 align="center">Aucune publication actuellement.</h5>
+					<%	}
+				   } else if (request.getAttribute("mesMessagesReçus") != null) {
+						//affichage des messages reçus
+						List<Publication> listPublication = (List<Publication>) request.getAttribute("mesPublications");
+						if (listPublication != null && listPublication.size() != 0) {%>
+							<c:forEach items="${publications}" var="v">
+							</c:forEach>
+					<%	} else {%>
+							<h5 align="center">Aucune publication actuellement.</h5>
+					<%	}
+				   } else {
+						//affichage par défaut : flux (=posts contenant interets)
+						List<Publication> listPublication = (List<Publication>) request.getAttribute("mesPublications");
+						if (listPublication != null && listPublication.size() != 0) {%>
+							<c:forEach items="${publications}" var="v">
+							</c:forEach>
+					<%	} else {%>
+							<h5 align="center">Aucune publication actuellement.</h5>
+					<%	}
 
-				<div class="thumbnail border shadow padding_top">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-						</div>
-						<div class="col-md-9">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed</span>
-						</div>
-					</div>
-				</div>
-				<div class="thumbnail border shadow padding_top">
-					<div class="row">
-						<div class="col-md-3">
-							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
-						</div>
-						<div class="col-md-9">
-							<p class="float-left">Maurice D.</p>
-							<p class="float-right">Il y a 10 min</p>
-						</div>
-						<div class=" col-md-9">
-							<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mollis justo odio, at vestibulum arcu cursus sed. Nam id lectus justo. Mauris dapibus, ex ut scelerisque. </span>
-						</div>
-					</div>
-				</div>
-				<!-- Fin Model 2 -->
+				   }%>
 			</div>
 			<div class="col-md-3">
 				<div class="thumbnail border shadow">
 					<div class="interets">
 						<% if (request.getAttribute("Statut") != null) {%>
-								<h3 align="center">Les intérêts de <%= request.getAttribute("Prenom")%></h3>
+							<h3 align="center">Les intérêts de <%= request.getAttribute("Prenom")%></h3>
 						<%} else {%>
-								<h3 align="center">Mes intérêts</h3>
+							<h3 align="center">Mes intérêts</h3>
 						<%}%>
 						<div class="list-group" id="list-interet">
 							<%  List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");

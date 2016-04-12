@@ -87,7 +87,7 @@ $('#formNewPub').submit(function () {
 /*************************
  * Affichage publications
  *************************/
-$("#disp_mess_sent").click(function(e){
-	console.log("um posso volo");
-	$.post("/afficherMesPublications");
-});
+//$("#disp_mess_sent").click(function(e){
+//	console.log("um posso volo");
+//	$.post("/afficherMesPublications");
+//});
