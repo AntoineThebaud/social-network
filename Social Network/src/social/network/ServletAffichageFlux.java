@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import social.network.services.ServicePersonne;
 
-public class ServletAffichageMesPublications extends HttpServlet {
+public class ServletAffichageFlux extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");

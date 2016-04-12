@@ -211,15 +211,15 @@
 						<% if (request.getAttribute("mesPublications") != null) {%>
 							<li><a href="#">Flux</a></li>
 				        	<li><a href="#">Messages reçus</a></li>
-							<li class="active" id="disp_mess_sent"><a href="/afficherMesPublications">Mes publications</a></li>
+				        	<li class="active"><a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>							
 						<%} else if (request.getAttribute("mesMessagesReçus") != null){%>
 							<li><a href="#">Flux</a></li>
 					        <li class="active"><a href="#">Messages reçus</a></li>
-							<li id="disp_mess_sent"><a href="/afficherMesPublications">Mes publications</a></li>
+							<li><a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
 						<%} else { %>
 							<li class="active"><a href="#">Flux</a></li>
 					        <li><a href="#">Messages reçus</a></li>
-							<li id="disp_mess_sent"><a href="/afficherMesPublications">Mes publications</a></li>
+							<li><a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
 						<%}%>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
@@ -272,6 +272,9 @@
 
 				   }%>
 			</div>
+			
+			<!-- Zone d'affichage des intérêts & abonnements -->
+			
 			<div class="col-md-3">
 				<div class="thumbnail border shadow">
 					<div class="interets">

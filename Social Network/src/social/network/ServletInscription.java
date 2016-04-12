@@ -85,6 +85,7 @@ public class ServletInscription extends HttpServlet {
 
 			//Creation d'une session
 			HttpSession session = req.getSession();
+			session.setAttribute("Id", personne.getId());
 			session.setAttribute("Nom", personne.getNom());
 			session.setAttribute("Prenom", personne.getPrenom());
 			session.setAttribute("Mail", personne.getMail());

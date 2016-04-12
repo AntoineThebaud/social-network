@@ -1,6 +1,7 @@
 package social.network;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,7 @@ public class ServletAffichageProfil extends HttpServlet {
 	//Sinon on redirige vers index.jsp et les variables de session contiennent deja les infos utiles.
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
 		System.out.println("Je suis dans le doGet de ServletAffichageProfil");
 		HttpSession session = req.getSession();
 		ServicePersonne service = new ServicePersonne();
@@ -36,7 +38,7 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("Nom", personne.getNom());
 			req.setAttribute("Prenom", personne.getPrenom());
 			req.setAttribute("Slogan", personne.getSlogan());
-			req.setAttribute("Id", personne.getId());
+			req.setAttribute("Id", personne.getId());//utilisé pour affichage des publications
 			
 			Personne connecte = service.getPersonne((Long)session.getAttribute("Id"));
 			if(connecte.estAmi(personne)){
@@ -57,6 +59,7 @@ public class ServletAffichageProfil extends HttpServlet {
 		} else {
 			//On veut afficher le profil de la session courante.
 			Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
+			req.setAttribute("Id", session.getAttribute("Id"));
 			req.setAttribute("Nom", session.getAttribute("Nom"));
 			req.setAttribute("Prenom", session.getAttribute("Prenom"));
 			req.setAttribute("Slogan", session.getAttribute("Slogan"));
