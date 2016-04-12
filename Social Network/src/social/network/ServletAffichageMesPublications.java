@@ -18,23 +18,8 @@ public class ServletAffichageMesPublications extends HttpServlet {
 		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");
 		HttpSession session = req.getSession();
 		ServicePersonne service = new ServicePersonne();
-
-		//affichage des attributs de la session
-		System.out.println("=============ATRIBUTES==============");
-		Enumeration ea = req.getAttributeNames();
-		while (ea.hasMoreElements()) {
-		  String name = (String) ea.nextElement();
-		  System.out.println(name + ": " + req.getAttribute(name));
-		}
-		System.out.println("====================================");
 		
-		Long old_id = (Long) session.getAttribute("Id");
-		System.out.println("OLD ID =" + old_id);
-		String str_id = req.getParameter("id");
-		System.out.println("NEW ID STR = " + str_id);
-		Long id = Long.parseLong(str_id);
-		System.out.println("NEW ID LONG =" + id);
-		
+		Long id = Long.parseLong(req.getParameter("id"));
 		List<Publication> mesPublications = service.researchMesPublications(id);
 		req.setAttribute("mesPublications", mesPublications);
 		

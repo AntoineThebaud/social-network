@@ -15,31 +15,16 @@ import social.network.services.ServicePersonne;
 public class ServletAffichageFlux extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");
+		System.out.println("Je suis dans le doGet de ServletAffichageFlux");
 		HttpSession session = req.getSession();
 		ServicePersonne service = new ServicePersonne();
-
-		//affichage des attributs de la session
-		System.out.println("=============ATRIBUTES==============");
-		Enumeration ea = req.getAttributeNames();
-		while (ea.hasMoreElements()) {
-		  String name = (String) ea.nextElement();
-		  System.out.println(name + ": " + req.getAttribute(name));
-		}
-		System.out.println("====================================");
 		
-		Long old_id = (Long) session.getAttribute("Id");
-		System.out.println("OLD ID =" + old_id);
-		String str_id = req.getParameter("id");
-		System.out.println("NEW ID STR = " + str_id);
-		Long id = Long.parseLong(str_id);
-		System.out.println("NEW ID LONG =" + id);
-		
+		Long id = Long.parseLong(req.getParameter("id"));
 		List<Publication> mesPublications = service.researchMesPublications(id);
-		req.setAttribute("mesPublications", mesPublications);
+		req.setAttribute("mesFlux", mesPublications);
 		
-		//on affiche les messages envoyés, les attributs monFlux et mesMessagesReçus de req sont mis à null
-		req.setAttribute("monFlux", null);
+		//on affiche le flux, les attributs mesPublications et mesMessagesReçus de req sont mis à null
+		req.setAttribute("mesPublications", null);
 		req.setAttribute("mesMessagesReçus", null);
 		
 		//Redirection vers la meme page
@@ -47,7 +32,7 @@ public class ServletAffichageFlux extends HttpServlet {
 			//besoin de recharger les infos de la page consultée donc appel à la servlet affichageProfil (TODO : peut mieux faire?)
 			this.getServletContext().getRequestDispatcher("/affichageProfil").forward(req, resp);
 		} catch (ServletException e) {
-			System.out.println("Erreur dans le forwarding (ServletAffichageMesPublications.java)");
+			System.out.println("Erreur dans le forwarding (ServletAffichageFlux.java)");
 			e.printStackTrace();
 		}
 	}

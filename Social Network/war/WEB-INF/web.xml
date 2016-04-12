@@ -95,6 +95,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>afficherFlux</servlet-name>
+		<servlet-class>social.network.ServletAffichageFlux</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>afficherFlux</servlet-name>
+		<url-pattern>/afficherFlux</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>suppressionInteret</servlet-name>
 		<servlet-class>social.network.ServletSuppressionInteret</servlet-class>
 	</servlet>

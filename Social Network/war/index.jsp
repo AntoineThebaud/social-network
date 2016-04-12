@@ -209,17 +209,17 @@
 				    <div class="collapse navbar-collapse">
 				      <ul class="nav navbar-nav">
 						<% if (request.getAttribute("mesPublications") != null) {%>
-							<li><a href="#">Flux</a></li>
-				        	<li><a href="#">Messages reçus</a></li>
-				        	<li class="active"><a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>							
+							<li>				<a href=<%= "/afficherFlux?id="+request.getAttribute("Id")%>>Flux</a></li>
+							<li>				<a href=<%= "/afficherMessagesReçus?id="+request.getAttribute("Id")%>>Messages reçus</a></li>
+							<li class="active">	<a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
 						<%} else if (request.getAttribute("mesMessagesReçus") != null){%>
-							<li><a href="#">Flux</a></li>
-					        <li class="active"><a href="#">Messages reçus</a></li>
-							<li><a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
+							<li>				<a href=<%= "/afficherFlux?id="+request.getAttribute("Id")%>>Flux</a></li>
+							<li class="active">	<a href=<%= "/afficherMessagesReçus?id="+request.getAttribute("Id")%>>Messages reçus</a></li>
+							<li>				<a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
 						<%} else { %>
-							<li class="active"><a href="#">Flux</a></li>
-					        <li><a href="#">Messages reçus</a></li>
-							<li><a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
+							<li class="active">	<a href=<%= "/afficherFlux?id="+request.getAttribute("Id")%>>Flux</a></li>
+							<li>				<a href=<%= "/afficherMessagesReçus?id="+request.getAttribute("Id")%>>Messages reçus</a></li>
+							<li>				<a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
 						<%}%>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
@@ -253,18 +253,46 @@
 					<%	}
 				   } else if (request.getAttribute("mesMessagesReçus") != null) {
 						//affichage des messages reçus
-						List<Publication> listPublication = (List<Publication>) request.getAttribute("mesPublications");
-						if (listPublication != null && listPublication.size() != 0) {%>
-							<c:forEach items="${publications}" var="v">
+						List<Publication> listMessagesRecus = (List<Publication>) request.getAttribute("mesMessagesReçus");
+						if (listMessagesRecus != null && listMessagesRecus.size() != 0) {%>
+							<c:forEach items="${mesMessagesReçus}" var="v">
+								<div class="thumbnail border shadow padding_top">
+									<div class="row">
+										<div class="col-md-3">
+											<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+										</div>
+										<div class="col-md-9">
+											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
+											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
+										</div>
+										<div class=" col-md-9">
+											<span><c:out value="${v.contenu}"/></span>
+										</div>
+									</div>
+								</div>
 							</c:forEach>
 					<%	} else {%>
 							<h5 align="center">Aucune publication actuellement.</h5>
 					<%	}
 				   } else {
 						//affichage par défaut : flux (=posts contenant interets)
-						List<Publication> listPublication = (List<Publication>) request.getAttribute("mesPublications");
-						if (listPublication != null && listPublication.size() != 0) {%>
-							<c:forEach items="${publications}" var="v">
+						List<Publication> listFlux = (List<Publication>) request.getAttribute("mesFlux");
+						if (listFlux != null && listFlux.size() != 0) {%>
+							<c:forEach items="${mesFlux}" var="v">
+								<div class="thumbnail border shadow padding_top">
+									<div class="row">
+										<div class="col-md-3">
+											<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+										</div>
+										<div class="col-md-9">
+											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
+											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
+										</div>
+										<div class=" col-md-9">
+											<span><c:out value="${v.contenu}"/></span>
+										</div>
+									</div>
+								</div>
 							</c:forEach>
 					<%	} else {%>
 							<h5 align="center">Aucune publication actuellement.</h5>
