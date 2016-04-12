@@ -57,6 +57,9 @@ public class ServletRecherche extends HttpServlet {
 		List<Interet> resultatInteret = service.researchInteret(recherche);
 		req.setAttribute("resultatInteret", resultatInteret);
 		
+		List<Publication> resultatPublication = service.researchPublication(recherche);
+		req.setAttribute("resultatPublication", resultatPublication);
+		
 		
 		//Redirection vers la page recherche.jsp
 		try {

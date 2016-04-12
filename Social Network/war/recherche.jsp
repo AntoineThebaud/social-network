@@ -8,6 +8,7 @@
     <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
+	<%@page import="social.network.Publication" %>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -112,19 +113,75 @@
 				    <!-- Collect the nav links, forms, and other content for toggling -->
 				    <div class="collapse navbar-collapse">
 				      <ul class="nav navbar-nav">
-				        <li class="active"><a href="#">Tout</a></li>
-				        <li><a href="#">Comptes</a></li>
-						<li><a href="#">Intérêts</a></li>
-						<li><a href="#">Publications</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Autres options <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">De tout le monde</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">De personnes que vous suivez</a></li>
-						</ul>
-					</li>
+				        <% if (request.getAttribute("comptes") != null) {%>
+				            <li><a href="#">Tout</a></li>
+				            <!--<form method="post" action="recherche">
+				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
+				                <li><a href="#">Comptes</a></li>
+				            </form>-->
+						    <li><a href="#">Intérêts</a></li>
+						    <li><a href="#">Publications</a></li>
+						    <li class="dropdown"><a href="#" class="dropdown-toggle"
+						    data-toggle="dropdown" role="button" aria-haspopup="true"
+						    aria-expanded="false">Autres options <span class="caret"></span></a>
+						    <ul class="dropdown-menu">
+							    <li><a href="#">De tout le monde</a></li>
+							    <li role="separator" class="divider"></li>
+							    <li><a href="#">De personnes que vous suivez</a></li>
+						    </ul>
+					        </li>
+					    <%} else if (request.getAttribute("interets") != null){%>
+					        <li><a href="#">Tout</a></li>
+				            <!--<form method="post" action="recherche">
+				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
+				                <li><a href="#">Comptes</a></li>
+				            </form>-->
+						    <li class="active"><a href="#">Intérêts</a></li>
+						    <li><a href="#">Publications</a></li>
+						    <li class="dropdown"><a href="#" class="dropdown-toggle"
+						    data-toggle="dropdown" role="button" aria-haspopup="true"
+						    aria-expanded="false">Autres options <span class="caret"></span></a>
+						    <ul class="dropdown-menu">
+							    <li><a href="#">De tout le monde</a></li>
+							    <li role="separator" class="divider"></li>
+							    <li><a href="#">De personnes que vous suivez</a></li>
+						    </ul>
+					        </li>
+					     <%} else if (request.getAttribute("publications") != null){%>
+					        <li><a href="#">Tout</a></li>
+				            <!--<form method="post" action="recherche">
+				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
+				                <li><a href="#">Comptes</a></li>
+				            </form>-->
+						    <li><a href="#">Intérêts</a></li>
+						    <li class="active"><a href="#">Publications</a></li>
+						    <li class="dropdown"><a href="#" class="dropdown-toggle"
+						    data-toggle="dropdown" role="button" aria-haspopup="true"
+						    aria-expanded="false">Autres options <span class="caret"></span></a>
+						    <ul class="dropdown-menu">
+							    <li><a href="#">De tout le monde</a></li>
+							    <li role="separator" class="divider"></li>
+							    <li><a href="#">De personnes que vous suivez</a></li>
+						    </ul>
+					        </li>
+					     <%} else { %>
+					        <li class="active"><a href="#">Tout</a></li>
+				            <!--<form method="post" action="recherche">
+				                <input type="hidden" name="comptes" value=<%= request.getAttribute("true")%>>
+				                <li><a href="#">Comptes</a></li>
+				            </form>-->
+						    <li><a href="#">Intérêts</a></li>
+						    <li><a href="#">Publications</a></li>
+						    <li class="dropdown"><a href="#" class="dropdown-toggle"
+						    data-toggle="dropdown" role="button" aria-haspopup="true"
+						    aria-expanded="false">Autres options <span class="caret"></span></a>
+						    <ul class="dropdown-menu">
+							    <li><a href="#">De tout le monde</a></li>
+							    <li role="separator" class="divider"></li>
+							    <li><a href="#">De personnes que vous suivez</a></li>
+						    </ul>
+					        </li>
+					     <%}%>
 				      </ul>
 				    </div><!-- /.navbar-collapse -->
 				  </div><!-- /.container-fluid -->
@@ -135,7 +192,8 @@
 				<!-- Model 2 -->
 				<%  List<Personne> listPersonne = (List<Personne>)request.getAttribute("resultatPersonne");
 					List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInteret");
-					if(listPersonne.size() != 0 || listInteret.size() != 0){ %>
+					List<Publication> listPublication = (List<Publication>)request.getAttribute("resultatPublication");
+					if(listPersonne.size() != 0 || listInteret.size() != 0 || listPublication.size() != 0){ %>
 					<c:forEach items="${resultatPersonne}" var="v">
 					<div class="thumbnail border shadow padding_top">
 						<div class="row">
@@ -159,6 +217,21 @@
 						</div>
 						<div class=" col-md-9">
 							<span>Description ?</span>
+						</div>
+						</div>
+					</div>
+					</c:forEach>
+					<c:forEach items="${resultatPublication}" var="v">
+					<div class="thumbnail border shadow padding_top">
+						<div class="row">
+						<div class="col-md-3">
+							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
+						</div>
+						<div class="col-md-9">
+							<p class="float-left"><h4><a href="/affichageProfil">Publication</a></h4></p>
+						</div>
+						<div class=" col-md-9">
+							<span><c:out value="${v.contenu}"/></span>
 						</div>
 						</div>
 					</div>

@@ -22,12 +22,7 @@ public class ServletAjoutInteret extends HttpServlet {
 		Personne client = service.getPersonne(mail);
 		
 		//Requete dans la base ...
-		if(service.existsInteret(input)){
-			System.out.println("exist : true");
-		} else {	
-			System.out.println("exist : false");
-			service.creerInteret(client,input);
-		}
+		service.creerInteret(client,input);
 		
 		//return
 		resp.setContentType("text/plain");

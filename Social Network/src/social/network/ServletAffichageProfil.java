@@ -45,11 +45,10 @@ public class ServletAffichageProfil extends HttpServlet {
 				req.setAttribute("Statut", "NonSuivi");
 			}
 			req.setAttribute("resultatAmis", service.getAmis(personne));
-			System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
 			req.setAttribute("resultatInterets", service.getInterets(personne));
-			System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
 			req.setAttribute("NbTags", service.getInterets(personne).size());
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
+			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
 			try {
 				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 			} catch (ServletException e) {
@@ -62,11 +61,10 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("Prenom", session.getAttribute("Prenom"));
 			req.setAttribute("Slogan", session.getAttribute("Slogan"));
 			req.setAttribute("resultatAmis", service.getAmis(personne));
-			System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
 			req.setAttribute("resultatInterets", service.getInterets(personne));
-			System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
 			req.setAttribute("NbTags", service.getInterets(personne).size());
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
+			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
 			//Recuperer la liste des interets et des follower de la personne.
 			try {
 				 this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);

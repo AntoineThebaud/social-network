@@ -21,4 +21,15 @@ public class GestionPub extends Dao<Publication> {
     	
         return publications;
 	}
+	
+	public List<Publication> searchText(String nom) {
+		List<Publication> all = super.getAll();
+    	List<Publication> publications = new ArrayList<Publication>();
+    	for(Publication p : all){
+    		if(p.getContenu().contains(nom)) {
+    			publications.add(p);
+    		}
+    	}
+        return publications;
+	}
 }
