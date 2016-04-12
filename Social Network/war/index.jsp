@@ -291,10 +291,10 @@
 											<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 										</div>
 										<div class="col-md-9">
-											<p class="float-left">Auteur</p>
+											<p class="float-left"><%= listAuteurs.get(i).getPrenom()%> <%= listAuteurs.get(i).getNom()%></p>
 										</div>
 										<div class=" col-md-9">
-											<span><c:out value="<%listFlux.get(i).getContenu();%>"/></span>
+											<span><%= listFlux.get(i).getContenu()%></span>
 										</div>
 									</div>
 								</div>
