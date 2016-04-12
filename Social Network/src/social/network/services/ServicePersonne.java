@@ -69,8 +69,26 @@ public class ServicePersonne {
 		return gestionPers.searchAll(nom);
 	}
 	
+	public List<Personne> researchPersonneAmis(Personne personne,String nom){
+		return gestionPers.searchAmis(personne,nom);
+	}
+	
 	public List<Interet> researchInteret(String nom){
 		return gestionInteret.search(nom);
+	}
+	
+	public List<Interet> researchInteretAmis(Personne personne,String nom){
+		List<Personne> amisInt = getAmisInterets(personne);
+		List<Interet> interets = new ArrayList<Interet>();
+		for(Personne ami : amisInt){
+			List<Interet> list = gestionInteret.getSubset(ami.getRefInterets());
+			interets.addAll(gestionInteret.search(list,nom));
+		}
+		return interets;
+	}
+	
+	public List<Publication> researchPublicationAmis(Personne personne, String nom){
+		return gestionPub.searchText(nom);
 	}
 	
 	public List<Publication> researchPublication(String nom){
