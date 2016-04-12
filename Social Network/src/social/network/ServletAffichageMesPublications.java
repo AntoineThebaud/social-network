@@ -15,11 +15,7 @@ import social.network.services.ServicePersonne;
 public class ServletAffichageMesPublications extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");	
-	}
-	
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		System.out.println("Je suis dans doPost de la ServletAffichageMesPublications");
+		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");
 		HttpSession session = req.getSession();
 		//requete dans le datastore pour récuperer les posts publiée par l'utilisateur
 		Long id = (Long) session.getAttribute("Id");
@@ -27,20 +23,23 @@ public class ServletAffichageMesPublications extends HttpServlet {
 		List<Publication> mesPublications = service.researchMesPublications(id);
 		req.setAttribute("mesPublications", mesPublications);
 		
-		//test affichage:
-		System.out.println("==============CONTENU==============");
-		for(Publication p : mesPublications) {
-			System.out.println(p.getContenu());
-		}
-		System.out.println("===================================");
+		//on affiche les messages envoyés, les attributs monFlux et mesMessagesReçus de req sont mis à null
+		req.setAttribute("monFlux", null);
+		req.setAttribute("mesMessagesReçus", null);
 		
 		//Redirection vers la meme page
 		try {
-			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			//la redirection sur index.jsp ne marche pas (pourquoi??) donc forward sur affichageProfil TODO : à changer
+			//this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			this.getServletContext().getRequestDispatcher("/affichageProfil").forward(req, resp);
 		} catch (ServletException e) {
 			System.out.println("Erreur dans le forwarding (ServletAffichageMesPublications.java)");
 			e.printStackTrace();
 		}
+	}
+	
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		System.out.println("Je suis dans doPost de la ServletAffichageMesPublications");
 	}
 }
 

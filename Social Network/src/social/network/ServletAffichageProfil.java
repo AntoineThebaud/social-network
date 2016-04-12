@@ -26,36 +26,36 @@ public class ServletAffichageProfil extends HttpServlet {
 		
 		//Personne personneCourante = service.getPersonne((String) session.getAttribute("Mail"));
 		if (req.getParameter("id") != null && !req.getParameter("id").equals(session.getAttribute("Id").toString())) {
-		System.out.println("id = "+req.getParameter("id"));
-		System.out.println("id de la session courante = "+session.getAttribute("Id"));
-		
-		//On ne veut pas afficher le profil de la session connectée.
-		//Requete pour recuperer le nom, prenom, slogan, liste des interets et des follower de la Personne concernée.
-		//A des fin de tests, creation de la condition suivante.
-		Personne personne = service.getPersonne(Long.parseLong(req.getParameter("id")));
-		req.setAttribute("Nom", personne.getNom());
-		req.setAttribute("Prenom", personne.getPrenom());
-		req.setAttribute("Slogan", personne.getSlogan());
-		req.setAttribute("Id", personne.getId());
-		
-		Personne connecte = service.getPersonne((Long)session.getAttribute("Id"));
-		if(connecte.estAmi(personne)){
-			req.setAttribute("Statut", "Suivi");
-		} else {
-			req.setAttribute("Statut", "NonSuivi");
-		}
-		req.setAttribute("resultatAmis", service.getAmis(personne));
-		System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
-		req.setAttribute("resultatInterets", service.getInterets(personne));
-		System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
-		req.setAttribute("NbTags", service.getInterets(personne).size());
-		req.setAttribute("NbAmis", service.getAmis(personne).size());
-		try {
-			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
-		} catch (ServletException e) {
-			System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
+			System.out.println("id = "+req.getParameter("id"));
+			System.out.println("id de la session courante = "+session.getAttribute("Id"));
+			
+			//On ne veut pas afficher le profil de la session connectée.
+			//Requete pour recuperer le nom, prenom, slogan, liste des interets et des follower de la Personne concernée.
+			//A des fin de tests, creation de la condition suivante.
+			Personne personne = service.getPersonne(Long.parseLong(req.getParameter("id")));
+			req.setAttribute("Nom", personne.getNom());
+			req.setAttribute("Prenom", personne.getPrenom());
+			req.setAttribute("Slogan", personne.getSlogan());
+			req.setAttribute("Id", personne.getId());
+			
+			Personne connecte = service.getPersonne((Long)session.getAttribute("Id"));
+			if(connecte.estAmi(personne)){
+				req.setAttribute("Statut", "Suivi");
+			} else {
+				req.setAttribute("Statut", "NonSuivi");
 			}
-		} else{
+			req.setAttribute("resultatAmis", service.getAmis(personne));
+			System.out.println("resulatsAmis taille : " + service.getAmis(personne).size());
+			req.setAttribute("resultatInterets", service.getInterets(personne));
+			System.out.println("resulatsInterets taille : " + service.getInterets(personne).size());
+			req.setAttribute("NbTags", service.getInterets(personne).size());
+			req.setAttribute("NbAmis", service.getAmis(personne).size());
+			try {
+				this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			} catch (ServletException e) {
+				System.out.println("Erreur du forwarding dans la servlet AffichageProfil");
+			}
+		} else {
 			//On veut afficher le profil de la session courante.
 			Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
 			req.setAttribute("Nom", session.getAttribute("Nom"));
