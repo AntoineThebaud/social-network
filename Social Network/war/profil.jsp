@@ -76,11 +76,11 @@
 					<div class="row">
 						<div class="col-md-offset-3 col-md-2 text-center">
 							<p>#Tags</p>
-							<p><span class="badge">56</span></p>
+							<p><span class="badge"><%= request.getAttribute("NbTags")%></span></p>
 						</div>
 						<div class="col-md-offset-1 col-md-2  text-center divider-vertical">
 							<p>Contacts</p>
-							<p><span class="badge">236</span></p>
+							<p><span class="badge"><%= request.getAttribute("NbAmis")%></span></p>
 						</div>
 					</div>
 				</div>
@@ -153,7 +153,7 @@
 				</form>
 			</div>
 			<div class="col-md-3">
-				<h1>Colonne 3</h1>
+
 			</div>
 		</div>
 	</div>

@@ -3,7 +3,7 @@
 		response.sendRedirect("/inscription.jsp");
 	}
 
-	if (request.getAttribute("Nom") == null) {
+	if (request.getAttribute("Nom") == null && session.getAttribute("Valide") != null) {
 		response.sendRedirect("/affichageProfil");
 	}
 	System.out.println("Le nom est "+request.getAttribute("Nom"));
@@ -286,10 +286,14 @@
 									<c:forEach items="${resultatInterets}" var="v">
 										<a href="#" class="list-group-item">
 											<c:out value="${v.nom}"/>
-											<c:forTokens var="token" items="${v.nom}" delims="#">
-													<form class="display" method="post" action="/removeInteret?interet=<c:out value="${token}"/>">
-											</c:forTokens>
-												<button type="submit" class="btn btn-default btn-xs display"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+											<% if (request.getParameter("id") != null) {
+												//Ne pas afficher les croix de suppression d'interet.
+											} else {%>
+												<c:forTokens var="token" items="${v.nom}" delims="#">
+														<form class="display" method="post" action="/removeInteret?interet=<c:out value="${token}"/>">
+												</c:forTokens>
+													<button type="submit" class="btn btn-default btn-xs display"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+										<%	}%>
 											</form>
 										</a>
 
