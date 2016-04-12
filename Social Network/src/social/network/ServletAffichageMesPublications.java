@@ -24,7 +24,8 @@ public class ServletAffichageMesPublications extends HttpServlet {
 		req.setAttribute("mesPublications", mesPublications);
 		
 		//on affiche les messages envoyés, les attributs monFlux et mesMessagesReçus de req sont mis à null
-		req.setAttribute("monFlux", null);
+		req.setAttribute("mesFlux", null);
+		req.setAttribute("mesFluxAuteurs", null);
 		req.setAttribute("mesMessagesReçus", null);
 		
 		//Redirection vers la meme page

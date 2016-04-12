@@ -1,6 +1,7 @@
 package social.network;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -20,8 +21,16 @@ public class ServletAffichageFlux extends HttpServlet {
 		ServicePersonne service = new ServicePersonne();
 		
 		Long id = Long.parseLong(req.getParameter("id"));
-		List<Publication> mesPublications = service.researchMesPublications(id);
-		req.setAttribute("mesFlux", mesPublications);
+		List<Publication> mesFlux = service.researchMesFlux(id);
+		
+		//pour l'affichage : récupérer le nom & prenom des auteurs des publications.
+		List<Personne> auteurs = new ArrayList<>();
+		for(Publication p : mesFlux) {
+			auteurs.add(service.getPersonne(p.getAuteur()));
+		}
+		
+		req.setAttribute("mesFlux", mesFlux);
+		req.setAttribute("mesFluxAuteurs", auteurs);
 		
 		//on affiche le flux, les attributs mesPublications et mesMessagesReçus de req sont mis à null
 		req.setAttribute("mesPublications", null);

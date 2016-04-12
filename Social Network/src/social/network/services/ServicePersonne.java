@@ -108,6 +108,9 @@ public class ServicePersonne {
 	public List<Publication> researchMesPublications(Long id_user){
 		return gestionPub.searchAll(id_user);
 	}
-	
-	
+
+	public List<Publication> researchMesFlux(Long id_user) {
+		Personne user = getPersonne(id_user); 
+		return gestionPub.searchFlux(user);
+	}
 }
