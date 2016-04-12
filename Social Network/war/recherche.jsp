@@ -4,8 +4,9 @@
 	}
 %>
 	<%@page isELIgnored ="false" %>
+	<%@ page contentType="text/html; charset=UTF-8" %>
 	<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@page import="java.util.List" %>
+  <%@page import="java.util.List" %>
 	<%@page import="social.network.Personne" %>
 	<%@page import="social.network.Interet" %>
 	<%@page import="social.network.Publication" %>
