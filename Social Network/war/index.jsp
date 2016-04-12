@@ -157,7 +157,7 @@
 							  <div class="form-group">
 							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
 							    <div class="col-sm-10">
-									<% if (request.getParameter("id") != null) {%>
+									<% if (request.getParameter("id") != null && !request.getParameter("id").toString().equals(session.getAttribute("Id").toString())) {%>
 										<textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Laissez un message pour <%= request.getAttribute("Prenom")%> ..."></textarea>
 									<%} else {%>
 										<textarea onfocus="showFull()" onblur="showReduce()" style="height:35px;width:420px;resize:vertical" class="form-control" id="pub_aera" placeholder="Quoi de neuf ?"></textarea>
@@ -300,9 +300,9 @@
 
 				   }%>
 			</div>
-			
+
 			<!-- Zone d'affichage des intérêts & abonnements -->
-			
+
 			<div class="col-md-3">
 				<div class="thumbnail border shadow">
 					<div class="interets">
@@ -317,7 +317,7 @@
 									<c:forEach items="${resultatInterets}" var="v">
 										<a href="#" class="list-group-item">
 											<c:out value="${v.nom}"/>
-											<% if (request.getParameter("id") != null) {
+											<% if (request.getParameter("id") != null && !request.getParameter("id").toString().equals(session.getAttribute("Id").toString())) {
 												//Ne pas afficher les croix de suppression d'interet.
 											} else {%>
 												<c:forTokens var="token" items="${v.nom}" delims="#">
