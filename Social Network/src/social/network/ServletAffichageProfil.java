@@ -59,7 +59,7 @@ public class ServletAffichageProfil extends HttpServlet {
 		} else {
 			//On veut afficher le profil de la session courante.
 			Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
-			req.setAttribute("Id", personne.getId());
+			req.setAttribute("Id", session.getAttribute("Id"));
 			req.setAttribute("Nom", session.getAttribute("Nom"));
 			req.setAttribute("Prenom", session.getAttribute("Prenom"));
 			req.setAttribute("Slogan", session.getAttribute("Slogan"));
