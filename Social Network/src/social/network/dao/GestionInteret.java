@@ -21,8 +21,17 @@ public class GestionInteret extends Dao<Interet> {
     			interets.add(i);
     		}
     	}
-        //List<Interet> interets = query().filter("interet >=", nom).filter("interet <", nom + "\uFFFD").list();
-    	//List<Interet> interets = query().filter("interet", nom).filter("interet", nom).list();
+    	return interets;
+    }
+    
+    public List<Interet> search(List<Interet> ints,String nom) {
+    	List<Interet> all = ints;
+    	List<Interet> interets = new ArrayList<Interet>();
+    	for(Interet i : all){
+    		if(i.getNom().toUpperCase().contains(nom.toUpperCase())){
+    			interets.add(i);
+    		}
+    	}
     	return interets;
     }
     

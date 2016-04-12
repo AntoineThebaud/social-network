@@ -15,41 +15,76 @@ public class ServletRecherche extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("Je suis dans le doGet de la servlet Recherche");	
-		/*
+		
 		//On recupere la session en cours 
 		HttpSession session = req.getSession();
-		String recherche = (String) session.getAttribute("Recherche");
+		String mail = (String) session.getAttribute("Mail");
 		
-		//On etablie une requete dans le datastore le resultat de la recherche
-		 * 
-		 */
 		ServicePersonne service = new ServicePersonne();
 		String recherche = checkNull(req.getParameter("recherche"));
+		Personne personne = service.getPersonne(mail);
 		
 		String filtre = req.getParameter("filtre");
+		String groupe = req.getParameter("groupe");
 		
 		if (filtre == null) {
 			//On etablie une requete dans le datastore le resultat de la recherche
-			List<Personne> resultatPersonne = service.researchPersonne(recherche);
-			req.setAttribute("resultatPersonne", resultatPersonne);
-			
-			List<Interet> resultatInteret = service.researchInteret(recherche);
-			req.setAttribute("resultatInteret", resultatInteret);
-			
-			List<Publication> resultatPublication = service.researchPublication(recherche);
-			req.setAttribute("resultatPublication", resultatPublication);
+			if(groupe == null || groupe.equals("all")){
+				List<Personne> resultatPersonne = service.researchPersonne(recherche);
+				req.setAttribute("resultatPersonne", resultatPersonne);
+				
+				List<Interet> resultatInteret = service.researchInteret(recherche);
+				req.setAttribute("resultatInteret", resultatInteret);
+				
+				List<Publication> resultatPublication = service.researchPublication(recherche);
+				req.setAttribute("resultatPublication", resultatPublication);
+			}
+			else{
+				List<Personne> resultatPersonne = service.researchPersonneAmis(personne,recherche);
+				req.setAttribute("resultatPersonne", resultatPersonne);
+				
+				List<Interet> resultatInteret = service.researchInteretAmis(personne,recherche);
+				req.setAttribute("resultatInteret", resultatInteret);
+				
+				List<Publication> resultatPublication = service.researchPublicationAmis(personne,recherche);
+				req.setAttribute("resultatPublication", resultatPublication);
+			}
 		}
 		else if(filtre.equals("comptes")){
-			List<Personne> resultatPersonne = service.researchPersonne(recherche);
-			req.setAttribute("resultatPersonne", resultatPersonne);
+			if(groupe == null || groupe.equals("all")){
+				List<Personne> resultatPersonne = service.researchPersonne(recherche);
+				req.setAttribute("resultatPersonne", resultatPersonne);
+			}
+			else{
+				List<Personne> resultatPersonne = service.researchPersonneAmis(personne,recherche);
+				req.setAttribute("resultatPersonne", resultatPersonne);
+			}
 		}
 		else if(filtre.equals("interets")){
-			List<Interet> resultatInteret = service.researchInteret(recherche);
-			req.setAttribute("resultatInteret", resultatInteret);
+			if(groupe == null || groupe.equals("all")){
+				List<Interet> resultatInteret = service.researchInteret(recherche);
+				req.setAttribute("resultatInteret", resultatInteret);
+			}
+			else{
+				if(groupe == null || groupe.equals("all")){
+					List<Interet> resultatInteret = service.researchInteret(recherche);
+					req.setAttribute("resultatInteret", resultatInteret);
+				}
+				else{
+					List<Interet> resultatInteret = service.researchInteretAmis(personne,recherche);
+					req.setAttribute("resultatInteret", resultatInteret);
+				}
+			}
 		}
 		else if(filtre.equals("publications")){
-			List<Publication> resultatPublication = service.researchPublication(recherche);
-			req.setAttribute("resultatPublication", resultatPublication);
+			if(groupe == null || groupe.equals("all")){
+				List<Publication> resultatPublication = service.researchPublication(recherche);
+				req.setAttribute("resultatPublication", resultatPublication);
+			}
+			else{
+				List<Publication> resultatPublication = service.researchPublicationAmis(personne,recherche);
+				req.setAttribute("resultatPublication", resultatPublication);
+			}
 		}
 		else{
 			/* a completer*/

@@ -132,7 +132,7 @@
 					    <%} else if (filtre.equals("interets")){%>
 					        <li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
 				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
-						    <li class="active"><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>">Intérêts</a></li>
+						    <li class="active"><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
 						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -147,7 +147,7 @@
 					        <li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
 				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
 						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
-			&groupe=<%= request.getParameter("groupe") %>			    <li class="active"><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>">Publications</a></li>
+						    <li class="active"><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
 						    aria-expanded="false">Autres options <span class="caret"></span></a>
@@ -158,7 +158,7 @@
 						    </ul>
 					        </li>
 					     <%} else { %>
-							<li><a href="recherche?recherche=<%= request.getParameter("recherche") %>">Tout</a></li>
+							<li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
 				            <li class="active"><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
 						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
 						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche")%>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
