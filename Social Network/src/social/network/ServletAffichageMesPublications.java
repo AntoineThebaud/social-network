@@ -17,9 +17,24 @@ public class ServletAffichageMesPublications extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");
 		HttpSession session = req.getSession();
-		//requete dans le datastore pour récuperer les posts publiée par l'utilisateur
-		Long id = (Long) session.getAttribute("Id");
 		ServicePersonne service = new ServicePersonne();
+
+		//affichage des attributs de la session
+		System.out.println("=============ATRIBUTES==============");
+		Enumeration ea = req.getAttributeNames();
+		while (ea.hasMoreElements()) {
+		  String name = (String) ea.nextElement();
+		  System.out.println(name + ": " + req.getAttribute(name));
+		}
+		System.out.println("====================================");
+		
+		Long old_id = (Long) session.getAttribute("Id");
+		System.out.println("OLD ID =" + old_id);
+		String str_id = req.getParameter("id");
+		System.out.println("NEW ID STR = " + str_id);
+		Long id = Long.parseLong(str_id);
+		System.out.println("NEW ID LONG =" + id);
+		
 		List<Publication> mesPublications = service.researchMesPublications(id);
 		req.setAttribute("mesPublications", mesPublications);
 		
@@ -29,8 +44,7 @@ public class ServletAffichageMesPublications extends HttpServlet {
 		
 		//Redirection vers la meme page
 		try {
-			//la redirection sur index.jsp ne marche pas (pourquoi??) donc forward sur affichageProfil TODO : à changer
-			//this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
+			//besoin de recharger les infos de la page consultée donc appel à la servlet affichageProfil (TODO : peut mieux faire?)
 			this.getServletContext().getRequestDispatcher("/affichageProfil").forward(req, resp);
 		} catch (ServletException e) {
 			System.out.println("Erreur dans le forwarding (ServletAffichageMesPublications.java)");
@@ -45,8 +59,10 @@ public class ServletAffichageMesPublications extends HttpServlet {
 
 
 ////affichage des attributs de la session
-//Enumeration e = session.getAttributeNames();
-//while (e.hasMoreElements()) {
-//  String name = (String) e.nextElement();
-//  System.out.println(name + ": " + session.getAttribute(name));
+//System.out.println("=============ATRIBUTES==============");
+//Enumeration ea = req.getSession().getAttributeNames();
+//while (ea.hasMoreElements()) {
+//  String name = (String) ea.nextElement();
+//  System.out.println(name + ": " + req.getSession().getAttribute(name));
 //}
+//System.out.println("====================================");
