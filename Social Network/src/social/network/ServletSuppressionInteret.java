@@ -26,12 +26,20 @@ public class ServletSuppressionInteret extends HttpServlet {
 		//ServicePersonne serviceinteret = new ServiceInteret();
 		
 		//Recuperation de la personne et de l'interet concerné.
-		Personne personne = service.getPersonne((String) session.getAttribute("mail"));
+		Personne personne = service.getPersonne((Long)session.getAttribute("Id"));
 		List<Interet> interets = service.researchInteret(req.getParameter("interet"));
 		
+		int i =0;
+		for (i = 0; i < interets.size(); i++) {
+			if (interets.get(i).getNom().equals("#"+req.getParameter("interet"))) {
+				break;
+			}
+		}
+		
 		//Suppression de la ref de l'interet dans le personne.
-		//!!!!! NullPointerException !!!!!
-		//personne.removeInteret(interets.get(0));
+		System.out.println("Je veut supprimer l'interet "+interets.get(i).getNom()+" de la personne "+ personne.getPrenom());
+		personne.removeInteret(interets.get(i));
+		service.update(personne);
 		
 		
 		resp.sendRedirect("/affichageProfil");
