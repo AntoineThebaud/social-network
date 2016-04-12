@@ -21,8 +21,8 @@ public class ServletAffichageMesPublications extends HttpServlet {
 		
 		Long id = Long.parseLong(req.getParameter("id"));
 		List<Publication> mesPublications = service.researchMesPublications(id);
-		req.setAttribute("mesPublications", mesPublications);
 		
+		req.setAttribute("mesPublications", mesPublications);
 		//on affiche les messages envoyés, les attributs monFlux et mesMessagesReçus de req sont mis à null
 		req.setAttribute("mesFlux", null);
 		req.setAttribute("mesFluxAuteurs", null);

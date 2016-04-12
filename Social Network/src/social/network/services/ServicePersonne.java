@@ -60,8 +60,13 @@ public class ServicePersonne {
 		gestionPers.put(personne);
 	}
 	
-	public void creerPublication(Personne client, String input) {
-		Publication pub = new Publication(client.getId(), input);
+	public void creerPublication(Personne client, String input, String dest) {
+		Publication pub;
+		if(dest == "") {
+			pub = new Publication(client.getId(), input);
+		} else {
+			pub = new Publication(client.getId(), input, Long.parseLong(dest));
+		}
 		gestionPub.put(pub);
 	}
 	

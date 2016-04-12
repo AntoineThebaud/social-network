@@ -159,6 +159,9 @@
 					  	<div>
 						    <br/>
 							<form id="formNewPub" class="form-horizontal" role="form" method="post" action="/">
+							  <!-- inputs hidden : sert a identifier la nature de la publication (message ou normal) -->
+							  <input type="hidden" id="pub_id_page" value=<%= request.getAttribute("Id")%>>
+							  <input type="hidden" id="pub_id_sess" value=<%= session.getAttribute("Id")%>>
 							  <div class="form-group">
 							    <label class="control-label col-sm-2" for="email"><img src="images/minions.jpg" alt="Moi" class="image_post size32"></label>
 							    <div class="col-sm-10">
@@ -217,7 +220,7 @@
 							<li>				<a href=<%= "/afficherFlux?id="+request.getAttribute("Id")%>>Flux</a></li>
 							<li>				<a href=<%= "/afficherMessagesReçus?id="+request.getAttribute("Id")%>>Messages reçus</a></li>
 							<li class="active">	<a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
-						<%} else if (request.getAttribute("mesMessagesReçus") != null){%>
+						<%} else if (request.getAttribute("mesMessagesReçus") != null) {%>
 							<li>				<a href=<%= "/afficherFlux?id="+request.getAttribute("Id")%>>Flux</a></li>
 							<li class="active">	<a href=<%= "/afficherMessagesReçus?id="+request.getAttribute("Id")%>>Messages reçus</a></li>
 							<li>				<a href=<%= "/afficherMesPublications?id="+request.getAttribute("Id")%>>Publications</a></li>
@@ -245,6 +248,9 @@
 										</div>
 										<div class="col-md-9">
 											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
+											<c:if test="${v.contenu!=''}">
+											   <p align="center">à <%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
+											</c:if>
 											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
 										</div>
 										<div class=" col-md-9">
@@ -259,24 +265,24 @@
 				   } else if (request.getAttribute("mesMessagesReçus") != null) {
 						//affichage des messages reçus
 						List<Publication> listMessagesRecus = (List<Publication>) request.getAttribute("mesMessagesReçus");
-						if (listMessagesRecus != null && listMessagesRecus.size() != 0) {%>
-							<c:forEach items="${mesMessagesReçus}" var="v">
+						List<Personne> listAuteurs = (List<Personne>) request.getAttribute("mesMessagesReçusAuteurs");
+						if (listMessagesRecus != null && listMessagesRecus.size() != 0) {
+							for(int i = 0; i < listMessagesRecus.size(); ++i) {%>
 								<div class="thumbnail border shadow padding_top">
 									<div class="row">
 										<div class="col-md-3">
 											<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 										</div>
 										<div class="col-md-9">
-											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
-											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
+											<p class="float-left"><%= listAuteurs.get(i).getPrenom()%> <%= listAuteurs.get(i).getNom()%></p>
 										</div>
 										<div class=" col-md-9">
-											<span><c:out value="${v.contenu}"/></span>
+											<span><%= listMessagesRecus.get(i).getContenu()%></span>
 										</div>
 									</div>
 								</div>
-							</c:forEach>
-					<%	} else {%>
+						  <%}
+						} else {%>
 							<h5 align="center">Aucune publication actuellement.</h5>
 					<%	}
 				   } else {
@@ -298,8 +304,8 @@
 										</div>
 									</div>
 								</div>
-						  <%}%>
-					<%	} else {%>
+						  <%}
+						} else {%>
 							<h5 align="center">Aucune publication actuellement.</h5>
 					<%	}
 

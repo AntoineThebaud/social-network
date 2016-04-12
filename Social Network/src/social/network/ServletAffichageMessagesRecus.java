@@ -13,34 +13,35 @@ import javax.servlet.http.HttpSession;
 
 import social.network.services.ServicePersonne;
 
-public class ServletAffichageFlux extends HttpServlet {
+public class ServletAffichageMessagesRecus extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		System.out.println("Je suis dans le doGet de ServletAffichageFlux");
+		System.out.println("Je suis dans le doGet de ServletAffichageMesPublications");
 		HttpSession session = req.getSession();
 		ServicePersonne service = new ServicePersonne();
 		
 		Long id = Long.parseLong(req.getParameter("id"));
-		List<Publication> mesFlux = service.researchMesFlux(id);
+		List<Publication> mesMessagesReçus = service.researchMesPublications(id);
 		
 		//pour l'affichage : récupérer le nom & prenom des auteurs des publications.
 		List<Personne> auteurs = new ArrayList<>();
-		for(Publication p : mesFlux) {
+		for(Publication p : mesMessagesReçus) {
 			auteurs.add(service.getPersonne(p.getAuteur()));
 		}
 		
-		req.setAttribute("mesFlux", mesFlux);
-		req.setAttribute("mesFluxAuteurs", auteurs);
-		//on affiche le flux, les attributs mesPublications et mesMessagesReçus de req sont mis à null
+		req.setAttribute("mesMessagesReçus", mesMessagesReçus);
+		req.setAttribute("mesMessagesReçusAuteurs", auteurs);
+		//on affiche les messages envoyés, les attributs monFlux et mesMessagesReçus de req sont mis à null
+		req.setAttribute("mesFlux", null);
+		req.setAttribute("mesFluxAuteurs", null);
 		req.setAttribute("mesPublications", null);
-		req.setAttribute("mesMessagesReçus", null);
 		
 		//Redirection vers la meme page
 		try {
 			//besoin de recharger les infos de la page consultée donc appel à la servlet affichageProfil (TODO : peut mieux faire?)
 			this.getServletContext().getRequestDispatcher("/affichageProfil").forward(req, resp);
 		} catch (ServletException e) {
-			System.out.println("Erreur dans le forwarding (ServletAffichageFlux.java)");
+			System.out.println("Erreur dans le forwarding (ServletAffichageMesPublications.java)");
 			e.printStackTrace();
 		}
 	}

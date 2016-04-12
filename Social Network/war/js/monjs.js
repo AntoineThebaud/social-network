@@ -69,14 +69,19 @@ $('#formNewPub').submit(function () {
 	console.log("new pub submitted");
 	
 	//TODO : Ajax pour creation de la nouvelle publication
-	input = $('#pub_aera').val();
-	console.log("input="+input);
+	var contenu = $('#pub_aera').val();
 	//cas erreur : champ vide
-	if (input == "") {
+	if (contenu == "") {
 		alert("Erreur : champ vide");
 		return false;
 	}
-	$.post("/creerPublication", {inputKey:input});
+	//cas particulier : publication envoyée à quelqu'un
+	var id = null;
+	if ($("#pub_id_page").val() != $("#pub_id_sess").val()) {
+		id = $("#pub_id_page").val();
+	}
+	
+	$.post("/creerPublication", {text:contenu, destinataire:id});
 	//reset field	
 	showReduce();
 	$('#pub_aera').val("");

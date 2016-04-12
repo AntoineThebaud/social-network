@@ -104,6 +104,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>afficherMessagesReçus</servlet-name>
+		<servlet-class>social.network.ServletAffichageMessagesRecus</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>afficherMessagesReçus</servlet-name>
+		<url-pattern>/afficherMessagesReçus</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>suppressionInteret</servlet-name>
 		<servlet-class>social.network.ServletSuppressionInteret</servlet-class>
 	</servlet>

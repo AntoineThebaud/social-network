@@ -12,8 +12,10 @@ import social.network.services.ServicePersonne;
 public class ServletCreerPublication extends HttpServlet {
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		String input = req.getParameter("inputKey");
-		System.out.println("input = " + input);//TODO : remove line
+		String contenu = req.getParameter("text");
+		System.out.println("contenu = " + contenu);//TODO : remove line
+		String dest = req.getParameter("destinataire");
+		System.out.println("dest = " + dest);//TODO : remove line
 		
 		HttpSession session = req.getSession();
 		String mail = (String) session.getAttribute("Mail");
@@ -22,6 +24,6 @@ public class ServletCreerPublication extends HttpServlet {
 		Personne client = service.getPersonne(mail);
 		
 		//creation de la nouvelle publication
-		service.creerPublication(client,input);
+		service.creerPublication(client, contenu, dest);
 	}
 }

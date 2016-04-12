@@ -19,6 +19,8 @@ public class Publication {
 	private ArrayList<String> tagList;
 	private int nblikes;
 	private Date datepub;
+	//attribut optionnel : destinataire de la publication
+	private @Index Long destinataire;
 	
 	//type de la publication (servira à adapter le html généré en fonction du type ?)
 	private enum TypePublication { SIMPLE, PARTAGE, REPONSE };
@@ -36,6 +38,11 @@ public class Publication {
 		this.contenu = contenu;
 		this.tagList = parseTag(contenu);
 		this.nblikes = 0;
+	}
+
+	public Publication(Long id_auteur, String contenu, Long destinataire) {
+		this(id_auteur, contenu);
+		this.destinataire = destinataire;
 	}
 
 	public String getContenu() {
