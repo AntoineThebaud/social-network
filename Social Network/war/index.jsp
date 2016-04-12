@@ -288,7 +288,15 @@
 							<%  List<Interet> listInteret = (List<Interet>)request.getAttribute("resultatInterets");
 								if(listInteret != null && listInteret.size() != 0) { %>
 									<c:forEach items="${resultatInterets}" var="v">
-										<a href="#" class="list-group-item"><c:out value="${v.nom}"/></a>
+										<a href="#" class="list-group-item">
+											<c:out value="${v.nom}"/>
+											<c:forTokens var="token" items="${v.nom}" delims="#">
+													<form class="display" method="post" action="/removeInteret?interet=<c:out value="${token}"/>">
+											</c:forTokens>
+												<button type="submit" class="btn btn-default btn-xs display"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+											</form>
+										</a>
+
 									</c:forEach>
 							<% 	} else {%>
 									<h5 align="center">Aucun intérêt actuellement.</h5>

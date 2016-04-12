@@ -93,6 +93,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>afficherMesPublications</servlet-name>
 		<url-pattern>/afficherMesPublications</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>suppressionInteret</servlet-name>
+		<servlet-class>social.network.ServletSuppressionInteret</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>suppressionInteret</servlet-name>
+		<url-pattern>/removeInteret</url-pattern>
+	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
