@@ -35,7 +35,9 @@ public class ServletAffichageFlux extends HttpServlet {
 		req.setAttribute("mesFluxAuteurs", auteurs);
 		//on affiche le flux, les attributs mesPublications et mesMessagesReçus de req sont mis à null
 		req.setAttribute("mesPublications", null);
+		req.setAttribute("mesPublicationsDest", null);
 		req.setAttribute("mesMessagesReçus", null);
+		req.setAttribute("mesMessagesReçusAuteurs", null);
 		
 		//Redirection vers la meme page
 		try {

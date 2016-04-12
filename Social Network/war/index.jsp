@@ -239,8 +239,9 @@
 				<% if (request.getAttribute("mesPublications") != null) {
 						//affichage des posts publiés
 						List<Publication> listPublication = (List<Publication>) request.getAttribute("mesPublications");
-						if (listPublication != null && listPublication.size() != 0) {%>
-							<c:forEach items="${mesPublications}" var="v">
+						List<Personne> listDest = (List<Personne>) request.getAttribute("mesPublicationsDest");
+						if (listPublication != null && listPublication.size() != 0) {
+							for(int i = 0; i < listPublication.size(); ++i) {%>
 								<div class="thumbnail border shadow padding_top">
 									<div class="row">
 										<div class="col-md-3">
@@ -248,18 +249,19 @@
 										</div>
 										<div class="col-md-9">
 											<p class="float-left"><%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
-											<c:if test="${v.contenu!=''}">
-											   <p align="center">à <%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
-											</c:if>
+											<%	if (listPublication.get(i).getDestinataire() != null) {
+													System.out.println("Gitan ="+listPublication.get(i).getDestinataire());%>
+													<p align="center">à <%= listDest.get(i).getPrenom()%> <%= listDest.get(i).getNom()%></p>
+											<%}%>
 											<%-- <p class="float-right"><%<c:out value="${v.date}"%> min</p> --%>
 										</div>
 										<div class=" col-md-9">
-											<span><c:out value="${v.contenu}"/></span>
+											<span><%= listPublication.get(i).getContenu()%></span>
 										</div>
 									</div>
 								</div>
-							</c:forEach>
-					<%	} else {%>
+							<%}
+						} else {%>
 							<h5 align="center">Aucune publication actuellement.</h5>
 					<%	}
 				   } else if (request.getAttribute("mesMessagesReçus") != null) {
@@ -275,6 +277,9 @@
 										</div>
 										<div class="col-md-9">
 											<p class="float-left"><%= listAuteurs.get(i).getPrenom()%> <%= listAuteurs.get(i).getNom()%></p>
+											<c:if test="${v.contenu!=''}">
+											   <p align="center">à <%= request.getAttribute("Prenom")%> <%= request.getAttribute("Nom")%></p>
+											</c:if>
 										</div>
 										<div class=" col-md-9">
 											<span><%= listMessagesRecus.get(i).getContenu()%></span>

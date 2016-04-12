@@ -35,6 +35,7 @@ public class ServletAffichageMessagesRecus extends HttpServlet {
 		req.setAttribute("mesFlux", null);
 		req.setAttribute("mesFluxAuteurs", null);
 		req.setAttribute("mesPublications", null);
+		req.setAttribute("mesPublicationsDest", null);
 		
 		//Redirection vers la meme page
 		try {

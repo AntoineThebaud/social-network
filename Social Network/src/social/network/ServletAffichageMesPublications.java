@@ -1,6 +1,7 @@
 package social.network;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -22,11 +23,23 @@ public class ServletAffichageMesPublications extends HttpServlet {
 		Long id = Long.parseLong(req.getParameter("id"));
 		List<Publication> mesPublications = service.researchMesPublications(id);
 		
+		//pour l'affichage : récupérer le nom & prenom des destinataires des publications.
+		List<Personne> destinataires = new ArrayList<>();
+		for(Publication p : mesPublications) {
+			if(p.getDestinataire() == null) {
+				destinataires.add(null);
+			} else {
+				destinataires.add(service.getPersonne(p.getDestinataire()));
+			}
+		}
+		
 		req.setAttribute("mesPublications", mesPublications);
+		req.setAttribute("mesPublicationsDest", destinataires);
 		//on affiche les messages envoyés, les attributs monFlux et mesMessagesReçus de req sont mis à null
 		req.setAttribute("mesFlux", null);
 		req.setAttribute("mesFluxAuteurs", null);
 		req.setAttribute("mesMessagesReçus", null);
+		req.setAttribute("mesMessagesReçusAuteurs", null);
 		
 		//Redirection vers la meme page
 		try {
