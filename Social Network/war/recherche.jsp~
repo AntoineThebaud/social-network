@@ -186,9 +186,11 @@
 						<div class="col-md-9">
 							<p class="float-left"><h4><a href="/affichageProfil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
+						<!--
 						<div class=" col-md-9">
 							<span>Description à completer</span>
 						</div>
+						-->
 						</div>
 					</div>
 					</c:forEach>
