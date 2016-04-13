@@ -1,7 +1,11 @@
 package social.network.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+
+import com.sun.org.apache.bcel.internal.generic.NEWARRAY;
 
 import social.network.Interet;
 import social.network.Personne;
@@ -146,8 +150,59 @@ public class ServicePersonne {
 	}
 	
 	/* avoir 3 tendances au total */
+	@SuppressWarnings("null")
 	public List<Interet> getTendances() {
 		List<Interet> tendances = gestionInteret.getAll();
+		/*int val1 = 0;
+		int val2 = 0;
+		int val3 = 0;
+		String tag1="";
+		String tag2 = "";
+		String tag3 = "";
+		//Creation de la HashMap.
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		//Initialisation de la map.
+		/*for (int i = 0; i < tendances.size(); i++) {
+			//Ajout de chaque interet avec une valeur de 0 associée.
+			map.put(tendances.get(i).getNom(), 0);
+		}*/
+		
+		//Parcours des publications
+		/*List<Publication> publications = gestionPub.getAll();
+		ArrayList<String> tagList = new ArrayList<String>();
+		System.out.println("publication size = "+publications.size());
+		for (int i = 0; i < publications.size(); i++) {
+			tagList = publications.get(i).getTagList();
+			//Parcours de la tagList.
+			for (int j = 0; j < tagList.size(); j++) {
+				//map.put(tagList.get(j), map.get(tagList.get(j)+1));
+			}
+		}
+		System.out.println("gitan");
+		for(Entry<String, Integer> entry : map.entrySet()) {
+			String cle = entry.getKey();
+			Integer valeur = entry.getValue();
+			if (valeur > val1) {
+				val1 = valeur;
+				tag1 = cle;
+			}else if (valeur > val2){
+				val2 = valeur;
+				tag2 = cle;
+			}else if (valeur > val3){
+				val3 = valeur;
+				tag3 = cle;
+			}
+		}
+		
+		//On peut retourner le nombre (en plus du nom) des publications qui parle des tendances.
+		List<String> retour = null;
+		retour.add(tag1);
+		retour.add(tag2);
+		retour.add(tag3);
+		//return retour;*/
+		
+		
 		return tendances.subList(tendances.size()-3, tendances.size());
 	}
 

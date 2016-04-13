@@ -48,6 +48,10 @@ public class Publication {
 	public String getContenu() {
 		return contenu;
 	}
+	
+	public ArrayList<String> getTagList(){
+		return tagList;
+	}
 
 	public Long getAuteur() {
 		return id_auteur;

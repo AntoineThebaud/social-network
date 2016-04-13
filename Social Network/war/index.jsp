@@ -349,7 +349,7 @@
 									<h5 align="center">Aucun intérêt actuellement.</h5>
 							<%	}%>
 						</div>
-						<% if (request.getParameter("id") != null) {
+						<% if (request.getParameter("id") != null && !request.getParameter("id").toString().equals(session.getAttribute("Id").toString())) {
 							//Ne pas afficher le formulaire d'ajout d'interets.
 						} else {%>
 							<form id="formNewTag" class="form-horizontal" role="interets" method="post" action="/">
