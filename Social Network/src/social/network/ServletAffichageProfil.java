@@ -51,7 +51,10 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("NbTags", service.getInterets(personne).size());
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
 			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
-			req.setAttribute("tendances", service.getTendances());
+			System.out.println("j'ajoute dans tendances : "+service.getTendances().get(0));
+			req.setAttribute("tendance1", service.getTendances().get(0));
+			req.setAttribute("tendance2", service.getTendances().get(1));
+			req.setAttribute("tendance3", service.getTendances().get(2));
 		} else {
 			//On veut afficher le profil de la session courante.
 			Personne personne = service.getPersonne((String) session.getAttribute("Mail"));
@@ -64,7 +67,9 @@ public class ServletAffichageProfil extends HttpServlet {
 			req.setAttribute("NbTags", service.getInterets(personne).size());
 			req.setAttribute("NbAmis", service.getAmis(personne).size());
 			req.setAttribute("resultatCommuns", service.getAmisInterets(personne));
-			req.setAttribute("tendances", service.getTendances());
+			req.setAttribute("tendance1", service.getTendances().get(0));
+			req.setAttribute("tendance2", service.getTendances().get(1));
+			req.setAttribute("tendance3", service.getTendances().get(2));
 		}
 
 		try {
@@ -116,7 +121,9 @@ public class ServletAffichageProfil extends HttpServlet {
 		req.setAttribute("resultatCommuns", service.getAmisInterets(ami));
 		req.setAttribute("NbTags", service.getInterets(ami).size());
 		req.setAttribute("NbAmis", service.getAmis(ami).size());
-		req.setAttribute("tendances", service.getTendances());
+		req.setAttribute("tendance1", service.getTendances().get(0));
+		req.setAttribute("tendance2", service.getTendances().get(1));
+		req.setAttribute("tendance3", service.getTendances().get(2));
 		try {
 			this.getServletContext().getRequestDispatcher("/index.jsp").forward(req, resp);
 		} catch (ServletException e) {
