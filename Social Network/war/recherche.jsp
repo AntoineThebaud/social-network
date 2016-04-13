@@ -187,7 +187,7 @@
 							<p class="float-left"><h4><a href="/affichageProfil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
-							<span>Description ?</span>
+							<span>Description à completer</span>
 						</div>
 						</div>
 					</div>
@@ -199,7 +199,7 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><h4><a href="/affichageProfil">Publication</a></h4></p>
+							<p class="float-left"><h4><a href="#">Publication</a></h4></p>
 						</div>
 						<div class=" col-md-9">
 							<span><c:out value="${v.contenu}"/></span>

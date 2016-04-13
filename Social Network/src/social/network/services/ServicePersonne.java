@@ -93,7 +93,15 @@ public class ServicePersonne {
 	}
 	
 	public List<Publication> researchPublicationAmis(Personne personne, String nom){
-		return gestionPub.searchText(nom);
+		List<Publication> amisPub = gestionPub.searchText(nom);
+		List<Publication> pubs = new ArrayList<Publication>();
+		List<Long> amis = personne.getRefAmis();
+		for(Publication pub : amisPub){
+			if(amis.contains(pub.getAuteur())){
+				pubs.add(pub);
+			}
+		}
+		return pubs;
 	}
 	
 	public List<Publication> researchPublication(String nom){

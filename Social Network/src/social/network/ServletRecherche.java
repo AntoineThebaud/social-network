@@ -136,7 +136,7 @@ public class ServletRecherche extends HttpServlet {
 		
 		//Redirection vers la page recherche.jsp
 		try {
-			this.getServletContext().getRequestDispatcher("/recherche.jsp").forward(req, resp);
+			this.getServletContext().getRequestDispatcher("/recherche.jsp?groupe=all").forward(req, resp);
 		} catch (ServletException e) {
 			System.out.println("Erreur dans le forwarding (ServletRecherche.java)");
 			e.printStackTrace();

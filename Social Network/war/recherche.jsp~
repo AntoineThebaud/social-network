@@ -71,9 +71,14 @@
 					<div class="tendance">
 						<h3 align="center">Tendances</h3>
 						 <div class="list-group">
+							<c:forEach items="${tendances}" var="v">
+								<a href="#" class="list-group-item"><c:out value="${v.nom}"/></a>
+							</c:forEach>
+							<!--
 							<a href="#" class="list-group-item active">#First item</a>
 							<a href="#" class="list-group-item" style="color:#337AB7">#Second item</a>
 							<a href="#" class="list-group-item" style="color:#337AB7">#Third item</a>
+							-->
 						</div>
 					</div>
 				</div>
@@ -108,7 +113,7 @@
 					    <%} else if (filtre.equals("interets")){%>
 					        <li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
 				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
-						    <li class="active"><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>">Intérêts</a></li>
+						    <li class="active"><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
 						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -123,7 +128,7 @@
 					        <li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
 				            <li><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
 						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
-			&groupe=<%= request.getParameter("groupe") %>			    <li class="active"><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>">Publications</a></li>
+						    <li class="active"><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
 						    <li class="dropdown"><a href="#" class="dropdown-toggle"
 						    data-toggle="dropdown" role="button" aria-haspopup="true"
 						    aria-expanded="false">Autres options <span class="caret"></span></a>
@@ -134,7 +139,7 @@
 						    </ul>
 					        </li>
 					     <%} else { %>
-							<li><a href="recherche?recherche=<%= request.getParameter("recherche") %>">Tout</a></li>
+							<li><a href="recherche?recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Tout</a></li>
 				            <li class="active"><a href="recherche?filtre=comptes&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Comptes</a></li>
 						    <li><a href="recherche?filtre=interets&recherche=<%= request.getParameter("recherche") %>&groupe=<%= request.getParameter("groupe") %>">Intérêts</a></li>
 						    <li><a href="recherche?filtre=publications&recherche=<%= request.getParameter("recherche")%>&groupe=<%= request.getParameter("groupe") %>">Publications</a></li>
@@ -182,7 +187,7 @@
 							<p class="float-left"><h4><a href="/affichageProfil"><c:out value="${v.nom}"/></a></h4></p>
 						</div>
 						<div class=" col-md-9">
-							<span>Description ?</span>
+							<span>Description à completer</span>
 						</div>
 						</div>
 					</div>
@@ -194,7 +199,7 @@
 							<img src="images/minions.jpg" alt="Avatar du post" class="img-thumbnail height-105">
 						</div>
 						<div class="col-md-9">
-							<p class="float-left"><h4><a href="/affichageProfil">Publication</a></h4></p>
+							<p class="float-left"><h4><a href="#">Publication</a></h4></p>
 						</div>
 						<div class=" col-md-9">
 							<span><c:out value="${v.contenu}"/></span>

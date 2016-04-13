@@ -31,7 +31,7 @@ public class GestionPub extends Dao<Publication> {
 		List<Publication> all = super.getAll();
     	List<Publication> publications = new ArrayList<Publication>();
     	for(Publication p : all){
-    		if(p.getContenu().contains(nom)) {
+    		if(p.getContenu().toUpperCase().contains(nom.toUpperCase())) {
     			publications.add(p);
     		}
     	}
