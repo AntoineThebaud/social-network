@@ -82,13 +82,13 @@
             </tbody>
           </table>
         </div>
-        <h3>Quelles sont les technologies utlisées ?</h3>
+        <h3>Quelles sont les technologies utilisées ?</h3>
         <ul>
           <li>Html 5</li>
           <li>CSS avec le Framework Bootstrap de Twitter</li>
           <li>JSP</li>
           <li>Servlet</li>
-          <li>Javascript</li>
+          <li>Javascript / ajax</li>
         </ul>
         <ul>
           <li>Google Cloud APP Engine</li>
@@ -99,8 +99,9 @@
         <ul>
           <li>Inscription / Connexion / Déconnexion</li>
           <li>Modification du profil</li>
-          <li>Recherche d'interêts et d'utilisateurs</li>
+          <li>Recherche d'interêts, d'utilisateurs et de publications</li>
           <li>Ajout d'interêts et d'amis</li>
+					<li>Suppression d'intérêts et d'amis</li>
         </ul>
       </div>
     </div>
